@@ -10,12 +10,16 @@ class ProblemSetting(ST.Setting):
     def init_args(self, n: int = 4, k: int = 1):
         self.eigen_num = n
         self.oversamp_layer = k
+        self.tot_fd_num = self.eigen_num * self.coarse_elem
+
 
     def upd_eigen_num(self, n: int = 4):
         self.eigen_num = n
 
+
     def upd_oversamp_layer(self, k: int = 1):
         self.oversamp_layer = k
+
 
     def set_coeff(self, coeff: np.ndarray):
         assert coeff.shape == (self.fine_grid, self.fine_grid)
@@ -23,11 +27,17 @@ class ProblemSetting(ST.Setting):
         self.kappa = 24.0 * self.coarse_grid**2 * self.coeff
         # Magic formula from the paper
 
+
     def set_Diri_func(self, Diri_func_gx, Diri_func_gy):
         self.Diri_func_gx = Diri_func_gx
         self.Diri_func_gy = Diri_func_gy
 
-    def get_quad_fine_elem(self, fine_elem_ind_x, fine_elem_ind_y, loc_ind):
+
+    def set_source_func(self, source_func):
+        self.source_func = source_func
+
+
+    def get_Diri_quad_fine_elem(self, fine_elem_ind_x, fine_elem_ind_y, loc_ind):
         # Compute \int_{K_h} A\nabla g\cdot \nable L_i
         val = 0.0
         h = self.h
@@ -45,6 +55,27 @@ class ProblemSetting(ST.Setting):
                 # Be careful with scaling
         return val
 
+
+    def get_source_quad_fine_elem(self, fine_elem_ind_x, fine_elem_ind_y, loc_ind):
+        return 0.0
+
+
+    def get_stiff_quad_by_node_val(self, fine_elem_ind_x, fine_elem_ind_y, node_val_i, node_val_j):
+        # Compute \int_{K_h} A\nabla u \cdot \nabla v, where the values of u, v on nodes of the fine element K_h is given
+        val = 0.0
+        for quad_ind_x in range(ST.QUAD_ORDER):
+            for quad_ind_y in range(ST.QUAD_ORDER):
+                quad_cord_x, quad_cord_y = ST.QUAD_CORD[quad_ind_x], ST.QUAD_CORD[quad_ind_y]
+                quad_wght_x, quad_wght_y = ST.QUAD_WGHT[quad_ind_x], ST.QUAD_WGHT[quad_ind_y]
+                grad_x_of_i, grad_y_of_i, grad_x_of_j, grad_y_of_j = 0.0, 0.0, 0.0, 0.0
+                for loc_ind in range(ST.N_V):
+                    Lag_grad_x, Lag_grad_y = ST.get_locbase_grad_val(loc_ind, quad_cord_x, quad_cord_y)
+                    grad_x_of_i += node_val_i[loc_ind] * Lag_grad_x
+                    grad_y_of_i += node_val_i[loc_ind] * Lag_grad_y
+                    grad_x_of_j += node_val_j[loc_ind] * Lag_grad_x
+                    grad_y_of_j += node_val_j[loc_ind] * Lag_grad_y
+                val += self.coeff[fine_elem_ind_x, fine_elem_ind_y] * (grad_x_of_i*grad_x_of_j+grad_y_of_i*grad_y_of_j)
+        return val       
 
 
     def get_eigen_pair(self):
@@ -123,9 +154,7 @@ class ProblemSetting(ST.Setting):
                         # Coordinates of fine elements are always defined globally
                         for loc_ind in range(ST.N_V):
                             loc_ind_y, loc_ind_x = divmod(loc_ind, 2)
-                            node_ind_y = fine_elem_ind_y + loc_ind_y
-                            node_ind_x = fine_elem_ind_x + loc_ind_x
-                            node_ind = node_ind_y*(self.fine_grid+1) + node_ind_x
+                            node_ind = (fine_elem_ind_y + loc_ind_y)*(self.fine_grid+1) + fine_elem_ind_x + loc_ind_x
                             if node_ind_y == 0 or node_ind_y == self.fine_grid or node_ind_x == 0 or node_ind_x == self.fine_grid:
                             # Global Dirichlet boundary
                                 ind_map_dic[node_ind] = -1
@@ -147,6 +176,18 @@ class ProblemSetting(ST.Setting):
                                 fd_ind += 1
             self.ind_map_list.append(ind_map_dic)
             self.loc_fd_num[coarse_elem_ind_x] = fd_ind
+
+
+    def get_coarse_ngh_elem_ind(off_ind: int, coarse_elem_ind_x, coarse_elem_ind_y):
+            coarse_ngh_elem_ind_off_y, coarse_ngh_elem_ind_off_x = divmod(off_ind, 2*self.oversamp_layer+1)
+            coarse_ngh_elem_ind_y = coarse_elem_ind_y + coarse_ngh_elem_ind_off_y - self.oversamp_layer  
+            coarse_ngh_elem_ind_x = coarse_elem_ind_x + coarse_ngh_elem_ind_off_x - self.oversamp_layer
+            is_elem_indomain = 0 <= coarse_ngh_elem_ind_x < self.coarse_grid and 0 <= coarse_elem_ind_y < self.coarse_grid
+            if is_elem_indomain:
+                return coarse_elem_ind_y*self.coarse_grid + coarse_ngh_elem_ind_x
+            else:
+                return -1 
+
 
     def get_corr_basis(self):
         assert self.oversamp_layer > 0 and self.eigen_num > 0
@@ -176,7 +217,8 @@ class ProblemSetting(ST.Setting):
                 coarse_ngh_elem_ind_x = coarse_elem_ind_x + coarse_ngh_elem_ind_off_x - self.oversamp_layer
                 coarse_ngh_elem_ind = coarse_elem_ind_y*self.coarse_grid + coarse_ngh_elem_ind_x
                 # Neighboring element in the global coordinate
-                if (0 <= coarse_ngh_elem_ind_y < self.coarse_grid) and (0 <= coarse_ngh_elem_ind_x < self.coarse_grid):
+                is_elem_indomain = (0 <= coarse_ngh_elem_ind_y < self.coarse_grid) and (0 <= coarse_ngh_elem_ind_x < self.coarse_grid)
+                if is_elem_indomain:
                 # Select the real neighboring elements in the domain
                     S_mat = self.S_mat_list[coarse_ngh_elem_ind]
                     # Retreive the S matrix of the current neighboring coarse element
@@ -219,7 +261,7 @@ class ProblemSetting(ST.Setting):
                             if fd_ind_i >= 0 and coarse_elem_ind == coarse_ngh_elem_ind:
                             # Construct the right-hand vectors for solving bases and Dirichlet boundary correctors
                             # Note that only the integral on K_i is summed from the paper
-                                rhs_corr[fd_ind_i] += self.get_quad_fine_elem(fine_elem_ind_x, fine_elem_ind_y, loc_ind)
+                                rhs_corr[fd_ind_i] += self.get_Diri_quad_fine_elem(fine_elem_ind_x, fine_elem_ind_y, loc_ind)
                                 for eigen_ind in range(self.eigen_num):
                                     rhs_basis[fd_ind_i, eigen_ind] += P_mat[node_sub_ind_i, eigen_ind]
                                     # Use the definition of P_mat
@@ -234,3 +276,36 @@ class ProblemSetting(ST.Setting):
             self.basis_list.append(basis)
 
 
+    def solve(self):
+        assert self.oversamp_layer > 0 and self.eigen_num > 0
+        assert len(self.ind_map_list) > 0
+        assert len(self.corr_list) > 0 and len(self.basis_list) > 0
+        max_data_len = self.coarse_elem * (2*self.oversamp_layer+1)**4
+        I, J = -np.ones((max_data_len, ), dtype=np.int32), -np.ones((max_data_len, ), dtype=np.int32)
+        V = np.zeros((max_data_len))
+        marker = 0
+        # As previously introduced, vectors I, J and V are used to construct the coo_matrix of the final linear system
+        for coarse_elem_ind in range(self.coarse_elem):
+            coarse_elem_ind_y, coarse_elem_ind_x = divmod(coarse_elem_ind, self.coarse_grid)
+            for coarse_ngh_elem_ind_off_i in range((2*self.oversamp_layer+1)**2): 
+                coarse_ngh_elem_ind_i = self.get_coarse_ngh_elem_ind(coarse_elem_ind_off_i, coarse_elem_ind_x, coarse_elem_ind_y)
+                for coarse_elem_ind_off_j in range((2*self.oversamp_layer+1)**2):
+                    coarse_ngh_elem_ind_j = self.get_coarse_ngh_elem_ind(coarse_elem_ind_off_j, coarse_elem_ind_x, coarse_elem_ind_y)
+                    # This loop over K_n is used to compute \int_{K_n} A\nabla \Phi_j^s \cdot \nabla \Phi_i^t,
+                    # where \supp(\Phi_j^s) \cap K_n \neq \empty and \supp(\Phi_j^t) \cap \neq \empty.
+                    if coarse_ngh_elem_ind_i >= 0 and coarse_ngh_elem_ind_j >= 0:
+                        for eigen_ind_i in range(self.eigen_num):
+                            fd_ind_i = coarse_ngh_elem_ind_i*self.eigen_num + eigen_ind_i
+                            for eigen_ind_j in range(self.eigen_num):
+                                fd_ind_j = coarse_ngh_elem_ind_j*self.eigen_num + eigen_ind_j
+                                for sub_elem_ind in range(self.sub_elem):
+                                    sub_elem_ind_y, sub_elem_ind_x = divmod(sub_elem_ind, self.sub_grid)
+                                    fine_elem_ind_y = coarse_elem_ind_y*self.sub_grid + sub_elem_ind_y
+                                    fine_elem_ind_x = coarse_elem_ind_x*self.sub_grid + sub_elem_ind_x
+                                    node_val_i = [0.0, 0.0, 0.0, 0.0]
+                                    node_val_j = [0.0, 0.0, 0.0, 0.0]
+                                    for loc_ind in range(ST.N_V):
+                                        loc_ind_i, loc_ind_i = divmod(loc_ind, 2)
+                                        node_ind = node_ind = node_ind_y*(self.fine_grid+1) + node_ind_x
+
+                                                            
