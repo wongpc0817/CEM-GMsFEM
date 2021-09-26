@@ -274,6 +274,7 @@ class ProblemSetting(ST.Setting):
                 assert info == 0
             self.corr_list.append(corr)
             self.basis_list.append(basis)
+            # Basis index = eigen_num * coarse_elem_ind + eigen_ind
 
 
     def solve(self):
@@ -285,27 +286,52 @@ class ProblemSetting(ST.Setting):
         V = np.zeros((max_data_len))
         marker = 0
         # As previously introduced, vectors I, J and V are used to construct the coo_matrix of the final linear system
+        rhs = np.zeros((self.tot_fd_num, ))
+        # The right-hand vector of the final linear system 
         for coarse_elem_ind in range(self.coarse_elem):
             coarse_elem_ind_y, coarse_elem_ind_x = divmod(coarse_elem_ind, self.coarse_grid)
             for coarse_ngh_elem_ind_off_i in range((2*self.oversamp_layer+1)**2): 
                 coarse_ngh_elem_ind_i = self.get_coarse_ngh_elem_ind(coarse_elem_ind_off_i, coarse_elem_ind_x, coarse_elem_ind_y)
-                for coarse_elem_ind_off_j in range((2*self.oversamp_layer+1)**2):
-                    coarse_ngh_elem_ind_j = self.get_coarse_ngh_elem_ind(coarse_elem_ind_off_j, coarse_elem_ind_x, coarse_elem_ind_y)
-                    # This loop over K_n is used to compute \int_{K_n} A\nabla \Phi_j^s \cdot \nabla \Phi_i^t,
-                    # where \supp(\Phi_j^s) \cap K_n \neq \empty and \supp(\Phi_j^t) \cap \neq \empty.
-                    if coarse_ngh_elem_ind_i >= 0 and coarse_ngh_elem_ind_j >= 0:
-                        for eigen_ind_i in range(self.eigen_num):
-                            fd_ind_i = coarse_ngh_elem_ind_i*self.eigen_num + eigen_ind_i
-                            for eigen_ind_j in range(self.eigen_num):
-                                fd_ind_j = coarse_ngh_elem_ind_j*self.eigen_num + eigen_ind_j
-                                for sub_elem_ind in range(self.sub_elem):
-                                    sub_elem_ind_y, sub_elem_ind_x = divmod(sub_elem_ind, self.sub_grid)
-                                    fine_elem_ind_y = coarse_elem_ind_y*self.sub_grid + sub_elem_ind_y
-                                    fine_elem_ind_x = coarse_elem_ind_x*self.sub_grid + sub_elem_ind_x
-                                    node_val_i = [0.0, 0.0, 0.0, 0.0]
-                                    node_val_j = [0.0, 0.0, 0.0, 0.0]
-                                    for loc_ind in range(ST.N_V):
-                                        loc_ind_i, loc_ind_i = divmod(loc_ind, 2)
-                                        node_ind = node_ind = node_ind_y*(self.fine_grid+1) + node_ind_x
+                if coarse_ngh_elem_ind_i >= 0:
+                    ind_map_i = self.ind_map_list[coarse_ngh_elem_ind_i]
+                    for eigen_ind_i in range(self.eigen_num):
+                        fd_ind_i = coarse_ngh_elem_ind_i*self.eigen_num + eigen_ind_i
+                        basis_i = self.basis_list[fd_ind_i]
+                        for coarse_elem_ind_off_j in range((2*self.oversamp_layer+1)**2):
+                            coarse_ngh_elem_ind_j = self.get_coarse_ngh_elem_ind(coarse_elem_ind_off_j, coarse_elem_ind_x, coarse_elem_ind_y)
+                            if coarse_ngh_elem_ind_j >= 0:
+                                ind_map_j = self.ind_map_list[coarse_ngh_elem_ind_j]
+                                for eigen_ind_j in range(self.eigen_num):
+                                    fd_ind_j = coarse_ngh_elem_ind_j*self.eigen_num + eigen_ind_j
+                                    basis_j = self.basis_list[fd_ind_j]
+                                    # This loop over K_n is used to compute \int_{K_n} A\nabla \Phi_j^s \cdot \nabla \Phi_i^t,
+                                    # where \supp(\Phi_j^s) \cap K_n \neq \empty and \supp(\Phi_j^t) \cap \neq \empty.
+                                    data_to_insert = 0.0
+                                    # This is \int_{K_n} A\nabla \Phi_j^s \cdot \nabla \Phi_i^t
+                                    for sub_elem_ind in range(self.sub_elem):
+                                        sub_elem_ind_y, sub_elem_ind_x = divmod(sub_elem_ind, self.sub_grid)
+                                        fine_elem_ind_y = coarse_elem_ind_y*self.sub_grid + sub_elem_ind_y
+                                        fine_elem_ind_x = coarse_elem_ind_x*self.sub_grid + sub_elem_ind_x
+                                        node_val_i = [0.0, 0.0, 0.0, 0.0]
+                                        node_val_j = [0.0, 0.0, 0.0, 0.0]
+                                        for loc_ind in range(ST.N_V):
+                                            loc_ind_i, loc_ind_i = divmod(loc_ind, 2)
+                                            node_ind = node_ind_y*(self.fine_grid+1) + node_ind_x
+                                            assert node_ind in ind_map_i and node_ind in ind_map_j
+                                            loc_fd_ind_i = ind_map_i[node_ind]
+                                            loc_fd_ind_j = ind_map_j[node_ind]
+                                            # Get the indeces of freedom degrees of the current node in the basis
+                                            if loc_fd_ind_i >= 0 and loc_fd_ind_j >= 0:
+                                                node_val_i[loc_ind] = basis_i[loc_fd_ind_i]
+                                                node_val_j[loc_ind] = basis_j[loc_fd_ind_j]
+                                            # Retreive the node values of bases
+                                        data_to_insert += self.get_stiff_quad_by_node_val(fine_elem_ind_x, fine_elem_ind_y, node_val_i, node_val_j)
+                                    I[marker] = fd_ind_i
+                                    J[marker] = fd_ind_j
+                                    V[marker] = data_to_insert
+                                    marker += 1
+                            
+
+
 
                                                             
