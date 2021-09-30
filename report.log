@@ -1,0 +1,115 @@
+30-09-2021 06:15:19 : Start
+30-09-2021 06:15:20 : Coarse grid: [2x2]; fine grid: [4x4]; eigenvalue number: [4]; oversampling layers: [1].
+30-09-2021 06:15:20 : Finish getting all eigenvalue-vector pairs.
+30-09-2021 06:15:20 : Finish getting maps of [global node index] to [local freedom index].
+30-09-2021 06:15:20 : Finish getting the Dirichlet corrector and multiscale bases.
+30-09-2021 06:15:21 : Finish constructing the final linear system.
+30-09-2021 06:15:21 : Finish solving the final linear system.
+30-09-2021 06:15:21 : Error in L2 norm:0.000000, in energy norm:0.000000
+30-09-2021 06:15:21 : End
+
+30-09-2021 06:15:52 : Start
+30-09-2021 06:15:52 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+30-09-2021 06:15:52 : Finish getting all eigenvalue-vector pairs.
+30-09-2021 06:15:52 : Finish getting maps of [global node index] to [local freedom index].
+30-09-2021 06:15:53 : Finish getting the Dirichlet corrector and multiscale bases.
+30-09-2021 06:16:09 : Finish constructing the final linear system.
+30-09-2021 06:16:09 : Finish solving the final linear system.
+30-09-2021 06:16:09 : Error in L2 norm:0.231636, in energy norm:2.481486
+30-09-2021 06:16:09 : End
+
+30-09-2021 06:17:00 : Start
+30-09-2021 06:17:01 : Coarse grid: [8x8]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [1].
+30-09-2021 06:17:01 : Finish getting all eigenvalue-vector pairs.
+30-09-2021 06:17:02 : Finish getting maps of [global node index] to [local freedom index].
+30-09-2021 06:17:14 : Finish getting the Dirichlet corrector and multiscale bases.
+30-09-2021 06:22:13 : Finish constructing the final linear system.
+30-09-2021 06:22:14 : Finish solving the final linear system.
+30-09-2021 06:22:14 : Error in L2 norm:0.405923, in energy norm:4.994452
+30-09-2021 06:22:14 : End
+
+30-09-2021 08:23:58 : Start
+30-09-2021 08:23:58 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+30-09-2021 08:23:58 : Finish getting all eigenvalue-vector pairs.
+30-09-2021 08:23:58 : Finish getting maps of [global node index] to [local freedom index].
+30-09-2021 08:23:59 : Finish getting the Dirichlet corrector and multiscale bases.
+30-09-2021 08:24:17 : Finish constructing the final linear system.
+30-09-2021 08:24:17 : Finish solving the final linear system.
+30-09-2021 08:24:17 : Error in L2 norm:0.231636, in energy norm:2.481486
+30-09-2021 08:24:17 : End
+
+30-09-2021 08:25:35 : Start
+30-09-2021 08:25:35 : Coarse grid: [8x8]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [1].
+30-09-2021 08:25:36 : Finish getting all eigenvalue-vector pairs.
+30-09-2021 08:25:36 : Finish getting maps of [global node index] to [local freedom index].
+30-09-2021 08:25:49 : Finish getting the Dirichlet corrector and multiscale bases.
+30-09-2021 08:31:12 : Finish constructing the final linear system.
+30-09-2021 08:31:13 : Finish solving the final linear system.
+30-09-2021 08:31:13 : Error in L2 norm:0.405923, in energy norm:4.994452
+30-09-2021 08:31:13 : End
+
+30-09-2021 08:41:49 : Start
+30-09-2021 08:41:49 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+30-09-2021 08:41:49 : Finish getting all eigenvalue-vector pairs.
+30-09-2021 08:41:49 : Finish getting maps of [global node index] to [local freedom index].
+30-09-2021 08:41:50 : Finish getting the Dirichlet corrector and multiscale bases.
+30-09-2021 08:48:10 : Start
+30-09-2021 08:48:11 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+30-09-2021 08:48:11 : Finish getting all eigenvalue-vector pairs.
+30-09-2021 08:48:11 : Finish getting maps of [global node index] to [local freedom index].
+30-09-2021 08:48:11 : Finish getting the Dirichlet corrector and multiscale bases.
+30-09-2021 08:48:25 : Finish constructing the final linear system.
+30-09-2021 08:48:25 : Finish solving the final linear system.
+30-09-2021 08:48:25 : Error in L2 norm:0.421285, in energy norm:3.712303
+30-09-2021 08:48:25 : End
+
+30-09-2021 08:49:01 : Start
+30-09-2021 08:49:02 : Coarse grid: [8x8]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [1].
+30-09-2021 08:49:02 : Finish getting all eigenvalue-vector pairs.
+30-09-2021 08:49:03 : Finish getting maps of [global node index] to [local freedom index].
+30-09-2021 08:49:10 : Finish getting the Dirichlet corrector and multiscale bases.
+30-09-2021 08:54:01 : Finish constructing the final linear system.
+30-09-2021 08:54:02 : Finish solving the final linear system.
+30-09-2021 08:54:02 : Error in L2 norm:0.372468, in energy norm:3.518513
+30-09-2021 08:54:02 : End
+
+30-09-2021 09:24:41 : Start
+30-09-2021 09:24:41 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+30-09-2021 09:24:41 : Finish getting all eigenvalue-vector pairs.
+30-09-2021 09:24:41 : Finish getting maps of [global node index] to [local freedom index].
+30-09-2021 09:24:42 : Finish getting the Dirichlet corrector and multiscale bases.
+30-09-2021 09:24:56 : Finish constructing the final linear system.
+30-09-2021 09:24:56 : Finish solving the final linear system.
+30-09-2021 09:24:56 : Error in L2 norm:0.420071, in energy norm:4.059361
+30-09-2021 09:24:56 : End
+
+30-09-2021 09:37:38 : Start
+30-09-2021 09:37:38 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+30-09-2021 09:37:39 : Finish getting all eigenvalue-vector pairs.
+30-09-2021 09:37:39 : Finish getting maps of [global node index] to [local freedom index].
+30-09-2021 09:37:39 : Finish getting the Dirichlet corrector and multiscale bases.
+30-09-2021 09:37:53 : Finish constructing the final linear system.
+30-09-2021 09:37:53 : Finish solving the final linear system.
+30-09-2021 09:37:53 : Error in L2 norm:0.419971, in energy norm:4.058301
+30-09-2021 09:37:53 : End
+
+30-09-2021 10:04:44 : Start
+30-09-2021 10:04:45 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+30-09-2021 10:04:45 : Finish getting all eigenvalue-vector pairs.
+30-09-2021 10:04:45 : Finish getting maps of [global node index] to [local freedom index].
+30-09-2021 10:04:45 : Finish getting the Dirichlet corrector and multiscale bases.
+30-09-2021 10:04:59 : Finish constructing the final linear system.
+30-09-2021 10:04:59 : Finish solving the final linear system.
+30-09-2021 10:04:59 : Error in L2 norm:0.085063, in energy norm:1.715380
+30-09-2021 10:04:59 : End
+
+30-09-2021 10:05:19 : Start
+30-09-2021 10:05:20 : Coarse grid: [8x8]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [1].
+30-09-2021 10:05:20 : Finish getting all eigenvalue-vector pairs.
+30-09-2021 10:05:21 : Finish getting maps of [global node index] to [local freedom index].
+30-09-2021 10:05:28 : Finish getting the Dirichlet corrector and multiscale bases.
+30-09-2021 10:10:20 : Finish constructing the final linear system.
+30-09-2021 10:10:20 : Finish solving the final linear system.
+30-09-2021 10:10:20 : Error in L2 norm:0.141770, in energy norm:2.328264
+30-09-2021 10:10:20 : End
+
