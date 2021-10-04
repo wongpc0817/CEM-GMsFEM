@@ -95,12 +95,16 @@ class Setting:
         elif option == -3:
             self.fine_grid = 64
             self.coarse_grid = 8
+        elif option == -4:
+            self.fine_grid = 32
+            self.coarse_grid = 8
         else:
             raise ValueError("Invalid option")
         self.fine_elem = self.fine_grid**2
         self.coarse_elem = self.coarse_grid**2
         self.sub_grid = self.fine_grid // self.coarse_grid
         self.sub_elem = self.sub_grid**2
+        self.tot_node = (self.fine_grid+1)**2
         self.H = 1.0 / float(self.coarse_grid)
         self.h = 1.0 / float(self.fine_grid)
         # Save the local Laplace stiffness matrix i.e., \int_{K_h} \nabla L_i \cdot \nabla L_j dx
