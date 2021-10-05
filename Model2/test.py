@@ -15,13 +15,15 @@ logging.info("Start")
 import numpy as np
 PI = np.pi
 SIN = np.sin
+COS = np.cos
 EXP = np.exp
+LOG = np.log2
 
 import Model2.InhomoDiriBVP as DBVP
 
 
 def f_func(x: float, y: float):
-    return 2.0 * PI**2 * SIN(PI*x) * SIN(PI*y)
+    return EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1)
     # return .0
     # return -2.0
     # return 1.0
@@ -58,22 +60,23 @@ def u0_func(x: float, y: float):
 # u(x, y) = Sin(2 pi x)Sin(2 pi y) + x y
 # u0(x, y) = Sin(2 pi x)Sin(2 pi y)
 
+logging.info("-\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1), u(x,y)=0 on \partial\Omega")
 
-ps = DBVP.ProblemSetting(option=-2)
+logging.info('-'*30+'CONFIG 1'+'-'*30)
+ps = DBVP.ProblemSetting(option=-1)
 coeff = np.ones((ps.fine_grid, ps.fine_grid))
-ps.init_args(4, 1)
-u0_real = np.zeros((ps.fine_grid+1, ps.fine_grid+1))
-for node_ind_x in range(ps.fine_grid+1):
-    for node_ind_y in range(ps.fine_grid+1):
-        x = ps.h * node_ind_x
-        y = ps.h * node_ind_y
-        u0_real[node_ind_x, node_ind_y] = u0_func(x, y)
-
-logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(ps.coarse_grid, ps.fine_grid, ps.eigen_num, ps.oversamp_layer))
 ps.set_coeff(coeff)
 ps.set_source_func(f_func)
 ps.set_Diri_func(g_func, g_dx_func, g_dy_func)
-logging.info("f(x,y)=SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.")
+os_ly = int(max(LOG(ps.coarse_grid), 1))
+ps.init_args(4, os_ly)
+# u0_real = np.zeros((ps.fine_grid+1, ps.fine_grid+1))
+# for node_ind_x in range(ps.fine_grid+1):
+#     for node_ind_y in range(ps.fine_grid+1):
+#         x = ps.h * node_ind_x
+#         y = ps.h * node_ind_y
+#         u0_real[node_ind_x, node_ind_y] = u0_func(x, y)
+logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(ps.coarse_grid, ps.fine_grid, ps.eigen_num, ps.oversamp_layer))
 u0 = ps.solve()
 # err_l2, err_eg = ps.get_L2_energy_norm(u0_real-u0)
 # logging.info("L2-norm error:{0:.6f}, energy-norm error:{1:.6f}".format(err_l2, err_eg))
@@ -82,6 +85,8 @@ u0_ref = ps.solve_ref()
 # err_l2_ref, err_eg_ref = ps.get_L2_energy_norm(u0_real-u0_ref)
 # logging.info("L2-norm error of the reference:{0:.6f}, energy-norm error of the reference:{1:.6f}".format(err_l2_ref, err_eg_ref))
 # u0_dbg = ps.solve_dbg()
+# err = (u0 - u0_ref).reshape((-1))
+# err_eg_test = np.sqrt(ps.glb_A_mat.dot(err) @ err)
 err_l2_num, err_eg_num = ps.get_L2_energy_norm(u0-u0_ref)
 # err_l2_dbg, err_eg_dbg = ps.get_L2_energy_norm(u0_dbg-u0_ref)
 logging.info("L2-norm error:{0:.6f}, energy-norm error:{1:.6f}".format(err_l2_num, err_eg_num))
@@ -89,4 +94,75 @@ logging.info("L2-norm error:{0:.6f}, energy-norm error:{1:.6f}".format(err_l2_nu
 # err_l2_dbg, err_eg_dbg = ps.get_L2_energy_norm(u0_dbg-u0_ref)
 # logging.info("[Depreciated]L2-norm error:{0:.6f}, energy-norm error:{1:.6f}".format(err_l2_dep, err_eg_dep))
 # logging.info("L2-norm error:{0:.6f}, energy-norm error:{1:.6f}".format(err_l2_dbg, err_eg_dbg))
+
+logging.info('-'*30+'CONFIG 2'+'-'*30)
+ps = DBVP.ProblemSetting(option=-2)
+coeff = np.ones((ps.fine_grid, ps.fine_grid))
+ps.set_coeff(coeff)
+ps.set_source_func(f_func)
+ps.set_Diri_func(g_func, g_dx_func, g_dy_func)
+os_ly = int(LOG(ps.coarse_grid))
+ps.init_args(4, os_ly)
+logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(ps.coarse_grid, ps.fine_grid, ps.eigen_num, ps.oversamp_layer))
+u0 = ps.solve()
+u0_ref = ps.solve_ref()
+err_l2_num, err_eg_num = ps.get_L2_energy_norm(u0-u0_ref)
+logging.info("L2-norm error:{0:.6f}, energy-norm error:{1:.6f}".format(err_l2_num, err_eg_num))
+
+logging.info('-'*30+'CONFIG 3'+'-'*30)
+ps = DBVP.ProblemSetting(option=-3)
+coeff = np.ones((ps.fine_grid, ps.fine_grid))
+ps.set_coeff(coeff)
+ps.set_source_func(f_func)
+ps.set_Diri_func(g_func, g_dx_func, g_dy_func)
+os_ly = int(LOG(ps.coarse_grid))
+ps.init_args(4, os_ly)
+logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(ps.coarse_grid, ps.fine_grid, ps.eigen_num, ps.oversamp_layer))
+u0 = ps.solve()
+u0_ref = ps.solve_ref()
+err_l2_num, err_eg_num = ps.get_L2_energy_norm(u0-u0_ref)
+logging.info("L2-norm error:{0:.6f}, energy-norm error:{1:.6f}".format(err_l2_num, err_eg_num))
+
+logging.info('-'*30+'CONFIG 4'+'-'*30)
+ps = DBVP.ProblemSetting(option=-4)
+coeff = np.ones((ps.fine_grid, ps.fine_grid))
+ps.set_coeff(coeff)
+ps.set_source_func(f_func)
+ps.set_Diri_func(g_func, g_dx_func, g_dy_func)
+os_ly = int(LOG(ps.coarse_grid))
+ps.init_args(4, os_ly)
+logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(ps.coarse_grid, ps.fine_grid, ps.eigen_num, ps.oversamp_layer))
+u0 = ps.solve()
+u0_ref = ps.solve_ref()
+err_l2_num, err_eg_num = ps.get_L2_energy_norm(u0-u0_ref)
+logging.info("L2-norm error:{0:.6f}, energy-norm error:{1:.6f}".format(err_l2_num, err_eg_num))
+
+logging.info('-'*30+'CONFIG 5'+'-'*30)
+ps = DBVP.ProblemSetting(option=-5)
+coeff = np.ones((ps.fine_grid, ps.fine_grid))
+ps.set_coeff(coeff)
+ps.set_source_func(f_func)
+ps.set_Diri_func(g_func, g_dx_func, g_dy_func)
+os_ly = int(LOG(ps.coarse_grid))
+ps.init_args(4, os_ly)
+logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(ps.coarse_grid, ps.fine_grid, ps.eigen_num, ps.oversamp_layer))
+u0 = ps.solve()
+u0_ref = ps.solve_ref()
+err_l2_num, err_eg_num = ps.get_L2_energy_norm(u0-u0_ref)
+logging.info("L2-norm error:{0:.6f}, energy-norm error:{1:.6f}".format(err_l2_num, err_eg_num))
+
+logging.info('-'*30+'CONFIG 6'+'-'*30)
+ps = DBVP.ProblemSetting(option=-6)
+coeff = np.ones((ps.fine_grid, ps.fine_grid))
+ps.set_coeff(coeff)
+ps.set_source_func(f_func)
+ps.set_Diri_func(g_func, g_dx_func, g_dy_func)
+os_ly = int(LOG(ps.coarse_grid))
+ps.init_args(4, os_ly)
+logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(ps.coarse_grid, ps.fine_grid, ps.eigen_num, ps.oversamp_layer))
+u0 = ps.solve()
+u0_ref = ps.solve_ref()
+err_l2_num, err_eg_num = ps.get_L2_energy_norm(u0-u0_ref)
+logging.info("L2-norm error:{0:.6f}, energy-norm error:{1:.6f}".format(err_l2_num, err_eg_num))
+
 logging.info("End\n")

@@ -87,17 +87,23 @@ class Setting:
             self.fine_grid = FINE_GRID
             self.coarse_grid = COARSE4
         elif option == -1:
-            self.fine_grid = 4
+            self.fine_grid = 8
             self.coarse_grid = 2
         elif option == -2:
             self.fine_grid = 16
             self.coarse_grid = 4
         elif option == -3:
-            self.fine_grid = 64
-            self.coarse_grid = 8
-        elif option == -4:
             self.fine_grid = 32
             self.coarse_grid = 8
+        elif option == -4:
+            self.fine_grid = 64
+            self.coarse_grid = 16
+        elif option == -5:
+            self.fine_grid = 128
+            self.coarse_grid = 32
+        elif option == -6:
+            self.fine_grid = 256
+            self.coarse_grid = 64     
         else:
             raise ValueError("Invalid option")
         self.fine_elem = self.fine_grid**2

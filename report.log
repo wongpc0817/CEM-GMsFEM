@@ -1384,3 +1384,518 @@ Start
 04-10-2021 10:06:24 : f(x,y)=SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
 04-10-2021 10:06:24 : Finish getting all eigenvalue-vector pairs.
 04-10-2021 10:06:24 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 09:36:46 : ================================================================================
+05-10-2021 09:36:46 : Start
+05-10-2021 09:36:46 : Coarse grid: [8x8]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 09:36:46 : f(x,y)=SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 09:36:47 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 09:36:47 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 09:39:33 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 09:39:39 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 09:39:43 : Finish constructing the final linear system.
+05-10-2021 09:39:43 : Finish solving the final linear system.
+05-10-2021 09:39:49 : Finish constructing the final linear system of the reference problem.
+05-10-2021 09:39:49 : Finish solving the final linear system of the reference problem.
+05-10-2021 09:39:49 : L2-norm error:0.025608, energy-norm error:0.491188
+05-10-2021 09:39:49 : End
+
+05-10-2021 09:51:53 : ================================================================================
+05-10-2021 09:51:53 : Start
+05-10-2021 09:51:53 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 09:51:53 : f(x,y)=SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 09:51:53 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 09:51:53 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 09:51:56 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 09:51:56 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 09:51:56 : Finish constructing the final linear system.
+05-10-2021 09:51:56 : Finish solving the final linear system.
+05-10-2021 09:51:57 : Finish constructing the final linear system of the reference problem.
+05-10-2021 09:51:57 : Finish solving the final linear system of the reference problem.
+05-10-2021 09:51:57 : L2-norm error:0.006308, energy-norm error:0.178481
+05-10-2021 09:51:57 : End
+
+05-10-2021 09:53:28 : ================================================================================
+05-10-2021 09:53:28 : Start
+05-10-2021 09:53:28 : Coarse grid: [8x8]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 09:53:28 : f(x,y)=SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 09:53:29 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 09:53:29 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 09:56:07 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 10:00:49 : Finish constructing the final linear system.
+05-10-2021 10:00:49 : Finish solving the final linear system.
+05-10-2021 10:00:55 : Finish constructing the final linear system of the reference problem.
+05-10-2021 10:00:55 : Finish solving the final linear system of the reference problem.
+05-10-2021 10:00:55 : L2-norm error:0.025608, energy-norm error:0.491188
+05-10-2021 10:00:55 : End
+
+05-10-2021 10:14:02 : ================================================================================
+05-10-2021 10:14:02 : Start
+05-10-2021 10:14:03 : Coarse grid: [8x8]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 10:14:03 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 10:14:09 : Finish constructing the final linear system of the reference problem.
+05-10-2021 10:14:09 : Finish solving the final linear system of the reference problem.
+05-10-2021 10:14:09 : L2-norm error of the reference:0.000100, energy-norm error of the reference:0.000446
+05-10-2021 10:14:09 : End
+
+05-10-2021 10:19:20 : ================================================================================
+05-10-2021 10:19:20 : Start
+05-10-2021 10:19:20 : Coarse grid: [8x8]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 10:19:20 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 10:19:21 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 10:19:21 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 10:19:38 : ================================================================================
+05-10-2021 10:19:38 : Start
+05-10-2021 10:19:38 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 10:19:38 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 10:19:38 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 10:19:38 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 10:21:35 : ================================================================================
+05-10-2021 10:21:35 : Start
+05-10-2021 10:21:35 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 10:21:35 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 10:21:35 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 10:21:35 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 12:03:49 : ================================================================================
+05-10-2021 12:03:49 : Start
+05-10-2021 12:03:49 : Coarse grid: [8x8]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 12:03:49 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 12:03:50 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 12:03:50 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 12:06:44 : ================================================================================
+05-10-2021 12:06:44 : Start
+05-10-2021 12:06:45 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 12:06:45 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 12:06:45 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 12:06:45 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 12:06:57 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 12:06:59 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 12:07:00 : Finish constructing the final linear system.
+05-10-2021 12:07:00 : Finish solving the final linear system.
+05-10-2021 12:07:01 : Finish constructing the final linear system of the reference problem.
+05-10-2021 12:07:01 : Finish solving the final linear system of the reference problem.
+05-10-2021 12:07:01 : L2-norm error:0.028444, energy-norm error:0.518442
+05-10-2021 12:07:01 : End
+
+05-10-2021 12:08:04 : ================================================================================
+05-10-2021 12:08:04 : Start
+05-10-2021 12:08:05 : Coarse grid: [16x16]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 12:08:05 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 12:08:07 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 12:08:07 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 12:08:59 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 12:09:05 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 12:09:13 : Finish constructing the final linear system.
+05-10-2021 12:09:13 : Finish solving the final linear system.
+05-10-2021 12:09:19 : Finish constructing the final linear system of the reference problem.
+05-10-2021 12:09:19 : Finish solving the final linear system of the reference problem.
+05-10-2021 12:09:19 : L2-norm error:0.108446, energy-norm error:1.033300
+05-10-2021 12:09:19 : End
+
+05-10-2021 12:14:56 : ================================================================================
+05-10-2021 12:14:56 : Start
+05-10-2021 12:14:56 : Coarse grid: [16x16]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 12:14:56 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 12:14:58 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 12:14:59 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 12:19:51 : ================================================================================
+05-10-2021 12:19:51 : Start
+05-10-2021 12:19:52 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [3].
+05-10-2021 12:19:52 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 12:19:52 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 12:19:52 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 12:20:04 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 12:20:04 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 12:20:04 : Finish constructing the final linear system.
+05-10-2021 12:20:05 : Finish solving the final linear system.
+05-10-2021 12:20:05 : Finish constructing the final linear system of the reference problem.
+05-10-2021 12:20:05 : Finish solving the final linear system of the reference problem.
+05-10-2021 12:20:05 : L2-norm error:0.000207, energy-norm error:0.006224
+05-10-2021 12:20:05 : End
+
+05-10-2021 02:05:32 : ================================================================================
+05-10-2021 02:05:32 : Start
+05-10-2021 02:05:33 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [2].
+05-10-2021 02:05:33 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 02:05:33 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 02:05:33 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 02:05:38 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 02:05:39 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 02:05:39 : Finish constructing the final linear system.
+05-10-2021 02:05:39 : Finish solving the final linear system.
+05-10-2021 02:05:39 : Finish constructing the final linear system of the reference problem.
+05-10-2021 02:05:39 : Finish solving the final linear system of the reference problem.
+05-10-2021 02:05:39 : L2-norm error:0.000147, energy-norm error:0.004888
+05-10-2021 02:05:39 : End
+
+05-10-2021 02:05:56 : ================================================================================
+05-10-2021 02:05:56 : Start
+05-10-2021 02:05:56 : Coarse grid: [16x16]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [2].
+05-10-2021 02:05:56 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 02:05:58 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 02:05:58 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 02:08:42 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 02:08:49 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 02:09:21 : Finish constructing the final linear system.
+05-10-2021 02:09:21 : Finish solving the final linear system.
+05-10-2021 02:09:27 : Finish constructing the final linear system of the reference problem.
+05-10-2021 02:09:27 : Finish solving the final linear system of the reference problem.
+05-10-2021 02:09:27 : L2-norm error:0.000427, energy-norm error:0.045183
+05-10-2021 02:09:27 : End
+
+05-10-2021 02:49:42 : ================================================================================
+05-10-2021 02:49:42 : Start
+05-10-2021 02:49:42 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 02:49:42 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 02:49:45 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 02:49:45 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 02:49:49 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 02:49:50 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 02:49:50 : Finish constructing the final linear system.
+05-10-2021 02:49:50 : Finish solving the final linear system.
+05-10-2021 02:53:47 : ================================================================================
+05-10-2021 02:53:47 : Start
+05-10-2021 02:53:47 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 02:53:47 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 02:53:48 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 02:53:48 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 02:54:00 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 02:54:01 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 02:54:02 : Finish constructing the final linear system.
+05-10-2021 02:54:02 : Finish solving the final linear system.
+05-10-2021 02:54:41 : Finish constructing the final linear system of the reference problem.
+05-10-2021 02:54:41 : Finish solving the final linear system of the reference problem.
+05-10-2021 02:56:46 : L2-norm error:0.028444, energy-norm error:0.518442
+05-10-2021 02:56:50 : End
+
+05-10-2021 03:08:46 : ================================================================================
+05-10-2021 03:08:46 : Start
+05-10-2021 03:08:46 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 03:08:46 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 03:08:46 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 03:08:46 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 03:29:50 : ================================================================================
+05-10-2021 03:29:50 : Start
+05-10-2021 03:29:50 : Coarse grid: [2x2]; fine grid: [4x4]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 03:29:50 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 03:29:50 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 03:29:50 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 03:38:36 : ================================================================================
+05-10-2021 03:38:36 : Start
+05-10-2021 03:38:36 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 03:38:36 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 03:38:36 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 03:38:36 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 03:42:52 : ================================================================================
+05-10-2021 03:42:52 : Start
+05-10-2021 03:42:52 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 03:42:52 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 03:42:52 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 03:42:52 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 04:10:11 : ================================================================================
+05-10-2021 04:10:11 : Start
+05-10-2021 04:10:11 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 04:10:11 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 04:10:11 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 04:10:11 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 04:14:03 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 04:14:03 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 04:14:03 : Finish constructing the final linear system.
+05-10-2021 04:14:03 : Finish solving the final linear system.
+05-10-2021 04:16:49 : ================================================================================
+05-10-2021 04:16:49 : Start
+05-10-2021 04:16:50 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 04:16:50 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 04:16:50 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 04:16:50 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 04:17:17 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 04:17:18 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 04:17:19 : Finish constructing the final linear system.
+05-10-2021 04:17:19 : Finish solving the final linear system.
+05-10-2021 04:23:56 : ================================================================================
+05-10-2021 04:23:56 : Start
+05-10-2021 04:23:57 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [2]; oversampling layers: [1].
+05-10-2021 04:23:57 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 04:23:57 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 04:23:57 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 04:24:15 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 04:24:16 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 04:24:17 : Finish constructing the final linear system.
+05-10-2021 04:24:17 : Finish solving the final linear system.
+05-10-2021 04:24:20 : Finish constructing the final linear system of the reference problem.
+05-10-2021 04:24:20 : Finish solving the final linear system of the reference problem.
+05-10-2021 04:24:20 : L2-norm error:0.084891, energy-norm error:0.905576
+05-10-2021 04:24:20 : End
+
+05-10-2021 04:26:52 : ================================================================================
+05-10-2021 04:26:52 : Start
+05-10-2021 04:26:53 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [2]; oversampling layers: [4].
+05-10-2021 04:26:53 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 04:26:53 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 04:26:54 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 04:27:48 : ================================================================================
+05-10-2021 04:27:48 : Start
+05-10-2021 04:27:49 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [1]; oversampling layers: [4].
+05-10-2021 04:27:49 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 04:27:49 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 04:27:49 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 04:29:22 : ================================================================================
+05-10-2021 04:29:22 : Start
+05-10-2021 04:29:22 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [1]; oversampling layers: [4].
+05-10-2021 04:29:22 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 04:29:22 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 04:29:22 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 04:29:30 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 04:29:30 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 04:29:30 : Finish constructing the final linear system.
+05-10-2021 04:29:30 : Finish solving the final linear system.
+05-10-2021 04:29:30 : Finish constructing the final linear system of the reference problem.
+05-10-2021 04:29:30 : Finish solving the final linear system of the reference problem.
+05-10-2021 04:44:40 : ================================================================================
+05-10-2021 04:44:40 : Start
+05-10-2021 04:44:41 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [1]; oversampling layers: [4].
+05-10-2021 04:44:41 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 04:44:41 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 04:44:41 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 04:44:48 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 04:44:48 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 04:44:49 : Finish constructing the final linear system.
+05-10-2021 04:44:49 : Finish solving the final linear system.
+05-10-2021 04:44:49 : Finish constructing the final linear system of the reference problem.
+05-10-2021 04:44:49 : Finish solving the final linear system of the reference problem.
+05-10-2021 04:45:03 : ================================================================================
+05-10-2021 04:45:03 : Start
+05-10-2021 04:45:03 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 04:45:03 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 04:45:03 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 04:45:03 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 04:45:06 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 04:45:06 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 04:45:06 : Finish constructing the final linear system.
+05-10-2021 04:45:06 : Finish solving the final linear system.
+05-10-2021 04:45:06 : Finish constructing the final linear system of the reference problem.
+05-10-2021 04:45:06 : Finish solving the final linear system of the reference problem.
+05-10-2021 05:07:16 : ================================================================================
+05-10-2021 05:07:16 : Start
+05-10-2021 05:07:16 : Coarse grid: [2x2]; fine grid: [4x4]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 05:07:16 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 05:07:16 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 05:07:16 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 05:07:16 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 05:07:16 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 05:07:16 : Finish constructing the final linear system.
+05-10-2021 05:07:16 : Finish solving the final linear system.
+05-10-2021 05:07:16 : Finish constructing the final linear system of the reference problem.
+05-10-2021 05:07:16 : Finish solving the final linear system of the reference problem.
+05-10-2021 05:07:20 : L2-norm error:0.000000, energy-norm error:0.000000
+05-10-2021 05:07:20 : End
+
+05-10-2021 05:08:17 : ================================================================================
+05-10-2021 05:08:17 : Start
+05-10-2021 05:08:17 : Coarse grid: [2x2]; fine grid: [8x8]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 05:08:17 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 05:08:17 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 05:08:17 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 05:08:17 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 05:08:17 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 05:08:17 : Finish constructing the final linear system.
+05-10-2021 05:08:17 : Finish solving the final linear system.
+05-10-2021 05:08:17 : Finish constructing the final linear system of the reference problem.
+05-10-2021 05:08:17 : Finish solving the final linear system of the reference problem.
+05-10-2021 05:08:17 : L2-norm error:0.002178, energy-norm error:0.038741
+05-10-2021 05:08:17 : End
+
+05-10-2021 05:09:58 : ================================================================================
+05-10-2021 05:09:58 : Start
+05-10-2021 05:09:58 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [3].
+05-10-2021 05:09:58 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 05:09:58 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 05:09:59 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 05:10:06 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 05:10:06 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 05:10:06 : Finish constructing the final linear system.
+05-10-2021 05:10:06 : Finish solving the final linear system.
+05-10-2021 05:10:07 : Finish constructing the final linear system of the reference problem.
+05-10-2021 05:10:07 : Finish solving the final linear system of the reference problem.
+05-10-2021 05:10:07 : L2-norm error:0.000207, energy-norm error:0.006224
+05-10-2021 05:10:07 : End
+
+05-10-2021 05:11:01 : ================================================================================
+05-10-2021 05:11:01 : Start
+05-10-2021 05:11:02 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [7].
+05-10-2021 05:11:02 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 05:11:02 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 05:11:03 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 05:13:21 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 05:13:23 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 05:13:38 : Finish constructing the final linear system.
+05-10-2021 05:13:38 : Finish solving the final linear system.
+05-10-2021 05:13:39 : Finish constructing the final linear system of the reference problem.
+05-10-2021 05:13:39 : Finish solving the final linear system of the reference problem.
+05-10-2021 05:13:39 : L2-norm error:0.000015, energy-norm error:0.000841
+05-10-2021 05:13:39 : End
+
+05-10-2021 05:21:56 : ================================================================================
+05-10-2021 05:21:56 : Start
+05-10-2021 05:21:56 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [3].
+05-10-2021 05:21:56 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 05:21:57 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 05:21:57 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 05:22:03 : ================================================================================
+05-10-2021 05:22:03 : Start
+05-10-2021 05:22:04 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [2].
+05-10-2021 05:22:04 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 05:22:04 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 05:22:04 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 05:22:09 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 05:22:10 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 05:22:10 : Finish constructing the final linear system.
+05-10-2021 05:22:10 : Finish solving the final linear system.
+05-10-2021 05:22:10 : Finish constructing the final linear system of the reference problem.
+05-10-2021 05:22:10 : Finish solving the final linear system of the reference problem.
+05-10-2021 05:22:10 : L2-norm error:0.000147, energy-norm error:0.004888
+05-10-2021 05:22:10 : End
+
+05-10-2021 05:23:06 : ================================================================================
+05-10-2021 05:23:06 : Start
+05-10-2021 05:23:06 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [3].
+05-10-2021 05:23:06 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 05:23:07 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 05:23:07 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 05:24:08 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 05:24:10 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 05:24:17 : Finish constructing the final linear system.
+05-10-2021 05:24:17 : Finish solving the final linear system.
+05-10-2021 05:24:19 : Finish constructing the final linear system of the reference problem.
+05-10-2021 05:24:19 : Finish solving the final linear system of the reference problem.
+05-10-2021 05:24:19 : L2-norm error:0.000008, energy-norm error:0.000559
+05-10-2021 05:24:19 : End
+
+05-10-2021 05:24:59 : ================================================================================
+05-10-2021 05:24:59 : Start
+05-10-2021 05:25:00 : Coarse grid: [16x16]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [4].
+05-10-2021 05:25:00 : f(x,y)=2 PI^2 SIN(PI x) SIN(PI y), u(x,y)=0 on \partial\Omega.
+05-10-2021 05:25:02 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 05:25:03 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 05:33:42 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 05:33:48 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 05:36:38 : Finish constructing the final linear system.
+05-10-2021 05:36:38 : Finish solving the final linear system.
+05-10-2021 05:36:44 : Finish constructing the final linear system of the reference problem.
+05-10-2021 05:36:44 : Finish solving the final linear system of the reference problem.
+05-10-2021 05:36:44 : L2-norm error:0.000001, energy-norm error:0.000064
+05-10-2021 05:36:44 : End
+
+05-10-2021 06:24:34 : ================================================================================
+05-10-2021 06:24:34 : Start
+05-10-2021 06:24:35 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG2(x+y+1), u(x,y)=0 on \partial\Omega
+05-10-2021 06:24:35 : ------------------------------CONFIG 1------------------------------
+05-10-2021 06:24:35 : Coarse grid: [2x2]; fine grid: [8x8]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 06:24:35 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 06:24:35 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 06:24:35 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 06:24:52 : ================================================================================
+05-10-2021 06:24:52 : Start
+05-10-2021 06:24:52 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG2(x+y+1), u(x,y)=0 on \partial\Omega
+05-10-2021 06:24:52 : ------------------------------CONFIG 1------------------------------
+05-10-2021 06:24:52 : Coarse grid: [2x2]; fine grid: [8x8]; eigenvalue number: [4]; oversampling layers: [1].
+05-10-2021 06:24:52 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 06:24:52 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 06:24:53 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 06:24:53 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 06:24:53 : Finish constructing the final linear system.
+05-10-2021 06:24:53 : Finish solving the final linear system.
+05-10-2021 06:24:53 : Finish constructing the final linear system of the reference problem.
+05-10-2021 06:24:53 : Finish solving the final linear system of the reference problem.
+05-10-2021 06:24:53 : L2-norm error:0.010514, energy-norm error:0.078303
+05-10-2021 06:24:53 : ------------------------------CONFIG 2------------------------------
+05-10-2021 06:24:53 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [2].
+05-10-2021 06:24:53 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 06:24:53 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 06:24:58 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 06:24:59 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 06:24:59 : Finish constructing the final linear system.
+05-10-2021 06:24:59 : Finish solving the final linear system.
+05-10-2021 06:24:59 : Finish constructing the final linear system of the reference problem.
+05-10-2021 06:24:59 : Finish solving the final linear system of the reference problem.
+05-10-2021 06:24:59 : L2-norm error:0.010927, energy-norm error:0.080849
+05-10-2021 06:24:59 : ------------------------------CONFIG 3------------------------------
+05-10-2021 06:24:59 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [3].
+05-10-2021 06:25:00 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 06:25:00 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 06:26:02 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 06:26:03 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 06:26:11 : Finish constructing the final linear system.
+05-10-2021 06:26:11 : Finish solving the final linear system.
+05-10-2021 06:26:13 : Finish constructing the final linear system of the reference problem.
+05-10-2021 06:26:13 : Finish solving the final linear system of the reference problem.
+05-10-2021 06:26:13 : L2-norm error:0.011031, energy-norm error:0.081497
+05-10-2021 06:26:13 : ------------------------------CONFIG 4------------------------------
+05-10-2021 06:26:13 : Coarse grid: [16x16]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [4].
+05-10-2021 06:26:15 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 06:26:16 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 06:35:07 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 06:35:14 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 06:38:10 : Finish constructing the final linear system.
+05-10-2021 06:38:10 : Finish solving the final linear system.
+05-10-2021 06:38:18 : Finish constructing the final linear system of the reference problem.
+05-10-2021 06:38:18 : Finish solving the final linear system of the reference problem.
+05-10-2021 06:38:18 : L2-norm error:0.011056, energy-norm error:0.081649
+05-10-2021 06:38:18 : End
+
+05-10-2021 07:41:49 : ================================================================================
+05-10-2021 07:41:49 : Start
+05-10-2021 07:43:36 : ================================================================================
+05-10-2021 07:43:36 : Start
+05-10-2021 07:43:37 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG2(x+y+1), u(x,y)=0 on \partial\Omega
+05-10-2021 07:43:37 : ------------------------------CONFIG 1------------------------------
+05-10-2021 07:43:37 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [3]; oversampling layers: [3].
+05-10-2021 07:43:37 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 07:43:37 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 07:43:44 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 07:43:45 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 07:43:45 : Finish constructing the final linear system.
+05-10-2021 07:43:45 : Finish solving the final linear system.
+05-10-2021 07:43:45 : Finish constructing the final linear system of the reference problem.
+05-10-2021 07:43:45 : Finish solving the final linear system of the reference problem.
+05-10-2021 07:43:45 : L2-norm error:0.010927, energy-norm error:0.080847
+05-10-2021 07:48:22 : ================================================================================
+05-10-2021 07:48:22 : Start
+05-10-2021 07:48:23 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG2(x+y+1), u(x,y)=0 on \partial\Omega
+05-10-2021 07:48:23 : ------------------------------CONFIG 1------------------------------
+05-10-2021 07:48:23 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [3]; oversampling layers: [7].
+05-10-2021 07:48:23 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 07:48:24 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 07:50:45 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 07:50:47 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 07:50:56 : Finish constructing the final linear system.
+05-10-2021 07:50:56 : Finish solving the final linear system.
+05-10-2021 07:50:58 : Finish constructing the final linear system of the reference problem.
+05-10-2021 07:50:58 : Finish solving the final linear system of the reference problem.
+05-10-2021 07:50:58 : L2-norm error:0.011031, energy-norm error:0.081497
+05-10-2021 08:08:44 : ================================================================================
+05-10-2021 08:08:44 : Start
+05-10-2021 08:08:45 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG2(x+y+1), u(x,y)=0 on \partial\Omega
+05-10-2021 08:08:45 : ------------------------------CONFIG 1------------------------------
+05-10-2021 08:08:45 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [3]; oversampling layers: [3].
+05-10-2021 08:08:45 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 08:08:45 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 08:08:52 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 08:08:53 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 08:08:53 : Finish constructing the final linear system.
+05-10-2021 08:08:53 : Finish solving the final linear system.
+05-10-2021 08:08:53 : Finish constructing the final linear system of the reference problem.
+05-10-2021 08:08:53 : Finish solving the final linear system of the reference problem.
+05-10-2021 08:11:37 : ================================================================================
+05-10-2021 08:11:37 : Start
+05-10-2021 08:11:38 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG2(x+y+1), u(x,y)=0 on \partial\Omega
+05-10-2021 08:11:38 : ------------------------------CONFIG 1------------------------------
+05-10-2021 08:11:38 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [3]; oversampling layers: [3].
+05-10-2021 08:11:38 : Finish getting all eigenvalue-vector pairs.
+05-10-2021 08:11:38 : Finish getting maps of [global node index] to [local freedom index].
+05-10-2021 08:11:45 : Finish getting the Dirichlet corrector and multiscale bases.
+05-10-2021 08:11:46 : Finish getting the global stiffness matrix and right-hand vector.
+05-10-2021 08:11:46 : Finish constructing the final linear system.
+05-10-2021 08:11:46 : Finish solving the final linear system.
+05-10-2021 08:11:46 : Finish constructing the final linear system of the reference problem.
+05-10-2021 08:11:46 : Finish solving the final linear system of the reference problem.
+05-10-2021 08:11:46 : L2-norm error:0.000005, energy-norm error:0.000131

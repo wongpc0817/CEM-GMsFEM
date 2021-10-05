@@ -100,17 +100,20 @@ class ProblemSetting(ST.Setting):
 
 
     def get_L2_energy_norm(self, u):
-        val0, val1 = 0.0, 0.0
-        for fine_elem_ind_x in range(self.fine_grid):
-            for fine_elem_ind_y in range(self.fine_grid):
-                node_val = np.zeros((ST.N_V, ))
-                node_val[0] = u[fine_elem_ind_x, fine_elem_ind_y]
-                node_val[1] = u[fine_elem_ind_x+1, fine_elem_ind_y]
-                node_val[2] = u[fine_elem_ind_x, fine_elem_ind_y+1]
-                node_val[3] = u[fine_elem_ind_x+1, fine_elem_ind_y+1]
-                val0 += np.inner(self.elem_Bi_mass_mat.dot(node_val), node_val)
-                val1 += self.get_stiff_quad_node_val(fine_elem_ind_x, fine_elem_ind_y, node_val, node_val)
-        return np.sqrt(val0), np.sqrt(val1)
+        assert self.glb_A_mat != None
+        val0 = self.h * np.linalg.norm(u)
+        val1 = np.sqrt(u @ self.glb_A_mat.dot(u))
+        # val0, val1 = 0.0, 0.0
+        # for fine_elem_ind_x in range(self.fine_grid):
+        #     for fine_elem_ind_y in range(self.fine_grid):
+        #         node_val = np.zeros((ST.N_V, ))
+        #         node_val[0] = u[fine_elem_ind_x, fine_elem_ind_y]
+        #         node_val[1] = u[fine_elem_ind_x+1, fine_elem_ind_y]
+        #         node_val[2] = u[fine_elem_ind_x, fine_elem_ind_y+1]
+        #         node_val[3] = u[fine_elem_ind_x+1, fine_elem_ind_y+1]
+        #         val0 += np.inner(self.elem_Bi_mass_mat.dot(node_val), node_val)
+        #         val1 += self.get_stiff_quad_node_val(fine_elem_ind_x, fine_elem_ind_y, node_val, node_val)
+        return val0, val1
 
 
     def get_eigen_pair(self):
@@ -258,10 +261,15 @@ class ProblemSetting(ST.Setting):
     def get_glb_vec(self, coarse_elem_ind, vec):
         ind_map_rev = self.ind_map_rev_list[coarse_elem_ind]
         glb_vec = np.zeros((self.tot_node, ))
-        for loc_fd_ind in ind_map_rev:
-            node_ind = ind_map_rev[loc_fd_ind]
+        for loc_fd_ind, node_ind in ind_map_rev.items():
             glb_vec[node_ind] = vec[loc_fd_ind]
         return glb_vec
+
+
+    def get_glb_basis(self, coarse_elem_ind, eigen_ind, basis_list):
+        b = basis_list[coarse_elem_ind][:, eigen_ind]
+        glb_b = self.get_glb_vec(coarse_elem_ind, b)
+        return glb_b.reshape((self.fine_grid+1, -1))
 
 
     def get_corr_basis(self):
@@ -308,12 +316,9 @@ class ProblemSetting(ST.Setting):
                                 node_in_coarse_elem_dic[node_sub_ind] = fd_ind
                                 if coarse_ngh_elem_ind == coarse_elem_ind:
                                     rhs_corr[fd_ind] += self.get_Diri_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind)
-                    BP = 0
-                    for node_sub_ind_i in node_in_coarse_elem_dic:
-                        fd_ind_i = node_in_coarse_elem_dic[node_sub_ind_i]
-                        for node_sub_ind_j in node_in_coarse_elem_dic:
-                            fd_ind_j = node_in_coarse_elem_dic[node_sub_ind_j]
-                            I[marker] = fd_ind_i
+                    for node_sub_ind_i, fd_ind_i in node_in_coarse_elem_dic.items():
+                        for node_sub_ind_j, fd_ind_j in node_in_coarse_elem_dic.items(): 
+                            I[marker] = fd_ind_i   
                             J[marker] = fd_ind_j
                             V[marker] += A_mat[node_sub_ind_i, node_sub_ind_j]
                             V[marker] += np.inner(P_mat[node_sub_ind_i, :], P_mat[node_sub_ind_j, :])
@@ -328,10 +333,15 @@ class ProblemSetting(ST.Setting):
             glb_corr += self.get_glb_vec(coarse_elem_ind, corr)
             basis_wrt_coarse_elem = np.zeros(rhs_basis.shape)
             for eigen_ind in range(self.eigen_num):
-                basis_wrt_coarse_elem[:, eigen_ind], info = lgmres(Op_mat, rhs_basis[:, eigen_ind])
+                basis, info = lgmres(Op_mat, rhs_basis[:, eigen_ind])
                 assert info == 0
+                basis_wrt_coarse_elem[:, eigen_ind] = basis
             basis_list[coarse_elem_ind] = basis_wrt_coarse_elem
         self.glb_corr = glb_corr
+        # b00 = self.get_glb_basis(0, 0, basis_list)
+        # b10 = self.get_glb_basis(1, 0, basis_list)
+        # b20 = self.get_glb_basis(2, 0, basis_list)
+        # b30 = self.get_glb_basis(3, 0, basis_list)
         self.basis_list = basis_list             
 
 
@@ -584,7 +594,7 @@ class ProblemSetting(ST.Setting):
                 u0 += omega[fd_ind] * self.get_glb_vec(coarse_elem_ind, loc_basis)
         u0 -= self.glb_corr
         logging.info("Finish solving the final linear system.")
-        return u0.reshape((self.fine_grid+1, -1))
+        return u0
 
 
     def solve_depreciated(self):
@@ -701,11 +711,11 @@ class ProblemSetting(ST.Setting):
         A_mat = A_mat_coo.tocsr()
         logging.info("Finish constructing the final linear system of the reference problem.")
         u0_ref_inner, info = lgmres(A_mat, rhs)
-        u0_ref = np.zeros((self.fine_grid+1, self.fine_grid+1))
-        for node_ind_x in range(self.fine_grid+1):
-            for node_ind_y in range(self.fine_grid+1):
-                if (0<node_ind_x<self.fine_grid) and (0<node_ind_y<self.fine_grid):
-                    u0_ref[node_ind_x, node_ind_y] = u0_ref_inner[(node_ind_y-1)*(self.fine_grid-1) + node_ind_x - 1]
+        u0_ref = np.zeros((self.tot_node, ))
+        for node_ind in range(self.tot_node):
+            node_ind_y, node_ind_x = divmod(node_ind, self.fine_grid+1)
+            if (0<node_ind_x<self.fine_grid) and (0<node_ind_y<self.fine_grid):
+                u0_ref[node_ind] = u0_ref_inner[(node_ind_y-1)*(self.fine_grid-1) + node_ind_x - 1]
         logging.info("Finish solving the final linear system of the reference problem.")
         return u0_ref            
 
