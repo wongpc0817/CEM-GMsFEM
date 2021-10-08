@@ -1899,3 +1899,543 @@ Start
 05-10-2021 08:11:46 : Finish constructing the final linear system of the reference problem.
 05-10-2021 08:11:46 : Finish solving the final linear system of the reference problem.
 05-10-2021 08:11:46 : L2-norm error:0.000005, energy-norm error:0.000131
+06-10-2021 11:21:33 : ================================================================================
+06-10-2021 11:21:33 : Start
+06-10-2021 11:21:33 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1), u(x,y)=0 on \partial\Omega
+06-10-2021 11:21:33 : ------------------------------CONFIG 1------------------------------
+06-10-2021 11:21:33 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [2].
+06-10-2021 11:21:33 : Finish getting all eigenvalue-vector pairs.
+06-10-2021 11:21:33 : Finish getting maps of [global node index] to [local freedom index].
+06-10-2021 11:21:38 : Finish getting the Dirichlet corrector and multiscale bases.
+06-10-2021 11:21:39 : Finish getting the global stiffness matrix and right-hand vector.
+06-10-2021 11:22:05 : ================================================================================
+06-10-2021 11:22:05 : Start
+06-10-2021 11:22:05 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1), u(x,y)=0 on \partial\Omega
+06-10-2021 11:22:05 : ------------------------------CONFIG 1------------------------------
+06-10-2021 11:22:05 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [2].
+06-10-2021 11:22:05 : Finish getting all eigenvalue-vector pairs.
+06-10-2021 11:22:05 : Finish getting maps of [global node index] to [local freedom index].
+06-10-2021 11:22:11 : Finish getting the Dirichlet corrector and multiscale bases.
+06-10-2021 11:22:11 : Finish getting the global stiffness matrix and right-hand vector.
+06-10-2021 11:22:11 : Finish constructing all the bases in a sparse matrix formation
+06-10-2021 11:22:11 : Finish constructing the final linear system.
+06-10-2021 11:22:11 : Finish solving the final linear system.
+06-10-2021 11:22:12 : Finish constructing the final linear system of the reference problem.
+06-10-2021 11:22:12 : Finish solving the final linear system of the reference problem.
+06-10-2021 11:22:12 : L2-norm error:0.000025, energy-norm error:0.000649
+06-10-2021 11:22:12 : End
+
+06-10-2021 11:22:55 : ================================================================================
+06-10-2021 11:22:55 : Start
+06-10-2021 11:22:55 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1), u(x,y)=0 on \partial\Omega
+06-10-2021 11:22:55 : ------------------------------CONFIG 1------------------------------
+06-10-2021 11:22:55 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [3].
+06-10-2021 11:22:55 : Finish getting all eigenvalue-vector pairs.
+06-10-2021 11:22:56 : Finish getting maps of [global node index] to [local freedom index].
+06-10-2021 11:23:57 : Finish getting the Dirichlet corrector and multiscale bases.
+06-10-2021 11:23:59 : Finish getting the global stiffness matrix and right-hand vector.
+06-10-2021 11:23:59 : Finish constructing all the bases in a sparse matrix formation
+06-10-2021 11:23:59 : Finish constructing the final linear system.
+06-10-2021 11:23:59 : Finish solving the final linear system.
+06-10-2021 11:24:01 : Finish constructing the final linear system of the reference problem.
+06-10-2021 11:24:01 : Finish solving the final linear system of the reference problem.
+06-10-2021 11:24:01 : L2-norm error:0.000007, energy-norm error:0.000112
+06-10-2021 11:24:01 : End
+
+06-10-2021 11:25:40 : ================================================================================
+06-10-2021 11:25:40 : Start
+06-10-2021 11:25:41 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1), u(x,y)=0 on \partial\Omega
+06-10-2021 11:25:41 : ------------------------------CONFIG 1------------------------------
+06-10-2021 11:25:41 : Coarse grid: [16x16]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [4].
+06-10-2021 11:25:43 : Finish getting all eigenvalue-vector pairs.
+06-10-2021 11:25:45 : Finish getting maps of [global node index] to [local freedom index].
+06-10-2021 11:34:25 : Finish getting the Dirichlet corrector and multiscale bases.
+06-10-2021 11:34:33 : Finish getting the global stiffness matrix and right-hand vector.
+06-10-2021 11:34:33 : Finish constructing all the bases in a sparse matrix formation
+06-10-2021 11:34:34 : Finish constructing the final linear system.
+06-10-2021 11:34:34 : Finish solving the final linear system.
+06-10-2021 11:34:41 : Finish constructing the final linear system of the reference problem.
+06-10-2021 11:34:41 : Finish solving the final linear system of the reference problem.
+06-10-2021 11:34:41 : L2-norm error:0.000026, energy-norm error:0.000133
+06-10-2021 11:34:41 : End
+
+06-10-2021 11:38:19 : ================================================================================
+06-10-2021 11:38:19 : Start
+06-10-2021 11:38:19 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1), u(x,y)=0 on \partial\Omega
+06-10-2021 11:38:19 : ------------------------------CONFIG 1------------------------------
+06-10-2021 11:38:19 : Coarse grid: [16x16]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [2].
+06-10-2021 11:38:21 : Finish getting all eigenvalue-vector pairs.
+06-10-2021 11:38:22 : Finish getting maps of [global node index] to [local freedom index].
+06-10-2021 11:41:07 : Finish getting the Dirichlet corrector and multiscale bases.
+06-10-2021 11:41:14 : Finish getting the global stiffness matrix and right-hand vector.
+06-10-2021 11:41:14 : Finish constructing all the bases in a sparse matrix formation
+06-10-2021 11:41:14 : Finish constructing the final linear system.
+06-10-2021 11:41:14 : Finish solving the final linear system.
+06-10-2021 11:41:22 : Finish constructing the final linear system of the reference problem.
+06-10-2021 11:41:22 : Finish solving the final linear system of the reference problem.
+06-10-2021 11:41:22 : L2-norm error:0.000079, energy-norm error:0.007450
+06-10-2021 11:41:22 : End
+
+06-10-2021 02:37:55 : ================================================================================
+06-10-2021 02:37:55 : Start
+06-10-2021 02:37:55 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, u(x,y)=x**2+EXP(x*y) on \partial\Omega.
+06-10-2021 02:37:55 : ------------------------------CONFIG 1------------------------------
+06-10-2021 02:40:00 : ================================================================================
+06-10-2021 02:40:00 : Start
+06-10-2021 02:40:00 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, u(x,y)=x**2+EXP(x*y) on \partial\Omega.
+06-10-2021 02:40:00 : ------------------------------CONFIG 1------------------------------
+06-10-2021 02:40:00 : Coarse grid: [16x16]; fine grid: [64x64]; eigenvalue number: [4]; oversampling layers: [2].
+06-10-2021 02:40:02 : Finish getting all eigenvalue-vector pairs.
+06-10-2021 02:40:02 : Finish getting maps of [global node index] to [local freedom index].
+06-10-2021 02:40:17 : ================================================================================
+06-10-2021 02:40:17 : Start
+06-10-2021 02:40:17 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, u(x,y)=x**2+EXP(x*y) on \partial\Omega.
+06-10-2021 02:40:17 : ------------------------------CONFIG 1------------------------------
+06-10-2021 02:40:17 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [2].
+06-10-2021 02:40:18 : Finish getting all eigenvalue-vector pairs.
+06-10-2021 02:40:18 : Finish getting maps of [global node index] to [local freedom index].
+06-10-2021 02:40:39 : ================================================================================
+06-10-2021 02:40:39 : Start
+06-10-2021 02:40:39 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, u(x,y)=x**2+EXP(x*y) on \partial\Omega.
+06-10-2021 02:40:39 : ------------------------------CONFIG 1------------------------------
+06-10-2021 02:40:39 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+06-10-2021 02:40:39 : Finish getting all eigenvalue-vector pairs.
+06-10-2021 02:40:39 : Finish getting maps of [global node index] to [local freedom index].
+06-10-2021 02:40:42 : Finish getting the Dirichlet corrector and multiscale bases.
+06-10-2021 02:40:42 : Finish getting the global stiffness matrix and right-hand vector.
+06-10-2021 02:40:42 : Finish constructing all the bases in a sparse matrix formation
+06-10-2021 02:40:42 : Finish constructing the final linear system.
+06-10-2021 02:40:42 : Finish solving the final linear system.
+06-10-2021 02:40:43 : Finish constructing the final linear system of the reference problem.
+06-10-2021 02:40:43 : Finish solving the final linear system of the reference problem.
+06-10-2021 02:40:43 : L2-norm error:0.003436, energy-norm error:0.078839
+06-10-2021 02:40:43 : End
+
+06-10-2021 05:15:11 : ================================================================================
+06-10-2021 05:15:11 : Start
+06-10-2021 05:15:11 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, u(x,y)=x**2+EXP(x*y) on \partial\Omega.
+06-10-2021 05:15:11 : ------------------------------CONFIG 1------------------------------
+06-10-2021 05:15:11 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+06-10-2021 05:15:11 : Finish getting all eigenvalue-vector pairs.
+06-10-2021 05:15:11 : Finish getting maps of [global node index] to [local freedom index].
+06-10-2021 05:17:08 : ================================================================================
+06-10-2021 05:17:08 : Start
+06-10-2021 05:17:08 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, u(x,y)=x**2+EXP(x*y) on \partial\Omega.
+06-10-2021 05:17:08 : ------------------------------CONFIG 1------------------------------
+06-10-2021 05:17:08 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+06-10-2021 05:17:09 : Finish getting all eigenvalue-vector pairs.
+06-10-2021 05:17:09 : Finish getting maps of [global node index] to [local freedom index].
+06-10-2021 05:19:40 : ================================================================================
+06-10-2021 05:19:40 : Start
+06-10-2021 05:19:41 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, u(x,y)=x**2+EXP(x*y) on \partial\Omega.
+06-10-2021 05:19:41 : ------------------------------CONFIG 1------------------------------
+06-10-2021 05:19:41 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+06-10-2021 05:19:41 : Finish getting all eigenvalue-vector pairs.
+06-10-2021 05:20:58 : ================================================================================
+06-10-2021 05:20:58 : Start
+06-10-2021 05:20:59 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, u(x,y)=x**2+EXP(x*y) on \partial\Omega.
+06-10-2021 05:20:59 : ------------------------------CONFIG 1------------------------------
+06-10-2021 05:20:59 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+06-10-2021 05:20:59 : Finish getting all eigenvalue-vector pairs.
+06-10-2021 05:23:07 : ================================================================================
+06-10-2021 05:23:07 : Start
+06-10-2021 05:23:07 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, u(x,y)=x**2+EXP(x*y) on \partial\Omega.
+06-10-2021 05:23:07 : ------------------------------CONFIG 1------------------------------
+06-10-2021 05:23:07 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+06-10-2021 05:23:07 : Finish getting all eigenvalue-vector pairs.
+06-10-2021 05:23:31 : Finish getting maps of [global node index] to [local freedom index].
+06-10-2021 05:23:34 : Finish getting the Dirichlet corrector and multiscale bases.
+06-10-2021 05:23:34 : Finish getting the global stiffness matrix and right-hand vector.
+06-10-2021 05:23:34 : Finish constructing all the bases in a sparse matrix formation
+06-10-2021 05:23:34 : Finish constructing the final linear system.
+06-10-2021 05:23:34 : Finish solving the final linear system.
+06-10-2021 05:23:35 : Finish constructing the final linear system of the reference problem.
+06-10-2021 05:23:35 : Finish solving the final linear system of the reference problem.
+06-10-2021 05:23:35 : L2-norm error:0.003436, energy-norm error:0.078839
+06-10-2021 05:23:35 : End
+
+07-10-2021 02:14:18 : ================================================================================
+07-10-2021 02:14:18 : Start
+07-10-2021 02:14:47 : ================================================================================
+07-10-2021 02:14:47 : Start
+07-10-2021 02:14:48 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega.
+07-10-2021 02:14:48 : q=y EXP(y) on {0}x(0,1); q=SIN(y)+y on {1}x(0,1); q=x+1.0 on (0,1)x{0}.
+07-10-2021 02:14:48 : ------------------------------CONFIG 1------------------------------
+07-10-2021 02:15:39 : ================================================================================
+07-10-2021 02:15:39 : Start
+07-10-2021 02:15:39 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega.
+07-10-2021 02:15:39 : q=y EXP(y) on {0}x(0,1); q=SIN(y)+y on {1}x(0,1); q=x+1.0 on (0,1)x{0}.
+07-10-2021 02:15:39 : ------------------------------CONFIG 1------------------------------
+07-10-2021 02:15:39 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+07-10-2021 02:15:40 : Finish getting all eigenvalue-vector pairs.
+07-10-2021 02:15:40 : Finish getting maps of [global node index] to [local freedom index].
+07-10-2021 02:22:58 : ================================================================================
+07-10-2021 02:22:58 : Start
+07-10-2021 02:22:58 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega.
+07-10-2021 02:22:58 : q=y EXP(y) on {0}x(0,1); q=SIN(y)+y on {1}x(0,1); q=x+1.0 on (0,1)x{0}.
+07-10-2021 02:22:58 : ------------------------------CONFIG 1------------------------------
+07-10-2021 02:22:58 : Coarse grid: [4x4]; fine grid: [16x16]; eigenvalue number: [4]; oversampling layers: [1].
+07-10-2021 02:22:58 : Finish getting all eigenvalue-vector pairs.
+07-10-2021 02:22:58 : Finish getting maps of [global node index] to [local freedom index].
+07-10-2021 02:23:02 : Finish getting the Dirichlet corrector and multiscale bases.
+07-10-2021 02:23:03 : Finish getting the global stiffness matrix and right-hand vector.
+07-10-2021 02:23:03 : Finish collecting all the bases in a sparse matrix formation.
+07-10-2021 02:23:03 : Finish constructing the final linear system.
+07-10-2021 02:23:03 : Finish solving the final linear system.
+07-10-2021 02:23:03 : Finish constructing the final linear system of the reference problem.
+07-10-2021 02:23:03 : Finish solving the final linear system of the reference problem.
+07-10-2021 02:23:03 : L2-norm error:0.135045, energy-norm error:0.793440
+07-10-2021 02:23:29 : ================================================================================
+07-10-2021 02:23:29 : Start
+07-10-2021 02:23:30 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega.
+07-10-2021 02:23:30 : q=y EXP(y) on {0}x(0,1); q=SIN(y)+y on {1}x(0,1); q=x+1.0 on (0,1)x{0}.
+07-10-2021 02:23:30 : ------------------------------CONFIG 1------------------------------
+07-10-2021 02:23:30 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [2].
+07-10-2021 02:23:30 : Finish getting all eigenvalue-vector pairs.
+07-10-2021 02:23:30 : Finish getting maps of [global node index] to [local freedom index].
+07-10-2021 02:24:18 : Finish getting the Dirichlet corrector and multiscale bases.
+07-10-2021 02:24:19 : Finish getting the global stiffness matrix and right-hand vector.
+07-10-2021 02:24:19 : Finish collecting all the bases in a sparse matrix formation.
+07-10-2021 02:24:19 : Finish constructing the final linear system.
+07-10-2021 02:24:19 : Finish solving the final linear system.
+07-10-2021 02:24:20 : Finish constructing the final linear system of the reference problem.
+07-10-2021 02:24:20 : Finish solving the final linear system of the reference problem.
+07-10-2021 02:24:20 : L2-norm error:0.001936, energy-norm error:0.079106
+07-10-2021 02:43:33 : ================================================================================
+07-10-2021 02:43:33 : Start
+07-10-2021 02:44:04 : ================================================================================
+07-10-2021 02:44:04 : Start
+07-10-2021 02:44:04 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, n \cdot Grad u + bu=q on \partial\Omega,
+07-10-2021 02:44:04 : b=2+COS(PI y) on {0}x(0,1); b=0 on {1}x(0,1); b=0 on (0,1)x{0}; b=0 on (0,1)x{1}
+07-10-2021 02:44:04 : q=y EXP(y) on {0}x(0,1); q=SIN(y)+y on {1}x(0,1); q=x+1 on (0,1)x{0}; q=0 on (0,1)x{1}.
+07-10-2021 02:44:04 : ------------------------------CONFIG 1------------------------------
+07-10-2021 02:44:04 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [2].
+07-10-2021 03:08:28 : ================================================================================
+07-10-2021 03:08:28 : Start
+07-10-2021 03:08:29 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, n \cdot Grad u + bu=q on \partial\Omega,
+07-10-2021 03:08:29 : b=2+COS(PI y) on {0}x(0,1); b=0 on {1}x(0,1); b=0 on (0,1)x{0}; b=0 on (0,1)x{1}
+07-10-2021 03:08:29 : q=y EXP(y) on {0}x(0,1); q=SIN(y)+y on {1}x(0,1); q=x+1 on (0,1)x{0}; q=0 on (0,1)x{1}.
+07-10-2021 03:08:29 : ------------------------------CONFIG 1------------------------------
+07-10-2021 03:08:29 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [2].
+07-10-2021 03:09:32 : ================================================================================
+07-10-2021 03:09:32 : Start
+07-10-2021 03:09:33 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, n \cdot Grad u + bu=q on \partial\Omega,
+07-10-2021 03:09:33 : b=2+COS(PI y) on {0}x(0,1); b=0 on {1}x(0,1); b=0 on (0,1)x{0}; b=0 on (0,1)x{1}
+07-10-2021 03:09:33 : q=y EXP(y) on {0}x(0,1); q=SIN(y)+y on {1}x(0,1); q=x+1 on (0,1)x{0}; q=0 on (0,1)x{1}.
+07-10-2021 03:09:33 : ------------------------------CONFIG 1------------------------------
+07-10-2021 03:09:33 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [2].
+07-10-2021 03:12:19 : ================================================================================
+07-10-2021 03:12:19 : Start
+07-10-2021 03:12:20 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, n \cdot Grad u + bu=q on \partial\Omega,
+07-10-2021 03:12:20 : b=2+COS(PI y) on {0}x(0,1); b=0 on {1}x(0,1); b=0 on (0,1)x{0}; b=0 on (0,1)x{1}
+07-10-2021 03:12:20 : q=y EXP(y) on {0}x(0,1); q=SIN(y)+y on {1}x(0,1); q=x+1 on (0,1)x{0}; q=0 on (0,1)x{1}.
+07-10-2021 03:12:20 : ------------------------------CONFIG 1------------------------------
+07-10-2021 03:12:20 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [2].
+07-10-2021 03:13:38 : ================================================================================
+07-10-2021 03:13:38 : Start
+07-10-2021 03:13:38 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, n \cdot Grad u + bu=q on \partial\Omega,
+07-10-2021 03:13:38 : b=2+COS(PI y) on {0}x(0,1); b=0 on {1}x(0,1); b=0 on (0,1)x{0}; b=0 on (0,1)x{1}
+07-10-2021 03:13:38 : q=y EXP(y) on {0}x(0,1); q=SIN(y)+y on {1}x(0,1); q=x+1 on (0,1)x{0}; q=0 on (0,1)x{1}.
+07-10-2021 03:13:38 : ------------------------------CONFIG 1------------------------------
+07-10-2021 03:13:38 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [2].
+07-10-2021 03:13:39 : Finish getting all eigenvalue-vector pairs.
+07-10-2021 03:13:39 : Finish getting maps of [global node index] to [local freedom index].
+07-10-2021 03:14:29 : Finish getting the Dirichlet corrector and multiscale bases.
+07-10-2021 03:15:23 : ================================================================================
+07-10-2021 03:15:23 : Start
+07-10-2021 03:15:23 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, n \cdot Grad u + bu=q on \partial\Omega,
+07-10-2021 03:15:23 : b=2+COS(PI y) on {0}x(0,1); b=0 on {1}x(0,1); b=0 on (0,1)x{0}; b=0 on (0,1)x{1}
+07-10-2021 03:15:23 : q=y EXP(y) on {0}x(0,1); q=SIN(y)+y on {1}x(0,1); q=x+1 on (0,1)x{0}; q=0 on (0,1)x{1}.
+07-10-2021 03:15:23 : ------------------------------CONFIG 1------------------------------
+07-10-2021 03:15:23 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [2].
+07-10-2021 03:15:24 : Finish getting all eigenvalue-vector pairs.
+07-10-2021 03:15:24 : Finish getting maps of [global node index] to [local freedom index].
+07-10-2021 03:16:14 : Finish getting the Dirichlet corrector and multiscale bases.
+07-10-2021 03:16:15 : Finish getting the global stiffness matrix and right-hand vector.
+07-10-2021 03:16:15 : Finish collecting all the bases in a sparse matrix formation.
+07-10-2021 03:16:15 : Finish constructing the final linear system.
+07-10-2021 03:16:15 : Finish solving the final linear system.
+07-10-2021 03:17:36 : ================================================================================
+07-10-2021 03:17:36 : Start
+07-10-2021 03:17:36 : -\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, n \cdot Grad u + bu=q on \partial\Omega,
+07-10-2021 03:17:36 : b=2+COS(PI y) on {0}x(0,1); b=0 on {1}x(0,1); b=0 on (0,1)x{0}; b=0 on (0,1)x{1}
+07-10-2021 03:17:36 : q=y EXP(y) on {0}x(0,1); q=SIN(y)+y on {1}x(0,1); q=x+1 on (0,1)x{0}; q=0 on (0,1)x{1}.
+07-10-2021 03:17:36 : ------------------------------CONFIG 1------------------------------
+07-10-2021 03:17:36 : Coarse grid: [8x8]; fine grid: [32x32]; eigenvalue number: [4]; oversampling layers: [2].
+07-10-2021 03:17:37 : Finish getting all eigenvalue-vector pairs.
+07-10-2021 03:17:37 : Finish getting maps of [global node index] to [local freedom index].
+07-10-2021 03:18:26 : Finish getting the Dirichlet corrector and multiscale bases.
+07-10-2021 03:18:27 : Finish getting the global stiffness matrix and right-hand vector.
+07-10-2021 03:18:27 : Finish collecting all the bases in a sparse matrix formation.
+07-10-2021 03:18:27 : Finish constructing the final linear system.
+07-10-2021 03:18:27 : Finish solving the final linear system.
+07-10-2021 03:18:29 : Finish constructing the final linear system of the reference problem.
+07-10-2021 03:18:29 : Finish solving the final linear system of the reference problem.
+07-10-2021 03:18:29 : L2-norm error:0.002433, energy-norm error:0.092389
+07-10-2021 08:30:24 : ================================================================================
+07-10-2021 08:30:24 : Start
+07-10-2021 08:30:24 : Get coefficients from the image, set contrast ratio=10000.0000
+07-10-2021 08:31:03 : ================================================================================
+07-10-2021 08:31:03 : Start
+07-10-2021 08:31:03 : Get coefficients from the image, set contrast ratio=10000.0000
+07-10-2021 08:31:37 : ================================================================================
+07-10-2021 08:31:37 : Start
+07-10-2021 08:31:37 : Get coefficients from the image, set contrast ratio=10000.0000
+07-10-2021 08:32:07 : ================================================================================
+07-10-2021 08:32:07 : Start
+07-10-2021 08:32:07 : Get coefficients from the image, set contrast ratio=10000.0000
+07-10-2021 08:32:08 : Lambda=1.549228
+07-10-2021 08:33:03 : ================================================================================
+07-10-2021 08:33:03 : Start
+07-10-2021 08:33:03 : Get coefficients from the image, set contrast ratio=10000.0000
+07-10-2021 08:33:03 : Lambda=1.549228
+07-10-2021 08:33:03 : Finish section 1.1
+07-10-2021 08:33:03 : Finish section 1.2
+07-10-2021 08:33:33 : ================================================================================
+07-10-2021 08:33:33 : Start
+07-10-2021 08:33:33 : Get coefficients from the image, set contrast ratio=10000.0000
+07-10-2021 08:33:34 : Lambda=1.549228
+07-10-2021 08:33:34 : Finish section 1.1
+07-10-2021 08:33:34 : Finish section 1.2
+07-10-2021 08:33:35 : Finish section 1.3
+07-10-2021 08:33:35 : Finish section 1.4
+07-10-2021 08:33:37 : Finish section 1.5
+07-10-2021 08:33:39 : Finish section 1 ref
+07-10-2021 08:34:59 : ================================================================================
+07-10-2021 08:34:59 : Start
+07-10-2021 08:34:59 : Get coefficients from the image, set contrast ratio=10000.0000
+07-10-2021 08:35:00 : Lambda=1.549228
+07-10-2021 08:35:00 : Finish section 1.1
+07-10-2021 08:35:00 : Finish section 1.2
+07-10-2021 08:35:01 : Finish section 1.3
+07-10-2021 08:35:02 : Finish section 1.4
+07-10-2021 08:35:03 : Finish section 1.5
+07-10-2021 08:35:05 : Finish section 1 ref
+07-10-2021 08:35:07 : L2-norm errors:0.000020, 0.000005, 0.000000, 0.000000, 0.000000
+07-10-2021 08:35:07 : H1-norm errors:0.000834, 0.000261, 0.000000, 0.000000, 0.000000
+07-10-2021 08:43:01 : ================================================================================
+07-10-2021 08:43:01 : Start
+07-10-2021 08:43:01 : Get coefficients from the image, set contrast ratio=10000.0000
+07-10-2021 08:43:02 : Lambda=1.549228
+07-10-2021 08:43:02 : Finish section 1.1
+07-10-2021 08:43:02 : Finish section 1.2
+07-10-2021 08:43:03 : Finish section 1.3
+07-10-2021 08:43:03 : Finish section 1.4
+07-10-2021 08:43:05 : Finish section 1.5
+07-10-2021 08:43:07 : Finish section 1 ref
+07-10-2021 08:43:09 : L2-norm errors:0.000020, 0.000005, 0.000000, 0.000000, 0.000000
+07-10-2021 08:43:09 : H1-norm errors:0.000834, 0.000261, 0.000000, 0.000000, 0.000000
+07-10-2021 08:43:09 : Get coefficients from the image, set contrast ratio=100000.0000
+07-10-2021 08:43:09 : Lambda=1.547228
+07-10-2021 08:43:10 : Finish section 2.1
+07-10-2021 08:43:10 : Finish section 2.2
+07-10-2021 08:43:10 : Finish section 2.3
+07-10-2021 08:43:11 : Finish section 2.4
+07-10-2021 08:43:12 : Finish section 2.5
+07-10-2021 08:43:15 : Finish section 2 ref
+07-10-2021 08:43:17 : L2-norm errors:0.000000, 0.000000, 0.000000, 0.000000, 0.000000
+07-10-2021 08:43:17 : H1-norm errors:0.000000, 0.000000, 0.000000, 0.000000, 0.000000
+07-10-2021 08:43:17 : Get coefficients from the image, set contrast ratio=1000000.0000
+07-10-2021 08:43:17 : Lambda=1.547023
+07-10-2021 08:43:17 : Finish section 3.1
+07-10-2021 08:43:18 : Finish section 3.2
+07-10-2021 08:43:18 : Finish section 3.3
+07-10-2021 08:43:19 : Finish section 3.4
+07-10-2021 08:43:20 : Finish section 3.5
+07-10-2021 08:43:22 : Finish section 3 ref
+07-10-2021 08:43:24 : L2-norm errors:0.000000, 0.000000, 0.000000, 0.000000, 0.000000
+07-10-2021 08:43:24 : H1-norm errors:0.000000, 0.000000, 0.000000, 0.000000, 0.000000
+08-10-2021 10:10:17 : ================================================================================
+08-10-2021 10:10:17 : Start
+08-10-2021 11:53:58 : ================================================================================
+08-10-2021 11:53:58 : Start
+08-10-2021 11:53:58 : Get coefficients from the image, set contrast ratio=10000.0000
+08-10-2021 11:53:59 : Lambda=1.549228
+08-10-2021 11:56:57 : ================================================================================
+08-10-2021 11:56:57 : Start
+08-10-2021 11:56:57 : Get coefficients from the image, set contrast ratio=10000.0000
+08-10-2021 11:56:57 : Lambda=1.549228
+08-10-2021 11:59:20 : Finish experiment section 1-0.
+08-10-2021 11:59:33 : Finish experiment section 1-1.
+08-10-2021 12:00:07 : Finish experiment section 1-2.
+08-10-2021 12:01:09 : Finish experiment section 1-3.
+08-10-2021 12:02:40 : Finish experiment section 1-4.
+08-10-2021 12:41:46 : ================================================================================
+08-10-2021 12:41:46 : Start
+08-10-2021 12:41:46 : Get coefficients from the image, set contrast ratio=10000.0000
+08-10-2021 12:41:47 : Lambda=1.549228
+08-10-2021 12:42:53 : ================================================================================
+08-10-2021 12:42:53 : Start
+08-10-2021 12:42:53 : Get coefficients from the image, set contrast ratio=10000.0000
+08-10-2021 12:42:54 : Lambda=1.549228
+08-10-2021 12:43:15 : ================================================================================
+08-10-2021 12:43:15 : Start
+08-10-2021 12:43:15 : Get coefficients from the image, set contrast ratio=10000.0000
+08-10-2021 12:43:16 : Lambda=1.549228
+08-10-2021 12:43:19 : Finish experiment section 1-0.
+08-10-2021 12:43:31 : Finish experiment section 1-1.
+08-10-2021 12:44:06 : Finish experiment section 1-2.
+08-10-2021 12:45:09 : Finish experiment section 1-3.
+08-10-2021 12:46:40 : Finish experiment section 1-4.
+08-10-2021 12:48:46 : Finish experiment section 1-5.
+08-10-2021 12:52:16 : ================================================================================
+08-10-2021 12:52:16 : Start
+08-10-2021 12:52:16 : Get coefficients from the image, set contrast ratio=10000.0000
+08-10-2021 12:52:16 : Lambda=1.549228
+08-10-2021 12:52:19 : Finish experiment section 1-0.
+08-10-2021 12:52:33 : Finish experiment section 1-1.
+08-10-2021 12:53:12 : Finish experiment section 1-2.
+08-10-2021 12:54:37 : Finish experiment section 1-3.
+08-10-2021 12:56:12 : Finish experiment section 1-4.
+08-10-2021 12:58:45 : Finish experiment section 1-5.
+08-10-2021 12:58:47 : L2-norm errors:0.000542, 0.000480, 0.000484, 0.000484, 0.000484
+08-10-2021 12:58:47 : H1-norm errors:0.094068, 0.014628, 0.014713, 0.014715, 0.014715
+08-10-2021 12:58:47 : Get coefficients from the image, set contrast ratio=100000.0000
+08-10-2021 12:58:48 : Lambda=1.547228
+08-10-2021 12:58:51 : Finish experiment section 2-0.
+08-10-2021 12:59:05 : Finish experiment section 2-1.
+08-10-2021 12:59:43 : Finish experiment section 2-2.
+08-10-2021 01:00:52 : Finish experiment section 2-3.
+08-10-2021 01:02:33 : Finish experiment section 2-4.
+08-10-2021 01:04:39 : Finish experiment section 2-5.
+08-10-2021 01:04:42 : L2-norm errors:0.004965, 0.004959, 0.004964, 0.004965, 0.004965
+08-10-2021 01:04:42 : H1-norm errors:0.353709, 0.201395, 0.201568, 0.201572, 0.201572
+08-10-2021 01:04:42 : Get coefficients from the image, set contrast ratio=1000000.0000
+08-10-2021 01:04:42 : Lambda=1.547023
+08-10-2021 01:04:46 : Finish experiment section 3-0.
+08-10-2021 01:04:59 : Finish experiment section 3-1.
+08-10-2021 01:05:38 : Finish experiment section 3-2.
+08-10-2021 01:06:46 : Finish experiment section 3-3.
+08-10-2021 01:08:27 : Finish experiment section 3-4.
+08-10-2021 01:10:33 : Finish experiment section 3-5.
+08-10-2021 01:10:35 : L2-norm errors:0.005522, 0.005745, 0.005751, 0.005751, 0.005751
+08-10-2021 01:10:35 : H1-norm errors:0.941695, 0.216330, 0.216518, 0.216520, 0.216520
+08-10-2021 01:10:35 : End
+
+08-10-2021 02:20:35 : ================================================================================
+08-10-2021 02:20:35 : Start
+08-10-2021 02:20:35 : Get coefficients from the image, set contrast ratio=10.0000
+08-10-2021 02:20:36 : Lambda=1.497418
+08-10-2021 02:20:39 : Finish experiment section 1-0.
+08-10-2021 02:20:51 : Finish experiment section 1-1.
+08-10-2021 02:21:26 : Finish experiment section 1-2.
+08-10-2021 02:22:29 : Finish experiment section 1-3.
+08-10-2021 02:24:00 : Finish experiment section 1-4.
+08-10-2021 02:25:57 : Finish experiment section 1-5.
+08-10-2021 02:25:59 : L2-norm errors:0.000366, 0.000020, 0.000001, 0.000001, 0.000001
+08-10-2021 02:25:59 : H1-norm errors:0.014613, 0.000752, 0.000039, 0.000022, 0.000022
+08-10-2021 02:25:59 : Get coefficients from the image, set contrast ratio=10.0000
+08-10-2021 02:26:00 : Lambda=1.497418
+08-10-2021 02:26:03 : Finish experiment section 2-0.
+08-10-2021 02:26:15 : Finish experiment section 2-1.
+08-10-2021 02:26:50 : Finish experiment section 2-2.
+08-10-2021 02:41:12 : ================================================================================
+08-10-2021 02:41:12 : Start
+08-10-2021 02:41:12 : Get coefficients from the image, set contrast ratio=10000.0000
+08-10-2021 02:41:13 : Lambda=1.549228
+08-10-2021 02:41:16 : Finish experiment section 1-0.
+08-10-2021 02:41:47 : ================================================================================
+08-10-2021 02:41:47 : Start
+08-10-2021 02:41:47 : Get coefficients from the image, set contrast ratio=10.0000
+08-10-2021 02:41:48 : Lambda=1.497418
+08-10-2021 02:41:51 : Finish experiment section 1-0.
+08-10-2021 02:42:03 : Finish experiment section 1-1.
+08-10-2021 02:42:39 : Finish experiment section 1-2.
+08-10-2021 02:43:58 : Finish experiment section 1-3.
+08-10-2021 02:45:30 : Finish experiment section 1-4.
+08-10-2021 02:47:27 : Finish experiment section 1-5.
+08-10-2021 02:50:36 : ================================================================================
+08-10-2021 02:50:36 : Start
+08-10-2021 02:50:36 : Get coefficients from the image, set contrast ratio=10.0000
+08-10-2021 02:50:36 : Lambda=1.497418
+08-10-2021 02:50:40 : Finish experiment section 1-0.
+08-10-2021 02:50:52 : Finish experiment section 1-1.
+08-10-2021 02:51:27 : Finish experiment section 1-2.
+08-10-2021 02:53:05 : Finish experiment section 1-3.
+08-10-2021 02:54:38 : Finish experiment section 1-4.
+08-10-2021 02:56:39 : Finish experiment section 1-5.
+08-10-2021 02:58:57 : Finish experiment section 1-6.
+08-10-2021 02:58:59 : L2-norm errors:0.000366, 0.000020, 0.000001, 0.000001, 0.000001, 0.000001
+08-10-2021 02:58:59 : H1-norm errors:0.014613, 0.000752, 0.000039, 0.000022, 0.000022, 0.000022
+08-10-2021 02:58:59 : Get coefficients from the image, set contrast ratio=10.0000
+08-10-2021 02:59:00 : Lambda=1.497418
+08-10-2021 02:59:03 : Finish experiment section 2-0.
+08-10-2021 03:12:22 : ================================================================================
+08-10-2021 03:12:22 : Start
+08-10-2021 03:12:23 : Get coefficients from the image, set contrast ratio=10.0000
+08-10-2021 03:12:23 : Lambda=1.497418
+08-10-2021 03:12:26 : Finish experiment section 1-0.
+08-10-2021 03:12:39 : Finish experiment section 1-1.
+08-10-2021 03:13:15 : Finish experiment section 1-2.
+08-10-2021 03:14:48 : Finish experiment section 1-3.
+08-10-2021 03:16:23 : Finish experiment section 1-4.
+08-10-2021 03:18:22 : Finish experiment section 1-5.
+08-10-2021 03:20:40 : Finish experiment section 1-6.
+08-10-2021 03:23:08 : Finish experiment section 1-7.
+08-10-2021 03:23:10 : L2-norm errors:0.000366  0.000020  0.000001  0.000001  0.000001  0.000001  0.000001
+08-10-2021 03:23:10 : H1-norm errors:0.000366  0.000020  0.000001  0.000001  0.000001  0.000001  0.000001
+08-10-2021 03:23:10 : End
+
+08-10-2021 03:55:41 : ================================================================================
+08-10-2021 03:55:41 : Start
+08-10-2021 03:55:41 : Get coefficients from the image, set contrast ratio=10000.0000
+08-10-2021 03:56:06 : ================================================================================
+08-10-2021 03:56:06 : Start
+08-10-2021 03:56:06 : Get coefficients from the image, set contrast ratio=10000.0000
+08-10-2021 03:56:07 : Lambda=1.549228
+08-10-2021 03:57:44 : ================================================================================
+08-10-2021 03:57:44 : Start
+08-10-2021 03:57:44 : Get coefficients from the image, set contrast ratio=10000.0000
+08-10-2021 03:57:44 : Lambda=1.549228
+08-10-2021 03:57:47 : Finish experiment section 1-0.
+08-10-2021 03:58:08 : Finish experiment section 1-1.
+08-10-2021 03:58:56 : Finish experiment section 1-2.
+08-10-2021 04:00:19 : Finish experiment section 1-3.
+08-10-2021 04:02:14 : Finish experiment section 1-4.
+08-10-2021 04:04:35 : Finish experiment section 1-5.
+08-10-2021 04:05:28 : ================================================================================
+08-10-2021 04:05:28 : Start
+08-10-2021 04:05:28 : Get coefficients from the image, set contrast ratio=10.0000
+08-10-2021 04:05:28 : Lambda=1.497418
+08-10-2021 04:05:31 : Finish experiment section 1-0.
+08-10-2021 04:05:44 : Finish experiment section 1-1.
+08-10-2021 04:06:19 : Finish experiment section 1-2.
+08-10-2021 04:07:22 : Finish experiment section 1-3.
+08-10-2021 04:08:54 : Finish experiment section 1-4.
+08-10-2021 04:10:53 : Finish experiment section 1-5.
+08-10-2021 04:12:28 : ================================================================================
+08-10-2021 04:12:28 : Start
+08-10-2021 04:12:28 : Get coefficients from the image, set contrast ratio=10000.0000
+08-10-2021 04:12:29 : Lambda=1.549228
+08-10-2021 04:12:32 : Finish experiment section 1-0.
+08-10-2021 04:12:52 : Finish experiment section 1-1.
+08-10-2021 04:13:40 : Finish experiment section 1-2.
+08-10-2021 04:15:01 : Finish experiment section 1-3.
+08-10-2021 04:16:52 : Finish experiment section 1-4.
+08-10-2021 04:19:11 : Finish experiment section 1-5.
+08-10-2021 04:19:49 : ================================================================================
+08-10-2021 04:19:49 : Start
+08-10-2021 04:19:49 : Get coefficients from the image, set contrast ratio=10000.0000
+08-10-2021 04:19:50 : Lambda=1.549228
+08-10-2021 04:19:53 : Finish experiment section 1-0.
+08-10-2021 04:20:13 : Finish experiment section 1-1.
+08-10-2021 04:21:02 : Finish experiment section 1-2.
+08-10-2021 04:21:03 : L2-norm errors:0.013817  0.013800
+08-10-2021 04:21:03 : H1-norm errors:0.013817  0.013800
+08-10-2021 04:21:03 : End
+
+08-10-2021 04:21:39 : ================================================================================
+08-10-2021 04:21:39 : Start
+08-10-2021 04:21:39 : Get coefficients from the image, set contrast ratio=10.0000
+08-10-2021 04:21:40 : Lambda=1.497418
+08-10-2021 04:21:49 : ================================================================================
+08-10-2021 04:21:49 : Start
+08-10-2021 04:21:49 : Get coefficients from the image, set contrast ratio=10.0000
+08-10-2021 04:21:49 : Lambda=1.497418
+08-10-2021 04:21:53 : Finish experiment section 1-0.
+08-10-2021 04:22:05 : Finish experiment section 1-1.
+08-10-2021 04:22:40 : Finish experiment section 1-2.
+08-10-2021 04:22:42 : L2-norm errors:0.000366  0.000020
+08-10-2021 04:22:42 : H1-norm errors:0.000366  0.000020
+08-10-2021 04:22:42 : End
+

@@ -22,7 +22,7 @@ COS = np.cos
 EXP = np.exp
 LOG = np.log
 
-import Model1.InhomoNeumBVP as NBVP
+import Model3.InhomoRobinBVP as NBVP
 
 
 def get_os_ly(ps):
@@ -31,6 +31,18 @@ def get_os_ly(ps):
 
 def f_func(x: float, y: float):
     return EXP(x * y) + SIN(x - y) * COS(x * y) + LOG(x + y + 1.)
+    # return .0
+    # return -2.0
+    # return 1.0
+    # return 0.0
+
+
+def zero(x: float):
+    return 0.0
+
+
+def b_lf_func(y: float):
+    return 2 + COS(PI * y)
 
 
 def q_lf_func(y: float):
@@ -50,14 +62,15 @@ def q_dw_func(x: float):
 # u0(x, y) = Sin(2 pi x)Sin(2 pi y)
 
 # logging.info("-\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1), u(x,y)=0 on \partial\Omega")
-logging.info("-\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega.")
-logging.info("q=y EXP(y) on {0}x(0,1); q=SIN(y)+y on {1}x(0,1); q=x+1.0 on (0,1)x{0}.")
+logging.info("-\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, n \cdot Grad u + bu=q on \partial\Omega,")
+logging.info("b=2+COS(PI y) on {0}x(0,1); b=0 on {1}x(0,1); b=0 on (0,1)x{0}; b=0 on (0,1)x{1}")
+logging.info("q=y EXP(y) on {0}x(0,1); q=SIN(y)+y on {1}x(0,1); q=x+1 on (0,1)x{0}; q=0 on (0,1)x{1}.")
 logging.info('-' * 30 + 'CONFIG 1' + '-' * 30)
 ps = NBVP.ProblemSetting(option=-3)
 coeff = np.ones((ps.fine_grid, ps.fine_grid))
 ps.set_coeff(coeff)
 ps.set_source_func(f_func)
-ps.set_Neum_func(q_lf_func, q_rg_func, q_dw_func)
+ps.set_Robin_func(q_lf_func, q_rg_func, q_dw_func, zero, b_lf_func, zero, zero, zero)
 os_ly = get_os_ly(ps)
 ps.init_args(4, os_ly)
 # u0_real = np.zeros((ps.fine_grid+1, ps.fine_grid+1))
