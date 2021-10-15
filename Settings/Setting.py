@@ -111,6 +111,7 @@ class Setting:
         self.tot_node = (self.fine_grid + 1)**2
         self.H = 1.0 / float(self.coarse_grid)
         self.h = 1.0 / float(self.fine_grid)
+        self.TOL = 1.0e-8
         # Save the local Laplace stiffness matrix i.e., \int_{K_h} \nabla L_i \cdot \nabla L_j dx
         # Save the local mass matrix i.e., \int_{K_h} L_i L_j dx
         self.elem_Lap_stiff_mat = np.zeros((N_V, N_V))

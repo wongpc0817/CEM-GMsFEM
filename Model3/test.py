@@ -9,7 +9,7 @@ sys.path.append(root_path)
 import logging
 from logging import config
 
-config.fileConfig(os.path.join(root_path, 'Settings', 'log.conf'))
+config.fileConfig(os.path.join(root_path, 'Settings', 'log.conf'), defaults={'logfilename': 'test.log'})
 
 logging.info('=' * 80)
 logging.info("Start")
@@ -30,32 +30,42 @@ def get_os_ly(ps):
 
 
 def f_func(x: float, y: float):
-    return EXP(x * y) + SIN(x - y) * COS(x * y) + LOG(x + y + 1.)
-    # return .0
-    # return -2.0
-    # return 1.0
-    # return 0.0
+    if 1. / 8. < x < 7. / 8. and 3. / 8. < y < 5. / 8.:
+        return 1.0
+    elif 3. / 8. < x < 5. / 8. and 1. / 8. < y < 7. / 8.:
+        return 1.0
+    else:
+        return 0.0
 
 
-def zero(x: float):
-    return 0.0
+def q_lf_func(y: float):
+    return -1.0
+
+
+def q_rg_func(y: float):
+    return 1.0
+
+
+def q_dw_func(x: float):
+    if x < 0.5:
+        return 1.0
+    else:
+        return 0.0
+
+
+def q_up_func(x: float):
+    if x > 0.5:
+        return -1.0
+    else:
+        return 0.0
 
 
 def b_lf_func(y: float):
     return 2 + COS(PI * y)
 
 
-def q_lf_func(y: float):
-    return y * EXP(y)
-
-
-def q_rg_func(y: float):
-    return SIN(y) + y
-    # return 0.0
-
-
-def q_dw_func(x: float):
-    return x + 1.0
+def zero(x: float):
+    return 0.0
 
 
 # u(x, y) = Sin(2 pi x)Sin(2 pi y) + x y
@@ -66,7 +76,7 @@ logging.info("-\Delta u(x,y)=EXP(x*y)+SIN(x-y)*COS(x*y)+LOG(x+y+1) in \Omega, n 
 logging.info("b=2+COS(PI y) on {0}x(0,1); b=0 on {1}x(0,1); b=0 on (0,1)x{0}; b=0 on (0,1)x{1}")
 logging.info("q=y EXP(y) on {0}x(0,1); q=SIN(y)+y on {1}x(0,1); q=x+1 on (0,1)x{0}; q=0 on (0,1)x{1}.")
 logging.info('-' * 30 + 'CONFIG 1' + '-' * 30)
-ps = NBVP.ProblemSetting(option=-3)
+ps = NBVP.ProblemSetting(option=-5)
 coeff = np.ones((ps.fine_grid, ps.fine_grid))
 ps.set_coeff(coeff)
 ps.set_source_func(f_func)
@@ -80,7 +90,7 @@ ps.init_args(4, os_ly)
 #         y = ps.h * node_ind_y
 #         u0_real[node_ind_x, node_ind_y] = u0_func(x, y)
 logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(ps.coarse_grid, ps.fine_grid, ps.eigen_num, ps.oversamp_layer))
-u0 = ps.solve()
+u0, omega = ps.solve()
 # err_l2, err_eg = ps.get_L2_energy_norm(u0_real-u0)
 # logging.info("L2-norm error:{0:.6f}, energy-norm error:{1:.6f}".format(err_l2, err_eg))
 u0_ref = ps.solve_ref()
