@@ -43,26 +43,33 @@ def q_dw_func(x: float):
         return 0.0
 
 
+def q_up_func(x: float):
+    if x > 0.5:
+        return -1.0
+    else:
+        return 0.0
+
+
 root_path = os.path.join(sys.path[0], '..')
 sys.path.append(root_path)
 
-import Model2.InhomoNeumBVP as NBVP
+import Model3.InhomoRobinBVP as RBVP
 
 import logging
 from logging import config
 
 if len(sys.argv) == 1:
     op = 0
-    log_filename = "ex4.log"
+    log_filename = "ex6.log"
 elif sys.argv[1] == '1':
     op = 1
-    log_filename = "ex4p1.log"
+    log_filename = "ex6p1.log"
 elif sys.argv[1] == '2':
     op = 2
-    log_filename = "ex4p2.log"
+    log_filename = "ex6p2.log"
 elif sys.argv[1] == '3':
     op = 3
-    log_filename = "ex4p3.log"
+    log_filename = "ex6p3.log"
 else:
     raise ValueError
 
@@ -92,20 +99,19 @@ if op == 0 or op == 1:
         ctr = 10.0**4
         coeff = get_coeff_from_tmp(coeff_tmp, ctr)
         logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
-        # nbvp = NBVP.ProblemSetting(option=-3)
-        nbvp = NBVP.ProblemSetting(option=sub_sec_ind + 2)
-        logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(nbvp.coarse_grid, nbvp.fine_grid))
-        nbvp.set_coeff(coeff)
-        nbvp.set_source_func(f_func)
-        nbvp.set_Neum_func(q_lf_func, q_rg_func, q_dw_func)
-        # ol_ly = max(CEIL(4 * LOG(1 / nbvp.coarse_grid) / LOG(1 / 10)), 1)
+        rbvp = RBVP.ProblemSetting(option=sub_sec_ind + 2)
+        logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(rbvp.coarse_grid, rbvp.fine_grid))
+        rbvp.set_coeff(coeff)
+        rbvp.set_Robin_coeff(coeff)
+        rbvp.set_source_func(f_func)
+        rbvp.set_Robin_func(q_lf_func, q_rg_func, q_dw_func, q_up_func)
         ol_ly = 2 + sub_sec_ind
-        nbvp.init_args(3, ol_ly)
-        logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(nbvp.coarse_grid, nbvp.fine_grid, nbvp.eigen_num, nbvp.oversamp_layer))
-        u0_ms, guess = nbvp.solve()
-        u0_ref = nbvp.solve_ref(guess=u0_ms)
-        err_l2_abs, err_eg_abs = nbvp.get_L2_energy_norm(u0_ms - u0_ref)
-        u0_ref_l2, u0_ref_eg = nbvp.get_L2_energy_norm(u0_ref)
+        rbvp.init_args(3, ol_ly)
+        logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(rbvp.coarse_grid, rbvp.fine_grid, rbvp.eigen_num, rbvp.oversamp_layer))
+        u0_ms, guess = rbvp.solve()
+        u0_ref = rbvp.solve_ref(guess=u0_ms)
+        err_l2_abs, err_eg_abs = rbvp.get_L2_energy_norm(u0_ms - u0_ref)
+        u0_ref_l2, u0_ref_eg = rbvp.get_L2_energy_norm(u0_ref)
         logging.info("Absolute errors: L2-norm:{0:.6f}, energy norm:{1:.6f}".format(err_l2_abs, err_eg_abs))
         logging.info("Reference L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))
     logging.info("~~End of section 1~~\n")
@@ -119,20 +125,20 @@ if op == 0 or op == 2:
         ctr = 10.0**(sec_ind + 3)
         coeff = get_coeff_from_tmp(coeff_tmp, ctr)
         logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
-        # nbvp = NBVP.ProblemSetting(option=-3)
-        nbvp = NBVP.ProblemSetting(option=4)
-        logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(nbvp.coarse_grid, nbvp.fine_grid))
-        nbvp.set_coeff(coeff)
-        nbvp.set_source_func(f_func)
-        nbvp.set_Neum_func(q_lf_func, q_rg_func, q_dw_func)
+        rbvp = RBVP.ProblemSetting(option=4)
+        logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(rbvp.coarse_grid, rbvp.fine_grid))
+        rbvp.set_coeff(coeff)
+        rbvp.set_Robin_coeff(coeff)
+        rbvp.set_source_func(f_func)
+        rbvp.set_Robin_func(q_lf_func, q_rg_func, q_dw_func, q_up_func)
         guess = np.array([])
         for sub_sec_ind in range(SUB_SEC_NUM):
-            nbvp.init_args(3, 2 + sub_sec_ind)
-            logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(nbvp.coarse_grid, nbvp.fine_grid, nbvp.eigen_num, nbvp.oversamp_layer))
-            u0_ms, guess = nbvp.solve(guess)
-            u0_ref = nbvp.solve_ref(guess=u0_ms)
-            err_l2_abs, err_eg_abs = nbvp.get_L2_energy_norm(u0_ms - u0_ref)
-            u0_ref_l2, u0_ref_eg = nbvp.get_L2_energy_norm(u0_ref)
+            rbvp.init_args(3, 2 + sub_sec_ind)
+            logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(rbvp.coarse_grid, rbvp.fine_grid, rbvp.eigen_num, rbvp.oversamp_layer))
+            u0_ms, guess = rbvp.solve(guess)
+            u0_ref = rbvp.solve_ref(guess=u0_ms)
+            err_l2_abs, err_eg_abs = rbvp.get_L2_energy_norm(u0_ms - u0_ref)
+            u0_ref_l2, u0_ref_eg = rbvp.get_L2_energy_norm(u0_ref)
             logging.info("Absolute errors: L2-norm:{0:.6f}, energy norm:{1:.6f}".format(err_l2_abs, err_eg_abs))
             logging.info("Reference L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))
         logging.info("~" * 80)
@@ -146,18 +152,19 @@ if op == 0 or op == 3:
         ctr = 10.0**4
         coeff = get_coeff_from_tmp(coeff_tmp, ctr)
         logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
-        # nbvp = NBVP.ProblemSetting(option=-3)
-        nbvp = NBVP.ProblemSetting(option=4)
-        logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(nbvp.coarse_grid, nbvp.fine_grid))
-        nbvp.set_coeff(coeff)
-        nbvp.set_source_func(f_func)
-        nbvp.set_Neum_func(q_lf_func, q_rg_func, q_dw_func)
-        nbvp.init_args(sec_ind + 1, 3)
-        logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(nbvp.coarse_grid, nbvp.fine_grid, nbvp.eigen_num, nbvp.oversamp_layer))
-        u0_ms, guess = nbvp.solve()
-        u0_ref = nbvp.solve_ref(guess=u0_ms)
-        err_l2_abs, err_eg_abs = nbvp.get_L2_energy_norm(u0_ms - u0_ref)
-        u0_ref_l2, u0_ref_eg = nbvp.get_L2_energy_norm(u0_ref)
+        # rbvp = rbvp.ProblemSetting(option=-3)
+        rbvp = RBVP.ProblemSetting(option=4)
+        logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(rbvp.coarse_grid, rbvp.fine_grid))
+        rbvp.set_coeff(coeff)
+        rbvp.set_Robin_coeff(coeff)
+        rbvp.set_source_func(f_func)
+        rbvp.set_Robin_func(q_lf_func, q_rg_func, q_dw_func, q_up_func)
+        rbvp.init_args(sec_ind + 1, 3)
+        logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(rbvp.coarse_grid, rbvp.fine_grid, rbvp.eigen_num, rbvp.oversamp_layer))
+        u0_ms, guess = rbvp.solve()
+        u0_ref = rbvp.solve_ref(guess=u0_ms)
+        err_l2_abs, err_eg_abs = rbvp.get_L2_energy_norm(u0_ms - u0_ref)
+        u0_ref_l2, u0_ref_eg = rbvp.get_L2_energy_norm(u0_ref)
         logging.info("Absolute errors: L2-norm:{0:.6f}, energy norm:{1:.6f}".format(err_l2_abs, err_eg_abs))
         logging.info("Reference L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))
     logging.info("~~End of section 3~~\n")

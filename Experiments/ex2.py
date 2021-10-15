@@ -45,7 +45,7 @@ def q_dw_func(x: float):
 root_path = os.path.join(sys.path[0], '..')
 sys.path.append(root_path)
 
-import Model1.InhomoNeumBVP as NBVP
+import Model2.InhomoNeumBVP as NBVP
 
 import logging
 from logging import config, log

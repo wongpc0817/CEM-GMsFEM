@@ -17,26 +17,16 @@ class ProblemSetting(ST.Setting):
         self.tot_fd_num = self.eigen_num * self.coarse_elem
 
     def set_coeff(self, coeff: np.ndarray):
-        assert coeff.shape == (self.fine_grid, self.fine_grid)
         self.coeff = coeff
         self.kappa = 24.0 * self.coarse_grid**2 * self.coeff
 
     def set_source_func(self, source_func):
         self.source_func = source_func
 
-    def set_Robin_coeff(self, Robin_coeff):
-        assert Robin_coeff.shape == (self.fine_grid, self.fine_grid)
-        self.Robin_coeff = Robin_coeff
-
-    def set_Robin_func(self, Robin_rhs_func_lf, Robin_rhs_func_rg, Robin_rhs_func_dw, Robin_rhs_func_up, Robin_coeff_func_lf=None, Robin_coeff_func_rg=None, Robin_coeff_func_dw=None, Robin_coeff_func_up=None):
-        self.Robin_rhs_func_lf = Robin_rhs_func_lf
-        self.Robin_rhs_func_rg = Robin_rhs_func_rg
-        self.Robin_rhs_func_dw = Robin_rhs_func_dw
-        self.Robin_rhs_func_up = Robin_rhs_func_up
-        self.Robin_coeff_func_lf = Robin_coeff_func_lf
-        self.Robin_coeff_func_rg = Robin_coeff_func_rg
-        self.Robin_coeff_func_dw = Robin_coeff_func_dw
-        self.Robin_coeff_func_up = Robin_coeff_func_up
+    def set_Neum_func(self, Neum_func_lf, Neum_func_rg, Neum_func_dw):
+        self.Neum_func_lf = Neum_func_lf
+        self.Neum_func_rg = Neum_func_rg
+        self.Neum_func_dw = Neum_func_dw
 
     def get_coarse_ngh_elem_lim(self, coarse_elem_ind):
         coarse_elem_ind_y, coarse_elem_ind_x = divmod(coarse_elem_ind, self.coarse_grid)
@@ -46,68 +36,7 @@ class ProblemSetting(ST.Setting):
         coarse_ngh_elem_up_lim = min(self.coarse_grid, coarse_elem_ind_y + self.oversamp_layer + 1)
         return coarse_ngh_elem_lf_lim, coarse_ngh_elem_rg_lim, coarse_ngh_elem_dw_lim, coarse_ngh_elem_up_lim
 
-    def get_Robin_op_quad_Lag(self, fine_elem_ind_x, fine_elem_ind_y, loc_ind_i, loc_ind_j):
-        val = 0.0
-        h = self.h
-        if fine_elem_ind_x == 0 and loc_ind_i in [0, 2] and loc_ind_j in [0, 2]:
-            for quad_ind in range(ST.QUAD_ORDER):
-                quad_cord = ST.QUAD_CORD[quad_ind]
-                quad_wght = ST.QUAD_WGHT[quad_ind]
-                assert hasattr(self, 'Robin_coeff') or self.Robin_coeff_func_lf != None
-                if hasattr(self, 'Robin_coeff'):
-                    loc_Robin_coeff = self.Robin_coeff[fine_elem_ind_x, fine_elem_ind_y]
-                if self.Robin_coeff_func_lf != None:
-                    center_y = 0.5 * h * (2 * fine_elem_ind_y + 1)
-                    quad_real_cord_y = center_y + 0.5 * h * quad_cord
-                    loc_Robin_coeff = self.Robin_coeff_func_lf(quad_real_cord_y)
-                val_i = ST.get_locbase_val(loc_ind_i, -1.0, quad_cord)
-                val_j = ST.get_locbase_val(loc_ind_j, -1.0, quad_cord)
-                val += 0.5 * h * quad_wght * loc_Robin_coeff * val_i * val_j
-        if fine_elem_ind_x == self.fine_grid - 1 and loc_ind_i in [1, 3] and loc_ind_j in [1, 3]:
-            for quad_ind in range(ST.QUAD_ORDER):
-                quad_cord = ST.QUAD_CORD[quad_ind]
-                quad_wght = ST.QUAD_WGHT[quad_ind]
-                assert hasattr(self, 'Robin_coeff') or self.Robin_coeff_func_rg != None
-                if hasattr(self, 'Robin_coeff'):
-                    loc_Robin_coeff = self.Robin_coeff[fine_elem_ind_x, fine_elem_ind_y]
-                if self.Robin_coeff_func_rg != None:
-                    center_y = 0.5 * h * (2 * fine_elem_ind_y + 1)
-                    quad_real_cord_y = center_y + 0.5 * h * quad_cord
-                    loc_Robin_coeff = self.Robin_coeff_func_rg(quad_real_cord_y)
-                val_i = ST.get_locbase_val(loc_ind_i, 1.0, quad_cord)
-                val_j = ST.get_locbase_val(loc_ind_j, 1.0, quad_cord)
-                val += 0.5 * h * quad_wght * loc_Robin_coeff * val_i * val_j
-        if fine_elem_ind_y == 0 and loc_ind_i in [0, 1] and loc_ind_j in [0, 1]:
-            for quad_ind in range(ST.QUAD_ORDER):
-                quad_cord = ST.QUAD_CORD[quad_ind]
-                quad_wght = ST.QUAD_WGHT[quad_ind]
-                assert hasattr(self, 'Robin_coeff') or self.Robin_coeff_func_dw != None
-                if hasattr(self, 'Robin_coeff'):
-                    loc_Robin_coeff = self.Robin_coeff[fine_elem_ind_x, fine_elem_ind_y]
-                if self.Robin_coeff_func_dw != None:
-                    center_x = 0.5 * h * (2 * fine_elem_ind_x + 1)
-                    quad_real_cord_x = center_x + 0.5 * h * quad_cord
-                    loc_Robin_coeff = self.Robin_coeff_func_lf(quad_real_cord_x)
-                val_i = ST.get_locbase_val(loc_ind_i, quad_cord, -1.0)
-                val_j = ST.get_locbase_val(loc_ind_j, quad_cord, -1.0)
-                val += 0.5 * h * quad_wght * loc_Robin_coeff * val_i * val_j
-        if fine_elem_ind_y == self.fine_grid - 1 and loc_ind_i in [2, 3] and loc_ind_j in [2, 3]:
-            for quad_ind in range(ST.QUAD_ORDER):
-                quad_cord = ST.QUAD_CORD[quad_ind]
-                quad_wght = ST.QUAD_WGHT[quad_ind]
-                assert hasattr(self, 'Robin_coeff') or self.Robin_coeff_func_up != None
-                if hasattr(self, 'Robin_coeff'):
-                    loc_Robin_coeff = self.Robin_coeff[fine_elem_ind_x, fine_elem_ind_y]
-                if self.Robin_coeff_func_up != None:
-                    center_x = 0.5 * h * (2 * fine_elem_ind_x + 1)
-                    quad_real_cord_x = center_x + 0.5 * h * quad_cord
-                    loc_Robin_coeff = self.Robin_coeff_func_up(quad_real_cord_x)
-                val_i = ST.get_locbase_val(loc_ind_i, quad_cord, 1.0)
-                val_j = ST.get_locbase_val(loc_ind_j, quad_cord, 1.0)
-                val += 0.5 * h * quad_wght * loc_Robin_coeff * val_i * val_j
-        return val
-
-    def get_Robin_rhs_quad_Lag(self, fine_elem_ind_x, fine_elem_ind_y, loc_ind):
+    def get_Neum_quad_Lag(self, fine_elem_ind_x, fine_elem_ind_y, loc_ind):
         val = 0.0
         h = self.h
         if fine_elem_ind_x == 0 and loc_ind in [0, 2]:
@@ -116,7 +45,7 @@ class ProblemSetting(ST.Setting):
                 quad_cord = ST.QUAD_CORD[quad_ind]
                 quad_wght = ST.QUAD_WGHT[quad_ind]
                 quad_real_cord_y = center_y + 0.5 * h * quad_cord
-                q_val = self.Robin_rhs_func_lf(quad_real_cord_y)
+                q_val = self.Neum_func_lf(quad_real_cord_y)
                 test_val = ST.get_locbase_val(loc_ind, -1.0, quad_cord)
                 val += 0.5 * h * quad_wght * q_val * test_val
         if fine_elem_ind_x == self.fine_grid - 1 and loc_ind in [1, 3]:
@@ -125,7 +54,7 @@ class ProblemSetting(ST.Setting):
                 quad_cord = ST.QUAD_CORD[quad_ind]
                 quad_wght = ST.QUAD_WGHT[quad_ind]
                 quad_real_cord_y = center_y + 0.5 * h * quad_cord
-                q_val = self.Robin_rhs_func_rg(quad_real_cord_y)
+                q_val = self.Neum_func_rg(quad_real_cord_y)
                 test_val = ST.get_locbase_val(loc_ind, 1.0, quad_cord)
                 val += 0.5 * h * quad_wght * q_val * test_val
         if fine_elem_ind_y == 0 and loc_ind in [0, 1]:
@@ -134,17 +63,8 @@ class ProblemSetting(ST.Setting):
                 quad_cord = ST.QUAD_CORD[quad_ind]
                 quad_wght = ST.QUAD_WGHT[quad_ind]
                 quad_real_cord_x = center_x + 0.5 * h * quad_cord
-                q_val = self.Robin_rhs_func_dw(quad_real_cord_x)
+                q_val = self.Neum_func_dw(quad_real_cord_x)
                 test_val = ST.get_locbase_val(loc_ind, quad_cord, -1.0)
-                val += 0.5 * h * quad_wght * q_val * test_val
-        if fine_elem_ind_y == self.fine_grid - 1 and loc_ind in [2, 3]:
-            center_x = 0.5 * h * (2 * fine_elem_ind_x + 1)
-            for quad_ind in range(ST.QUAD_ORDER):
-                quad_cord = ST.QUAD_CORD[quad_ind]
-                quad_wght = ST.QUAD_WGHT[quad_ind]
-                quad_real_cord_x = center_x + 0.5 * h * quad_cord
-                q_val = self.Robin_rhs_func_up(quad_real_cord_x)
-                test_val = ST.get_locbase_val(loc_ind, quad_cord, 1.0)
                 val += 0.5 * h * quad_wght * q_val * test_val
         return val
 
@@ -182,7 +102,7 @@ class ProblemSetting(ST.Setting):
         eigen_vec = np.zeros((fd_num, self.coarse_elem * self.eigen_num))
         eigen_val = np.zeros((self.coarse_elem * self.eigen_num, ))
         S_mat_list = [None] * self.coarse_elem  # A list of S matrices, saved here for futural usages
-        A_mat_list = [None] * self.coarse_elem
+        # A_mat_list = [None] * self.coarse_elem
         for coarse_elem_ind in range(self.coarse_elem):
             coarse_elem_ind_y, coarse_elem_ind_x = divmod(coarse_elem_ind, self.coarse_grid)
             max_data_len = self.sub_elem * ST.N_V**2
@@ -210,7 +130,6 @@ class ProblemSetting(ST.Setting):
                         # A_val_loc[temp_ind] = ST.get_loc_stiff(loc_coeff, loc_ind_i, loc_ind_j) # scaling
                         # S_val_loc[temp_ind] = ST.get_loc_mass(self.h, loc_kappa, loc_ind_i, loc_ind_j) # scaling
                         A_val[marker] = loc_coeff * (self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j])
-                        A_val[marker] += self.get_Robin_op_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i, loc_ind_j)
                         S_val[marker] = loc_kappa * (self.elem_Bi_mass_mat[loc_ind_i, loc_ind_j])
                         marker += 1
                 # I[sub_elem_ind * loc_data_len: (sub_elem_ind+1) * loc_data_len] = I_loc
@@ -219,8 +138,8 @@ class ProblemSetting(ST.Setting):
                 # S_val[sub_elem_ind * loc_data_len: (sub_elem_ind+1) * loc_data_len] = S_val_loc
             A_mat_coo = coo_matrix((A_val[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))  # A nicer method of constructing FEM matrices
             S_mat_coo = coo_matrix((S_val[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))  # A nicer method of constructing FEM matrices
-            A_mat = A_mat_coo.tocsr()
-            S_mat = S_mat_coo.tocsr()
+            A_mat = A_mat_coo.tocsc()
+            S_mat = S_mat_coo.tocsc()
             val, vec = eigsh(A_mat, k=self.eigen_num, M=S_mat, sigma=-1.0, which='LM')  # Refer Scipy documents
             # All eigenvectors are orthogonal to each other w.r.t. S_mat
             # for eigen_ind in range(self.eigen_num):
@@ -230,11 +149,11 @@ class ProblemSetting(ST.Setting):
             eigen_val[coarse_elem_ind * self.eigen_num:(coarse_elem_ind + 1) * self.eigen_num] = val
             eigen_vec[:, coarse_elem_ind * self.eigen_num:(coarse_elem_ind + 1) * self.eigen_num] = vec
             S_mat_list[coarse_elem_ind] = S_mat
-            A_mat_list[coarse_elem_ind] = A_mat
+            # A_mat_list[coarse_elem_ind] = A_mat
         self.eigen_val = eigen_val
         self.eigen_vec = eigen_vec
         self.S_mat_list = S_mat_list
-        self.A_mat_list = A_mat_list
+        # self.A_mat_list = A_mat_list
 
     def get_ind_map(self):
         assert self.oversamp_layer > 0
@@ -255,18 +174,19 @@ class ProblemSetting(ST.Setting):
                 node_ind_x_lf_lim = 0
             else:
                 node_ind_x_lf_lim = lf_lim * self.sub_grid + 1
+
             if rg_lim == self.coarse_grid:
                 node_ind_x_rg_lim = self.fine_grid + 1
             else:
                 node_ind_x_rg_lim = rg_lim * self.sub_grid
+
             if dw_lim == 0:
                 node_ind_y_dw_lim = 0
             else:
                 node_ind_y_dw_lim = dw_lim * self.sub_grid + 1
-            if up_lim == self.coarse_grid:
-                node_ind_y_up_lim = self.fine_grid + 1
-            else:
-                node_ind_y_up_lim = up_lim * self.sub_grid
+
+            node_ind_y_up_lim = up_lim * self.sub_grid
+
             for node_ind_y in range(node_ind_y_dw_lim, node_ind_y_up_lim):
                 for node_ind_x in range(node_ind_x_lf_lim, node_ind_x_rg_lim):
                     node_ind = node_ind_y * (self.fine_grid + 1) + node_ind_x
@@ -347,10 +267,9 @@ class ProblemSetting(ST.Setting):
                                         I[marker] = fd_ind_i
                                         J[marker] = fd_ind_j
                                         V[marker] = loc_coeff * (self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j])
-                                        V[marker] += self.get_Robin_op_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i, loc_ind_j)
                                         marker += 1
                                 if coarse_ngh_elem_ind == coarse_elem_ind:
-                                    rhs_corr[fd_ind_i] += self.get_Robin_rhs_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
+                                    rhs_corr[fd_ind_i] += self.get_Neum_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
             Op_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
             Op_mat = Op_mat_coo.tocsc()
             # logging.info("Construct the linear system [{0:d}]/[{1:d}], [{2:d}x{2:d}]".format(coarse_elem_ind, self.coarse_elem, fd_num))
@@ -383,8 +302,7 @@ class ProblemSetting(ST.Setting):
         glb_F_vec = np.zeros((tot_node, ))
         for fine_elem_ind in range(self.fine_elem):
             fine_elem_ind_y, fine_elem_ind_x = divmod(fine_elem_ind, self.fine_grid)
-            coeff = self.coeff[fine_elem_ind_x, fine_elem_ind_y]
-            elem_stiff_mat = coeff * self.elem_Lap_stiff_mat
+            loc_coeff = self.coeff[fine_elem_ind_x, fine_elem_ind_y]
             for loc_ind_i in range(ST.N_V):
                 loc_ind_iy, loc_ind_ix = divmod(loc_ind_i, 2)
                 node_ind_i = (fine_elem_ind_y + loc_ind_iy) * (self.fine_grid + 1) + fine_elem_ind_x + loc_ind_ix
@@ -393,13 +311,12 @@ class ProblemSetting(ST.Setting):
                     node_ind_j = (fine_elem_ind_y + loc_ind_jy) * (self.fine_grid + 1) + fine_elem_ind_x + loc_ind_jx
                     I[marker] = node_ind_i
                     J[marker] = node_ind_j
-                    V[marker] = elem_stiff_mat[loc_ind_i, loc_ind_j]
-                    V[marker] += self.get_Robin_op_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i, loc_ind_j)
+                    V[marker] = loc_coeff * self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j]
                     marker += 1
                 glb_F_vec[node_ind_i] += self.get_source_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
-                glb_F_vec[node_ind_i] += self.get_Robin_rhs_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
+                glb_F_vec[node_ind_i] += self.get_Neum_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
         glb_A_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(tot_node, tot_node))
-        glb_A_mat = glb_A_mat_coo.tocsr()
+        glb_A_mat = glb_A_mat_coo.tocsc()
         self.glb_A_mat = glb_A_mat
         self.glb_F_vec = glb_F_vec
 
@@ -455,19 +372,22 @@ class ProblemSetting(ST.Setting):
 
     def solve_ref(self, guess=[]):
         def get_fd_ind(fine_elem_ind_x, fine_elem_ind_y, loc_ind):
-            loc_ind_y, loc_ind_x = divmod(loc_ind, 2)
-            return (fine_elem_ind_y + loc_ind_y) * (self.fine_grid + 1) + fine_elem_ind_x + loc_ind_x
+            if fine_elem_ind_y == self.fine_grid - 1 and loc_ind in [2, 3]:
+                return -1
+            else:
+                loc_ind_y, loc_ind_x = divmod(loc_ind, 2)
+                return (fine_elem_ind_y + loc_ind_y) * (self.fine_grid + 1) + fine_elem_ind_x + loc_ind_x
 
         max_data_len = self.fine_elem * ST.N_V**2
         I = -np.ones((max_data_len, ), dtype=np.int32)
         J = -np.ones((max_data_len, ), dtype=np.int32)
         V = np.zeros((max_data_len, ))
         marker = 0
-        fd_num = (self.fine_grid + 1)**2
+        fd_num = self.fine_grid * (self.fine_grid + 1)
         rhs = np.zeros((fd_num, ))
         x0 = np.zeros((fd_num, ))
         if len(guess) > 0:
-            x0 = guess[:]
+            x0 = guess[:fd_num]
 
         for fine_elem_ind in range(self.fine_elem):
             fine_elem_ind_y, fine_elem_ind_x = divmod(fine_elem_ind, self.fine_grid)
@@ -481,10 +401,9 @@ class ProblemSetting(ST.Setting):
                             I[marker] = fd_ind_i
                             J[marker] = fd_ind_j
                             V[marker] = loc_coeff * self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j]
-                            V[marker] += self.get_Robin_op_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i, loc_ind_j)
                             marker += 1
                     rhs[fd_ind_i] += self.get_source_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
-                    rhs[fd_ind_i] += self.get_Robin_rhs_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
+                    rhs[fd_ind_i] += self.get_Neum_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
         A_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
         A_mat = A_mat_coo.tocsc()
         logging.info("Finish constructing the final linear system of the reference problem.")
@@ -562,10 +481,9 @@ class ProblemSetting(ST.Setting):
                                         I[marker] = fd_ind_i
                                         J[marker] = fd_ind_j
                                         V[marker] = loc_coeff * (self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j])
-                                        V[marker] += self.get_Robin_op_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i, loc_ind_j)
                                         marker += 1
                                 if coarse_ngh_elem_ind == coarse_elem_ind:
-                                    rhs_corr[fd_ind_i] += self.get_Robin_rhs_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
+                                    rhs_corr[fd_ind_i] += self.get_Neum_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
             Op_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
             Op_mat = Op_mat_coo.tocsc()
             # logging.info("Construct the linear system [{0:d}]/[{1:d}], [{2:d}x{2:d}]".format(coarse_elem_ind, self.coarse_elem, fd_num))
@@ -583,10 +501,13 @@ class ProblemSetting(ST.Setting):
 
     def get_true_corr(self, guess=[]):
         def get_fd_ind(fine_elem_ind_x, fine_elem_ind_y, loc_ind):
-            loc_ind_y, loc_ind_x = divmod(loc_ind, 2)
-            return (fine_elem_ind_y + loc_ind_y) * (self.fine_grid + 1) + fine_elem_ind_x + loc_ind_x
+            if fine_elem_ind_y == self.fine_grid - 1 and loc_ind in [2, 3]:
+                return -1
+            else:
+                loc_ind_y, loc_ind_x = divmod(loc_ind, 2)
+                return (fine_elem_ind_y + loc_ind_y) * (self.fine_grid + 1) + fine_elem_ind_x + loc_ind_x
 
-        fd_num = (self.fine_grid + 1)**2
+        fd_num = self.fine_grid * (self.fine_grid + 1)
         max_data_len = self.coarse_elem * ((self.sub_grid + 1)**4 + self.sub_elem * ST.N_V**2)
         I = -np.ones((max_data_len, ), dtype=np.int32)
         J = -np.ones((max_data_len, ), dtype=np.int32)
@@ -595,7 +516,7 @@ class ProblemSetting(ST.Setting):
         rhs_corr = np.zeros((fd_num, ))
         x0 = np.zeros((fd_num, ))
         if len(guess) > 0:
-            x0 = guess[:]
+            x0 = guess[:fd_num]
         for coarse_elem_ind in range(self.coarse_elem):
             coarse_elem_ind_y, coarse_elem_ind_x = divmod(coarse_elem_ind, self.coarse_grid)
             S_mat = self.S_mat_list[coarse_elem_ind]
@@ -642,9 +563,8 @@ class ProblemSetting(ST.Setting):
                                 I[marker] = fd_ind_i
                                 J[marker] = fd_ind_j
                                 V[marker] = loc_coeff * (self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j])
-                                V[marker] += self.get_Robin_op_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i, loc_ind_j)
                                 marker += 1
-                        rhs_corr[fd_ind_i] += self.get_Robin_rhs_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
+                        rhs_corr[fd_ind_i] += self.get_Neum_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
         Op_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
         Op_mat = Op_mat_coo.tocsc()
         ilu = spilu(Op_mat)

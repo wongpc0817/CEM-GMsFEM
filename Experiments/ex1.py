@@ -41,7 +41,7 @@ def g_dy_func(x: float, y: float):
 root_path = os.path.join(sys.path[0], '..')
 sys.path.append(root_path)
 
-import Model2.InhomoDiriBVP as DBVP
+import Model1.InhomoDiriBVP as DBVP
 
 import logging
 from logging import config
