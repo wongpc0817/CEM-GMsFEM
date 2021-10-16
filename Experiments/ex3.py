@@ -145,7 +145,7 @@ if op == 0 or op == 3:
         coeff = get_coeff_from_tmp(coeff_tmp, ctr)
         logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
         # dbvp = DBVP.ProblemSetting(option=-3)
-        dbvp = NBVP.ProblemSetting(option=4)
+        dbvp = DBVP.ProblemSetting(option=4)
         logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(dbvp.coarse_grid, dbvp.fine_grid))
         dbvp.set_coeff(coeff)
         dbvp.set_source_func(f_func)
