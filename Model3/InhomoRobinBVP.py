@@ -255,18 +255,22 @@ class ProblemSetting(ST.Setting):
                 node_ind_x_lf_lim = 0
             else:
                 node_ind_x_lf_lim = lf_lim * self.sub_grid + 1
+
             if rg_lim == self.coarse_grid:
                 node_ind_x_rg_lim = self.fine_grid + 1
             else:
                 node_ind_x_rg_lim = rg_lim * self.sub_grid
+
             if dw_lim == 0:
                 node_ind_y_dw_lim = 0
             else:
                 node_ind_y_dw_lim = dw_lim * self.sub_grid + 1
+
             if up_lim == self.coarse_grid:
                 node_ind_y_up_lim = self.fine_grid + 1
             else:
                 node_ind_y_up_lim = up_lim * self.sub_grid
+
             for node_ind_y in range(node_ind_y_dw_lim, node_ind_y_up_lim):
                 for node_ind_x in range(node_ind_x_lf_lim, node_ind_x_rg_lim):
                     node_ind = node_ind_y * (self.fine_grid + 1) + node_ind_x
@@ -610,14 +614,10 @@ class ProblemSetting(ST.Setting):
                     node_sub_ind = node_sub_ind_y * (self.sub_grid + 1) + node_sub_ind_x
                     node_ind_y = coarse_elem_ind_y * self.sub_grid + node_sub_ind_y
                     node_ind_x = coarse_elem_ind_x * self.sub_grid + node_sub_ind_x
-                    if node_ind_y < self.fine_grid:
-                        fd_ind = node_ind_y * (self.fine_grid + 1) + node_ind_x
-                    else:
-                        fd_ind = -1
-                    if fd_ind >= 0:
-                        node_sub_ind_list[marker_] = node_sub_ind
-                        fd_ind_list[marker_] = fd_ind
-                        marker_ += 1
+                    fd_ind = node_ind_y * (self.fine_grid + 1) + node_ind_x
+                    node_sub_ind_list[marker_] = node_sub_ind
+                    fd_ind_list[marker_] = fd_ind
+                    marker_ += 1
             for ind_i in range(marker_):
                 node_sub_ind_i = node_sub_ind_list[ind_i]
                 fd_ind_i = fd_ind_list[ind_i]
@@ -635,16 +635,14 @@ class ProblemSetting(ST.Setting):
                 loc_coeff = self.coeff[fine_elem_ind_x, fine_elem_ind_y]
                 for loc_ind_i in range(ST.N_V):
                     fd_ind_i = get_fd_ind(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
-                    if fd_ind_i >= 0:
-                        for loc_ind_j in range(ST.N_V):
-                            fd_ind_j = get_fd_ind(fine_elem_ind_x, fine_elem_ind_y, loc_ind_j)
-                            if fd_ind_j >= 0:
-                                I[marker] = fd_ind_i
-                                J[marker] = fd_ind_j
-                                V[marker] = loc_coeff * (self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j])
-                                V[marker] += self.get_Robin_op_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i, loc_ind_j)
-                                marker += 1
-                        rhs_corr[fd_ind_i] += self.get_Robin_rhs_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
+                    for loc_ind_j in range(ST.N_V):
+                        fd_ind_j = get_fd_ind(fine_elem_ind_x, fine_elem_ind_y, loc_ind_j)
+                        I[marker] = fd_ind_i
+                        J[marker] = fd_ind_j
+                        V[marker] = loc_coeff * (self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j])
+                        V[marker] += self.get_Robin_op_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i, loc_ind_j)
+                        marker += 1
+                    rhs_corr[fd_ind_i] += self.get_Robin_rhs_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
         Op_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
         Op_mat = Op_mat_coo.tocsc()
         ilu = spilu(Op_mat)
