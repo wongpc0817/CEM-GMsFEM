@@ -87,34 +87,37 @@ coeff_tmp = np.load(os.path.join(root_path, 'Resources', 'MediumC.npy'))
 # Change coarse grid (10, 20, 40, 80), change oversampling size
 # Fix basis number=3, contrast ratio=10^4
 if op == 0 or op == 1:
-    SUB_SEC_NUM = 3
-    for sub_sec_ind in range(SUB_SEC_NUM):
-        ctr = 10.0**4
-        coeff = get_coeff_from_tmp(coeff_tmp, ctr)
-        logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
-        # nbvp = NBVP.ProblemSetting(option=-3)
-        nbvp = NBVP.ProblemSetting(option=sub_sec_ind + 2)
-        logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(nbvp.coarse_grid, nbvp.fine_grid))
-        nbvp.set_coeff(coeff)
-        nbvp.set_source_func(f_func)
-        nbvp.set_Neum_func(q_lf_func, q_rg_func, q_dw_func)
-        # ol_ly = max(CEIL(4 * LOG(1 / nbvp.coarse_grid) / LOG(1 / 10)), 1)
-        ol_ly = 2 + sub_sec_ind
-        nbvp.init_args(3, ol_ly)
-        logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(nbvp.coarse_grid, nbvp.fine_grid, nbvp.eigen_num, nbvp.oversamp_layer))
-        u0_ms, guess = nbvp.solve()
-        u0_ref = nbvp.solve_ref(guess=u0_ms)
-        err_l2_abs, err_eg_abs = nbvp.get_L2_energy_norm(u0_ms - u0_ref)
-        u0_ref_l2, u0_ref_eg = nbvp.get_L2_energy_norm(u0_ref)
-        logging.info("Absolute errors: L2-norm:{0:.6f}, energy norm:{1:.6f}".format(err_l2_abs, err_eg_abs))
-        logging.info("Reference L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))
+    SEC_NUM = 3
+    SUB_SEC_NUM = 4
+    for sec_ind in range(SEC_NUM):
+        for sub_sec_ind in range(SUB_SEC_NUM):
+            ctr = 10.0**4
+            coeff = get_coeff_from_tmp(coeff_tmp, ctr)
+            logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
+            # nbvp = NBVP.ProblemSetting(option=-3)
+            nbvp = NBVP.ProblemSetting(option=sec_ind + 2)
+            logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(nbvp.coarse_grid, nbvp.fine_grid))
+            nbvp.set_coeff(coeff)
+            nbvp.set_source_func(f_func)
+            nbvp.set_Neum_func(q_lf_func, q_rg_func, q_dw_func)
+            # ol_ly = max(CEIL(4 * LOG(1 / nbvp.coarse_grid) / LOG(1 / 10)), 1)
+            ol_ly = 1 + sub_sec_ind
+            nbvp.init_args(3, ol_ly)
+            logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(nbvp.coarse_grid, nbvp.fine_grid, nbvp.eigen_num, nbvp.oversamp_layer))
+            u0_ms, guess = nbvp.solve()
+            u0_ref = nbvp.solve_ref(guess=u0_ms)
+            err_l2_abs, err_eg_abs = nbvp.get_L2_energy_norm(u0_ms - u0_ref)
+            u0_ref_l2, u0_ref_eg = nbvp.get_L2_energy_norm(u0_ref)
+            logging.info("Absolute errors: L2-norm:{0:.6f}, energy norm:{1:.6f}".format(err_l2_abs, err_eg_abs))
+            logging.info("Reference L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))
+        logging.info("~" * 80)
     logging.info("~~End of section 1~~\n")
 
 # Change contrast ratio 10^3, 10^4, 10^5, 10^6, change oversampling size 3, 4, 5
 # Fix coarse grid=80, basis number=3
 if op == 0 or op == 2:
     SEC_NUM = 4
-    SUB_SEC_NUM = 3
+    SUB_SEC_NUM = 1
     for sec_ind in range(SEC_NUM):
         ctr = 10.0**(sec_ind + 3)
         coeff = get_coeff_from_tmp(coeff_tmp, ctr)
@@ -127,7 +130,7 @@ if op == 0 or op == 2:
         nbvp.set_Neum_func(q_lf_func, q_rg_func, q_dw_func)
         guess = np.array([])
         for sub_sec_ind in range(SUB_SEC_NUM):
-            nbvp.init_args(3, 2 + sub_sec_ind)
+            nbvp.init_args(3, 1 + sub_sec_ind)
             logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(nbvp.coarse_grid, nbvp.fine_grid, nbvp.eigen_num, nbvp.oversamp_layer))
             u0_ms, guess = nbvp.solve(guess)
             u0_ref = nbvp.solve_ref(guess=u0_ms)

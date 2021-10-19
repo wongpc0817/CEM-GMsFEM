@@ -1,4 +1,3 @@
-import matplotlib.image as mpimg
 import sys, os
 import numpy as np
 
@@ -91,7 +90,7 @@ EIGEN_NUM = 3
 
 if op == 0 or op == 1:
     sec_ind = 1
-    ctr = 10.0**4
+    ctr = 1.0
     coeff = get_coeff_from_tmp(coeff_tmp, ctr)
     logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
     nbvp = NBVP.ProblemSetting(option=2)
@@ -126,7 +125,7 @@ if op == 0 or op == 1:
 
 if op == 0 or op == 2:
     sec_ind = 2
-    ctr = 10.0**5
+    ctr = 10.0**2
     coeff = get_coeff_from_tmp(coeff_tmp, ctr)
     logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
     nbvp = NBVP.ProblemSetting(option=2)
@@ -161,7 +160,7 @@ if op == 0 or op == 2:
 
 if op == 0 or op == 3:
     sec_ind = 3
-    ctr = 10.0**6
+    ctr = 10.0**3
     coeff = get_coeff_from_tmp(coeff_tmp, ctr)
     logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
     nbvp = NBVP.ProblemSetting(option=2)

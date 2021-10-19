@@ -81,41 +81,47 @@ logging.info("Start")
 
 coeff_tmp = np.load(os.path.join(root_path, 'Resources', 'MediumA.npy'))
 
-# Change coarse grid (10, 20, 40, 80), change oversampling size
+# Change coarse grid (20, 40, 80), change oversampling size (2, 3, 4)
 # Fix basis number=3, contrast ratio=10^4
 if op == 0 or op == 1:
-    SUB_SEC_NUM = 3
+    SEC_NUM = 3
+    SUB_SEC_NUM = 4
     EIGEN_NUM = 3
-    for sub_sec_ind in range(SUB_SEC_NUM):
-        ctr = 10.0**4
-        coeff = get_coeff_from_tmp(coeff_tmp, ctr)
-        logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
-        # dbvp = DBVP.ProblemSetting(option=4)
-        dbvp = DBVP.ProblemSetting(option=sub_sec_ind + 2)
-        logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(dbvp.coarse_grid, dbvp.fine_grid))
-        dbvp.set_coeff(coeff)
-        dbvp.set_source_func(f_func)
-        dbvp.set_Diri_func(g_func, g_dx_func, g_dy_func)
-        # ol_ly = max(CEIL(4 * LOG(1 / dbvp.coarse_grid) / LOG(1 / 10)), 1)
-        ol_ly = 2 + sub_sec_ind
-        dbvp.init_args(EIGEN_NUM, ol_ly)
-        logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(dbvp.coarse_grid, dbvp.fine_grid, dbvp.eigen_num, dbvp.oversamp_layer))
-        u0_ms = dbvp.solve()
-        u0_ref = dbvp.solve_ref(guess=u0_ms)
-        err_l2_abs, err_eg_abs = dbvp.get_L2_energy_norm(u0_ms - u0_ref)
-        u0_ref_l2, u0_ref_eg = dbvp.get_L2_energy_norm(u0_ref)
-        logging.info("Absolute errors: L2-norm:{0:.6f}, energy norm:{1:.6f}".format(err_l2_abs, err_eg_abs))
-        logging.info("Reference L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))
+    for sec_ind in range(SEC_NUM):
+        for sub_sec_ind in range(SUB_SEC_NUM):
+            ctr = 10.0**4
+            coeff = get_coeff_from_tmp(coeff_tmp, ctr)
+            logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
+            # dbvp = DBVP.ProblemSetting(option=-3)
+            dbvp = DBVP.ProblemSetting(option=sec_ind + 2)
+            logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(dbvp.coarse_grid, dbvp.fine_grid))
+            dbvp.set_coeff(coeff)
+            dbvp.set_source_func(f_func)
+            dbvp.set_Diri_func(g_func, g_dx_func, g_dy_func)
+            # ol_ly = max(CEIL(4 * LOG(1 / dbvp.coarse_grid) / LOG(1 / 10)), 1)
+            os_ly = 3 + sub_sec_ind
+            dbvp.init_args(EIGEN_NUM, os_ly)
+            logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(dbvp.coarse_grid, dbvp.fine_grid, dbvp.eigen_num, dbvp.oversamp_layer))
+            u0_ms = dbvp.solve()
+            u0_ref = dbvp.solve_ref(guess=u0_ms)
+            u_ref = dbvp.get_inhomo_ref(u0_ref)
+            err_l2_abs, err_eg_abs = dbvp.get_L2_energy_norm(u0_ms - u0_ref)
+            u0_ref_l2, u0_ref_eg = dbvp.get_L2_energy_norm(u0_ref)
+            u_ref_l2, u_ref_eg = dbvp.get_L2_energy_norm(u_ref)
+            logging.info("Absolute errors: L2-norm:{0:.6f}, energy norm:{1:.6f}".format(err_l2_abs, err_eg_abs))
+            logging.info("Reference u_0 L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))
+            logging.info("Reference u L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u_ref_l2, u_ref_eg))
+        logging.info("~" * 80)
     logging.info("~~End of section 1~~\n")
 
 # Change contrast ratio 10^3, 10^4, 10^5, 10^6, change oversampling size 3, 4, 5
 # Fix coarse grid=80, basis number=3
 if op == 0 or op == 2:
-    SEC_NUM = 4
-    SUB_SEC_NUM = 3
+    SEC_NUM = 1
+    SUB_SEC_NUM = 4
     EIGEN_NUM = 3
     for sec_ind in range(SEC_NUM):
-        ctr = 10.0**(sec_ind + 3)
+        ctr = 10.0**(sec_ind + 6)
         coeff = get_coeff_from_tmp(coeff_tmp, ctr)
         logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
         # dbvp = DBVP.ProblemSetting(option=-3)
@@ -124,15 +130,20 @@ if op == 0 or op == 2:
         dbvp.set_coeff(coeff)
         dbvp.set_source_func(f_func)
         dbvp.set_Diri_func(g_func, g_dx_func, g_dy_func)
+        guess = np.zeros([])
         for sub_sec_ind in range(SUB_SEC_NUM):
-            dbvp.init_args(EIGEN_NUM, 2 + sub_sec_ind)
+            os_ly = 1 + sub_sec_ind
+            dbvp.init_args(EIGEN_NUM, os_ly)
             logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(dbvp.coarse_grid, dbvp.fine_grid, dbvp.eigen_num, dbvp.oversamp_layer))
-            u0_ms = dbvp.solve()
+            u0_ms, guess = dbvp.solve(guess)
             u0_ref = dbvp.solve_ref(guess=u0_ms)
+            u_ref = dbvp.get_inhomo_ref(u0_ref)
             err_l2_abs, err_eg_abs = dbvp.get_L2_energy_norm(u0_ms - u0_ref)
             u0_ref_l2, u0_ref_eg = dbvp.get_L2_energy_norm(u0_ref)
+            u_ref_l2, u_ref_eg = dbvp.get_L2_energy_norm(u_ref)
             logging.info("Absolute errors: L2-norm:{0:.6f}, energy norm:{1:.6f}".format(err_l2_abs, err_eg_abs))
-            logging.info("Reference L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))
+            logging.info("Reference u_0 L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))
+            logging.info("Reference u L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u_ref_l2, u_ref_eg))
         logging.info("~" * 80)
     logging.info("~~End of section 2~~\n")
 
@@ -154,10 +165,13 @@ if op == 0 or op == 3:
         logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(dbvp.coarse_grid, dbvp.fine_grid, dbvp.eigen_num, dbvp.oversamp_layer))
         u0_ms = dbvp.solve()
         u0_ref = dbvp.solve_ref(guess=u0_ms)
+        u_ref = dbvp.get_inhomo_ref(u0_ref)
         err_l2_abs, err_eg_abs = dbvp.get_L2_energy_norm(u0_ms - u0_ref)
         u0_ref_l2, u0_ref_eg = dbvp.get_L2_energy_norm(u0_ref)
+        u_ref_l2, u_ref_eg = dbvp.get_L2_energy_norm(u_ref)
         logging.info("Absolute errors: L2-norm:{0:.6f}, energy norm:{1:.6f}".format(err_l2_abs, err_eg_abs))
-        logging.info("Reference L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))
+        logging.info("Reference u_0 L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))
+        logging.info("Reference u L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u_ref_l2, u_ref_eg))
     logging.info("~~End of section 3~~\n")
 
 logging.info("~END~")

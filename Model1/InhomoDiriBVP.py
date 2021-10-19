@@ -319,23 +319,52 @@ class ProblemSetting(ST.Setting):
         self.glb_basis_spmat = glb_basis_spmat
         self.glb_basis_spmat_T = glb_basis_spmat_T
 
-    def solve(self):
+    def solve(self, guess=[]):
         assert self.oversamp_layer > 0 and self.eigen_num > 0
         self.get_eigen_pair()
-        assert len(self.eigen_val) > 0
         logging.info("Finish getting all eigenvalue-vector pairs.")
         self.get_ind_map()
-        assert len(self.ind_map_list) > 0
         logging.info("Finish getting maps of [global node index] to [local freedom index].")
         self.get_corr_basis()
-        assert len(self.basis_list) > 0
-        logging.info("Finish getting the Dirichlet corrector and multiscale bases.")
+        logging.info("Finish getting the Neumann corrector and multiscale bases.")
         self.get_glb_A_F()
-        assert len(self.glb_F_vec) > 0
         logging.info("Finish getting the global stiffness matrix and right-hand vector.")
         self.get_glb_basis_spmat()
-        assert self.glb_basis_spmat != None and self.glb_basis_spmat_T != None
         logging.info("Finish collecting all the bases in a sparse matrix formation.")
+        A_mat = self.glb_basis_spmat_T * self.glb_A_mat * self.glb_basis_spmat
+        rhs = self.glb_basis_spmat_T.dot(self.glb_F_vec - self.glb_A_mat.dot(self.glb_corr))
+        logging.info("Finish constructing the final linear system.")
+        ilu = spilu(A_mat)
+        Mx = lambda x: ilu.solve(x)
+        pre_M = LinearOperator((self.tot_fd_num, self.tot_fd_num), Mx)
+        if len(guess) == self.tot_fd_num:
+            x0 = guess
+        else:
+            x0 = np.zeros((self.tot_fd_num, ))
+        omega, info = lgmres(A_mat, rhs, tol=self.TOL, M=pre_M, x0=x0)
+        if info != 0:
+            logging.critical("Fail to solve the final linear system, info={0:d}".format(info))
+            raise AssertionError
+        u = self.glb_basis_spmat.dot(omega)
+        u += self.glb_corr
+        logging.info("Finish solving the final linear system.")
+        return u, omega
+        # assert self.oversamp_layer > 0 and self.eigen_num > 0
+        # self.get_eigen_pair()
+        # assert len(self.eigen_val) > 0
+        # logging.info("Finish getting all eigenvalue-vector pairs.")
+        # self.get_ind_map()
+        # assert len(self.ind_map_list) > 0
+        # logging.info("Finish getting maps of [global node index] to [local freedom index].")
+        # self.get_corr_basis()
+        # assert len(self.basis_list) > 0
+        # logging.info("Finish getting the Dirichlet corrector and multiscale bases.")
+        # self.get_glb_A_F()
+        # assert len(self.glb_F_vec) > 0
+        # logging.info("Finish getting the global stiffness matrix and right-hand vector.")
+        # self.get_glb_basis_spmat()
+        # assert self.glb_basis_spmat != None and self.glb_basis_spmat_T != None
+        # logging.info("Finish collecting all the bases in a sparse matrix formation.")
         # os_ly = self.oversamp_layer
         # max_data_len = self.coarse_elem * self.eigen_num**2 * (4*os_ly+1)**2
         # # max_data_len = self.coarse_elem**2 * self.eigen_num**2
@@ -449,6 +478,15 @@ class ProblemSetting(ST.Setting):
                 u0_ref[node_ind] = u0_ref_inner[(node_ind_y - 1) * (self.fine_grid - 1) + node_ind_x - 1]
         logging.info("Finish solving the final linear system of the reference problem.")
         return u0_ref
+
+    def get_inhomo_ref(self, u0_ref):
+        u = np.zeros((self.tot_node, ))
+        h = self.h
+        for node_ind in range(self.tot_node):
+            node_ind_y, node_ind_x = divmod(node_ind, self.fine_grid + 1)
+            y, x = node_ind_y * h, node_ind_x * h
+            u[node_ind] = u0_ref[node_ind] + self.Diri_func_g(x, y)
+        return u
 
     def get_corr(self):
         assert self.oversamp_layer > 0 and self.eigen_num > 0

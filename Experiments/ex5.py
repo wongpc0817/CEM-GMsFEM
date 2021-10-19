@@ -101,6 +101,7 @@ if op == 0 or op == 1:
     coeff = get_coeff_from_tmp(coeff_tmp, ctr)
     logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
     rbvp = RBVP.ProblemSetting(option=2)
+    rbvp.TOL = 1.e-8
     logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(rbvp.coarse_grid, rbvp.fine_grid))
     # coeff = np.ones((rbvp.fine_grid, rbvp.fine_grid))
     rbvp.set_coeff(coeff)
@@ -137,6 +138,7 @@ if op == 0 or op == 2:
     coeff = get_coeff_from_tmp(coeff_tmp, ctr)
     logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
     rbvp = RBVP.ProblemSetting(option=2)
+    rbvp.TOL = 1.e-8
     logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(rbvp.coarse_grid, rbvp.fine_grid))
     # coeff = np.ones((rbvp.fine_grid, rbvp.fine_grid))
     rbvp.set_coeff(coeff)
@@ -173,6 +175,7 @@ if op == 0 or op == 3:
     coeff = get_coeff_from_tmp(coeff_tmp, ctr)
     logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
     rbvp = RBVP.ProblemSetting(option=2)
+    rbvp.TOL = 1.e-8
     logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(rbvp.coarse_grid, rbvp.fine_grid))
     # coeff = np.ones((rbvp.fine_grid, rbvp.fine_grid))
     rbvp.set_coeff(coeff)
