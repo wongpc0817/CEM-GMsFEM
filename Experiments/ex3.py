@@ -88,6 +88,7 @@ if op == 0 or op == 1:
     SUB_SEC_NUM = 4
     EIGEN_NUM = 3
     for sec_ind in range(SEC_NUM):
+        guess = np.zeros([])
         for sub_sec_ind in range(SUB_SEC_NUM):
             ctr = 10.0**4
             coeff = get_coeff_from_tmp(coeff_tmp, ctr)
@@ -102,7 +103,7 @@ if op == 0 or op == 1:
             os_ly = 3 + sub_sec_ind
             dbvp.init_args(EIGEN_NUM, os_ly)
             logging.info("Coarse grid: [{0:d}x{0:d}]; fine grid: [{1:d}x{1:d}]; eigenvalue number: [{2:d}]; oversampling layers: [{3:d}].".format(dbvp.coarse_grid, dbvp.fine_grid, dbvp.eigen_num, dbvp.oversamp_layer))
-            u0_ms = dbvp.solve()
+            u0_ms, guess = dbvp.solve(guess)
             u0_ref = dbvp.solve_ref(guess=u0_ms)
             u_ref = dbvp.get_inhomo_ref(u0_ref)
             err_l2_abs, err_eg_abs = dbvp.get_L2_energy_norm(u0_ms - u0_ref)
