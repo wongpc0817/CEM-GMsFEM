@@ -7,6 +7,7 @@ from scipy.sparse.linalg import eigsh
 from scipy.sparse.linalg import lgmres
 from scipy.sparse.linalg import spilu
 from scipy.sparse.linalg import LinearOperator
+from scipy.sparse.linalg import spsolve
 
 import logging
 
@@ -252,15 +253,15 @@ class ProblemSetting(ST.Setting):
             Op_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
             Op_mat = Op_mat_coo.tocsc()
             # logging.info("Construct the linear system [{0:d}]/[{1:d}], [{2:d}x{2:d}]".format(coarse_elem_ind, self.coarse_elem, fd_num))
-            ilu = spilu(Op_mat)
-            Mx = lambda x: ilu.solve(x)
-            pre_M = LinearOperator((fd_num, fd_num), Mx)
-            corr, info = lgmres(Op_mat, rhs_corr, tol=self.TOL, M=pre_M)
+            # ilu = spilu(Op_mat)
+            # Mx = lambda x: ilu.solve(x)
+            # pre_M = LinearOperator((fd_num, fd_num), Mx)
+            corr, info = lgmres(Op_mat, rhs_corr, tol=self.TOL)
             assert info == 0
             glb_corr += self.get_glb_vec(coarse_elem_ind, corr)
             basis_wrt_coarse_elem = np.zeros(rhs_basis.shape)
             for eigen_ind in range(self.eigen_num):
-                basis, info = lgmres(Op_mat, rhs_basis[:, eigen_ind], x0=guess[:, eigen_ind], tol=self.TOL, M=pre_M)
+                basis, info = lgmres(Op_mat, rhs_basis[:, eigen_ind], x0=guess[:, eigen_ind], tol=self.TOL)
                 assert info == 0
                 basis_wrt_coarse_elem[:, eigen_ind] = basis
             basis_list[coarse_elem_ind] = basis_wrt_coarse_elem
@@ -326,13 +327,13 @@ class ProblemSetting(ST.Setting):
         self.get_ind_map()
         logging.info("Finish getting maps of [global node index] to [local freedom index].")
         self.get_corr_basis()
-        logging.info("Finish getting the Neumann corrector and multiscale bases.")
+        logging.info("Finish getting the Dirichlet corrector and multiscale bases.")
         self.get_glb_A_F()
         logging.info("Finish getting the global stiffness matrix and right-hand vector.")
         self.get_glb_basis_spmat()
         logging.info("Finish collecting all the bases in a sparse matrix formation.")
         A_mat = self.glb_basis_spmat_T * self.glb_A_mat * self.glb_basis_spmat
-        rhs = self.glb_basis_spmat_T.dot(self.glb_F_vec - self.glb_A_mat.dot(self.glb_corr))
+        rhs = self.glb_basis_spmat_T.dot(self.glb_F_vec + self.glb_A_mat.dot(self.glb_corr))
         logging.info("Finish constructing the final linear system.")
         ilu = spilu(A_mat)
         Mx = lambda x: ilu.solve(x)
@@ -341,12 +342,13 @@ class ProblemSetting(ST.Setting):
             x0 = guess
         else:
             x0 = np.zeros((self.tot_fd_num, ))
-        omega, info = lgmres(A_mat, rhs, tol=self.TOL, M=pre_M, x0=x0)
-        if info != 0:
-            logging.critical("Fail to solve the final linear system, info={0:d}".format(info))
-            raise AssertionError
+        # omega, info = lgmres(A_mat, rhs, tol=self.TOL, M=pre_M, x0=x0, maxiter=10000)
+        omega = spsolve(A_mat, rhs)
+        # if info != 0:
+        #     logging.critical("Fail to solve the final linear system, info={0:d}".format(info))
+        #     raise AssertionError
         u = self.glb_basis_spmat.dot(omega)
-        u += self.glb_corr
+        u -= self.glb_corr
         logging.info("Finish solving the final linear system.")
         return u, omega
         # assert self.oversamp_layer > 0 and self.eigen_num > 0
@@ -401,23 +403,23 @@ class ProblemSetting(ST.Setting):
         #         rhs[fd_ind_i] = np.inner(self.glb_F_vec, glb_basis_i) + np.inner(self.glb_A_mat.dot(glb_basis_i), self.glb_corr)
         # A_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(self.tot_fd_num, self.tot_fd_num))
         # A_mat = A_mat_coo.tocsr()
-        A_mat = self.glb_basis_spmat_T * self.glb_A_mat * self.glb_basis_spmat
-        rhs = self.glb_basis_spmat_T.dot(self.glb_F_vec + self.glb_A_mat.dot(self.glb_corr))
-        logging.info("Finish constructing the final linear system.")
-        ilu = spilu(A_mat)
-        Mx = lambda x: ilu.solve(x)
-        pre_M = LinearOperator((self.tot_fd_num, self.tot_fd_num), Mx)
-        omega, info = lgmres(A_mat, rhs, tol=self.TOL, M=pre_M)
-        assert info == 0
-        u0 = self.glb_basis_spmat.dot(omega)
+        # A_mat = self.glb_basis_spmat_T * self.glb_A_mat * self.glb_basis_spmat
+        # rhs = self.glb_basis_spmat_T.dot(self.glb_F_vec + self.glb_A_mat.dot(self.glb_corr))
+        # logging.info("Finish constructing the final linear system.")
+        # ilu = spilu(A_mat)
+        # Mx = lambda x: ilu.solve(x)
+        # pre_M = LinearOperator((self.tot_fd_num, self.tot_fd_num), Mx)
+        # omega, info = lgmres(A_mat, rhs, tol=self.TOL, M=pre_M)
+        # assert info == 0
+        # u0 = self.glb_basis_spmat.dot(omega)
         # for coarse_elem_ind in range(self.coarse_elem):
         #     for eigen_ind in range(self.eigen_num):
         #         fd_ind = coarse_elem_ind*self.eigen_num + eigen_ind
         #         loc_basis = self.basis_list[coarse_elem_ind][:, eigen_ind]
         #         u0 += omega[fd_ind] * self.get_glb_vec(coarse_elem_ind, loc_basis)
         u0 -= self.glb_corr
-        logging.info("Finish solving the final linear system.")
-        return u0
+        # logging.info("Finish solving the final linear system.")
+        # return u0
 
     def solve_ref(self, guess=[]):
         def get_fd_ind(fine_elem_ind_x, fine_elem_ind_y, loc_ind):
