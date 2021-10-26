@@ -253,15 +253,15 @@ class ProblemSetting(ST.Setting):
             Op_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
             Op_mat = Op_mat_coo.tocsc()
             # logging.info("Construct the linear system [{0:d}]/[{1:d}], [{2:d}x{2:d}]".format(coarse_elem_ind, self.coarse_elem, fd_num))
-            # ilu = spilu(Op_mat)
-            # Mx = lambda x: ilu.solve(x)
-            # pre_M = LinearOperator((fd_num, fd_num), Mx)
-            corr, info = lgmres(Op_mat, rhs_corr, tol=self.TOL)
+            ilu = spilu(Op_mat, fill_factor=5.0)
+            Mx = lambda x: ilu.solve(x)
+            pre_M = LinearOperator((fd_num, fd_num), Mx)
+            corr, info = lgmres(Op_mat, rhs_corr, tol=self.TOL, M=pre_M)
             assert info == 0
             glb_corr += self.get_glb_vec(coarse_elem_ind, corr)
             basis_wrt_coarse_elem = np.zeros(rhs_basis.shape)
             for eigen_ind in range(self.eigen_num):
-                basis, info = lgmres(Op_mat, rhs_basis[:, eigen_ind], x0=guess[:, eigen_ind], tol=self.TOL)
+                basis, info = lgmres(Op_mat, rhs_basis[:, eigen_ind], x0=guess[:, eigen_ind], tol=self.TOL, M=pre_M)
                 assert info == 0
                 basis_wrt_coarse_elem[:, eigen_ind] = basis
             basis_list[coarse_elem_ind] = basis_wrt_coarse_elem
@@ -560,7 +560,7 @@ class ProblemSetting(ST.Setting):
             Op_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
             Op_mat = Op_mat_coo.tocsc()
             # logging.info("Construct the linear system [{0:d}]/[{1:d}], [{2:d}x{2:d}]".format(coarse_elem_ind, self.coarse_elem, fd_num))
-            ilu = spilu(Op_mat)
+            ilu = spilu(Op_mat, fill_factor=5.0)
             Mx = lambda x: ilu.solve(x)
             pre_M = LinearOperator((fd_num, fd_num), Mx)
             corr, info = lgmres(Op_mat, rhs_corr, tol=self.TOL, M=pre_M)
@@ -652,7 +652,7 @@ class ProblemSetting(ST.Setting):
                         rhs_corr[fd_ind_i] += self.get_Diri_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
         Op_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
         Op_mat = Op_mat_coo.tocsc()
-        ilu = spilu(Op_mat)
+        ilu = spilu(Op_mat, fill_factor=5.0)
         Mx = lambda x: ilu.solve(x)
         pre_M = LinearOperator((fd_num, fd_num), Mx)
         corr, info = lgmres(Op_mat, rhs_corr, tol=self.TOL, M=pre_M, x0=x0)
