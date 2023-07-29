@@ -1,0 +1,37 @@
+29-07-2023 10:38:53 : ================================================================================
+29-07-2023 10:38:53 : Start
+29-07-2023 10:38:53 : Get coefficients from the image, set contrast ratio=1.0000e+04
+29-07-2023 10:38:53 : Coarse grid:10x10, fine grid:400x400.
+29-07-2023 10:38:53 : Coarse grid: [10x10]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [2].
+29-07-2023 10:38:57 : Finish getting all eigenvalue-vector pairs.
+29-07-2023 10:38:57 : Finish getting maps of [global node index] to [local freedom index].
+29-07-2023 10:45:10 : ......11.00%
+29-07-2023 10:53:00 : ......21.00%
+29-07-2023 11:02:15 : ......31.00%
+29-07-2023 11:11:58 : ......41.00%
+29-07-2023 11:17:58 : ......51.00%
+29-07-2023 11:22:04 : ......61.00%
+29-07-2023 11:26:09 : ......71.00%
+29-07-2023 11:31:56 : ......81.00%
+29-07-2023 11:36:58 : ......91.00%
+29-07-2023 11:41:52 : Finish getting the Dirichlet corrector and multiscale bases.
+29-07-2023 11:57:46 : Finish getting the global stiffness matrix and right-hand vector.
+29-07-2023 11:57:53 : Finish collecting all the bases in a sparse matrix formation.
+29-07-2023 11:57:55 : Finish constructing the final linear system.
+29-07-2023 11:57:55 : Finish solving the final linear system.
+30-07-2023 12:06:45 : Finish constructing the final linear system of the reference problem.
+30-07-2023 12:06:47 : Finish solving the final linear system of the reference problem.
+30-07-2023 12:06:47 : Absolute errors: L2-norm:0.002602, energy norm:0.679553
+30-07-2023 12:06:47 : Reference u_0 L2 norm:0.174887, eg norm:83.500881
+30-07-2023 12:06:47 : Reference u L2 norm:1.862782, eg norm:2.843904
+30-07-2023 12:06:47 : Get coefficients from the image, set contrast ratio=1.0000e+04
+30-07-2023 12:06:47 : Coarse grid:10x10, fine grid:400x400.
+30-07-2023 12:06:47 : Coarse grid: [10x10]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [3].
+30-07-2023 12:06:51 : Finish getting all eigenvalue-vector pairs.
+30-07-2023 12:06:52 : Finish getting maps of [global node index] to [local freedom index].
+30-07-2023 12:11:58 : ......11.00%
+30-07-2023 12:17:24 : ......21.00%
+30-07-2023 12:23:48 : ......31.00%
+30-07-2023 12:31:04 : ......41.00%
+30-07-2023 12:40:20 : ......51.00%
+30-07-2023 12:50:25 : ......61.00%
