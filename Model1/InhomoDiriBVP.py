@@ -28,11 +28,15 @@ class ProblemSetting(ST.Setting):
         self.Diri_func_gx = Diri_func_gx
         self.Diri_func_gy = Diri_func_gy
 
+    def set_beta_func(self,beta_func):
+        self.beta_func=beta_func
+
     def set_source_func(self, source_func):
         self.source_func = source_func
 
     def get_Diri_quad_Lag(self, fine_elem_ind_x, fine_elem_ind_y, loc_ind):
         # Compute \int_{K_h} A\nabla g\cdot \nable L_i dx
+        # a(g,L_i)
         val = 0.0
         h = self.h
         center_x, center_y = 0.5 * h * (2 * fine_elem_ind_x + 1), 0.5 * h * (2 * fine_elem_ind_y + 1)
@@ -44,12 +48,35 @@ class ProblemSetting(ST.Setting):
                 quad_real_cord_x = center_x + 0.5 * h * quad_cord_x
                 quad_real_cord_y = center_y + 0.5 * h * quad_cord_y
                 test_grad_x, test_grad_y = ST.get_locbase_grad_val(loc_ind, quad_cord_x, quad_cord_y)
+                test_val = ST.get_locbase_val(loc_ind, quad_cord_x, quad_cord_y)
                 Diri_grad_x = self.Diri_func_gx(quad_real_cord_x, quad_real_cord_y)
                 Diri_grad_y = self.Diri_func_gy(quad_real_cord_x, quad_real_cord_y)
+                beta_x, beta_y = self.beta_func(quad_real_cord_x, quad_real_cord_y)
                 val += 0.5 * h * quad_wght_x * quad_wght_y * coeff * (Diri_grad_x * test_grad_x + Diri_grad_y * test_grad_y)
+                # +0.5 * h * quad_wght_x * quad_wght_y * (Diri_grad_x * beta_x + Diri_grad_y * beta_y) * test_val
                 # Be careful with scaling
         return val
-
+    def get_Diri_Adv_Lag(self, fine_elem_ind_x, fine_elem_ind_y, loc_ind):
+        # Compute \int_{K_h} \beta\cdot\nabla g L_i dx
+        val = 0.0
+        h = self.h
+        center_x, center_y = 0.5 * h * (2 * fine_elem_ind_x + 1), 0.5 * h * (2 * fine_elem_ind_y + 1)
+        coeff = self.coeff[fine_elem_ind_x, fine_elem_ind_y]
+        for quad_ind_x in range(ST.QUAD_ORDER):
+            for quad_ind_y in range(ST.QUAD_ORDER):
+                quad_cord_x, quad_cord_y = ST.QUAD_CORD[quad_ind_x], ST.QUAD_CORD[quad_ind_y]
+                quad_wght_x, quad_wght_y = ST.QUAD_WGHT[quad_ind_x], ST.QUAD_WGHT[quad_ind_y]
+                quad_real_cord_x = center_x + 0.5 * h * quad_cord_x
+                quad_real_cord_y = center_y + 0.5 * h * quad_cord_y
+                test_grad_x, test_grad_y = ST.get_locbase_grad_val(loc_ind, quad_cord_x, quad_cord_y)
+                test_val = ST.get_locbase_val(loc_ind, quad_cord_x, quad_cord_y)
+                Diri_grad_x = self.Diri_func_gx(quad_real_cord_x, quad_real_cord_y)
+                Diri_grad_y = self.Diri_func_gy(quad_real_cord_x, quad_real_cord_y)
+                beta_x, beta_y = self.beta_func(quad_real_cord_x, quad_real_cord_y)
+                val += 0.5 * h * quad_wght_x * quad_wght_y * (Diri_grad_x * beta_x + Diri_grad_y * beta_y) * test_val
+                # Be careful with scaling
+        return val
+    
     def get_coarse_ngh_elem_lim(self, coarse_elem_ind):
         coarse_elem_ind_y, coarse_elem_ind_x = divmod(coarse_elem_ind, self.coarse_grid)
         coarse_ngh_elem_lf_lim = max(0, coarse_elem_ind_x - self.oversamp_layer)
@@ -177,6 +204,7 @@ class ProblemSetting(ST.Setting):
         return glb_vec
 
     def get_corr_basis(self):
+        # Generate D^m \tilde{g}
         assert self.oversamp_layer > 0 and self.eigen_num > 0
         assert len(self.ind_map_list) > 0
         glb_corr = np.zeros((self.tot_node, ))
@@ -247,9 +275,11 @@ class ProblemSetting(ST.Setting):
                                         I[marker] = fd_ind_i
                                         J[marker] = fd_ind_j
                                         V[marker] = loc_coeff * (self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j])
+                                        # +self.elem_Adv_mat[loc_ind_i,loc_ind_j]
                                         marker += 1
                                 if coarse_ngh_elem_ind == coarse_elem_ind:
                                     rhs_corr[fd_ind_i] += self.get_Diri_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
+                                    +self.get_Diri_Adv_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
             Op_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
             Op_mat = Op_mat_coo.tocsc()
             # logging.info("Construct the linear system [{0:d}]/[{1:d}], [{2:d}x{2:d}]".format(coarse_elem_ind, self.coarse_elem, fd_num))
@@ -272,11 +302,12 @@ class ProblemSetting(ST.Setting):
         self.glb_corr = glb_corr
         self.basis_list = basis_list
 
-    def get_glb_A_F(self):
+    def get_glb_A_F(self): 
         max_data_len = self.fine_elem * ST.N_V**2
         I = -np.ones((max_data_len, ), dtype=np.int32)
         J = -np.ones((max_data_len, ), dtype=np.int32)
         V = np.zeros((max_data_len, ))
+        V1 = np.zeros((max_data_len, ))
         marker = 0
         tot_node = self.tot_node
         glb_F_vec = np.zeros((tot_node, ))
@@ -293,13 +324,18 @@ class ProblemSetting(ST.Setting):
                     I[marker] = node_ind_i
                     J[marker] = node_ind_j
                     V[marker] = elem_stiff_mat[loc_ind_i, loc_ind_j]
+                    V1[marker] = coeff * self.elem_Adv_mat[loc_ind_i, loc_ind_j]
                     marker += 1
                 glb_F_vec[node_ind_i] += self.get_source_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
                 glb_F_vec[node_ind_i] -= self.get_Diri_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
+                -self.get_Diri_Adv_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
         glb_A_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(tot_node, tot_node))
+        glb_A_mat_coo1 = coo_matrix((V1[:marker], (I[:marker], J[:marker])), shape=(tot_node, tot_node))
         glb_A_mat = glb_A_mat_coo.tocsc()
+        glb_A_mat1 = glb_A_mat_coo1.tocsc()
         self.glb_A_mat = glb_A_mat
         self.glb_F_vec = glb_F_vec
+        self.glb_Adv_mat = glb_A_mat1
 
     def get_glb_basis_spmat(self):
         max_data_len = np.sum(self.loc_fd_num) * self.eigen_num
@@ -332,7 +368,7 @@ class ProblemSetting(ST.Setting):
         logging.info("Finish getting the global stiffness matrix and right-hand vector.")
         self.get_glb_basis_spmat()
         logging.info("Finish collecting all the bases in a sparse matrix formation.")
-        A_mat = self.glb_basis_spmat_T * self.glb_A_mat * self.glb_basis_spmat
+        A_mat = self.glb_basis_spmat_T * (self.glb_A_mat+self.glb_Adv_mat) * self.glb_basis_spmat
         rhs = self.glb_basis_spmat_T.dot(self.glb_F_vec + self.glb_A_mat.dot(self.glb_corr))
         logging.info("Finish constructing the final linear system.")
         ilu = spilu(A_mat)
@@ -462,9 +498,11 @@ class ProblemSetting(ST.Setting):
                             I[marker] = fd_ind_i
                             J[marker] = fd_ind_j
                             V[marker] = loc_coeff * self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j]
+                            +loc_coeff*  self.elem_Adv_mat[loc_ind_i,loc_ind_j]
                             marker += 1
                     rhs[fd_ind_i] += self.get_source_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
                     rhs[fd_ind_i] -= self.get_Diri_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
+                    -self.get_Diri_Adv_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
         A_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
         A_mat = A_mat_coo.tocsc()
         logging.info("Finish constructing the final linear system of the reference problem.")
@@ -554,9 +592,11 @@ class ProblemSetting(ST.Setting):
                                         I[marker] = fd_ind_i
                                         J[marker] = fd_ind_j
                                         V[marker] = loc_coeff * (self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j])
+                                        # +loc_coeff*  self.elem_Adv_mat[loc_ind_i,loc_ind_j]
                                         marker += 1
                                 if coarse_ngh_elem_ind == coarse_elem_ind:
                                     rhs_corr[fd_ind_i] += self.get_Diri_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
+                                    +self.get_Diri_Adv_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
             Op_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
             Op_mat = Op_mat_coo.tocsc()
             # logging.info("Construct the linear system [{0:d}]/[{1:d}], [{2:d}x{2:d}]".format(coarse_elem_ind, self.coarse_elem, fd_num))
@@ -648,8 +688,10 @@ class ProblemSetting(ST.Setting):
                                 I[marker] = fd_ind_i
                                 J[marker] = fd_ind_j
                                 V[marker] = loc_coeff * (self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j])
+                                # +loc_coeff* self.elem_Adv_mat[loc_ind_i,loc_ind_j]
                                 marker += 1
                         rhs_corr[fd_ind_i] += self.get_Diri_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
+                        +self.get_Diri_Adv_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
         Op_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
         Op_mat = Op_mat_coo.tocsc()
         ilu = spilu(Op_mat, fill_factor=5.0)
@@ -687,7 +729,7 @@ class ProblemSetting(ST.Setting):
     def get_stiff_quad_node_val(self, fine_elem_ind_x, fine_elem_ind_y, node_val_i, node_val_j):
         # Compute \int_{K_h} A\nabla u \cdot \nabla v, where the values of u, v on nodes of the fine element K_h is given
         coeff = self.coeff[fine_elem_ind_x, fine_elem_ind_y]
-        elem_stiff_mat = coeff * self.elem_Lap_stiff_mat
+        elem_stiff_mat = coeff * self.elem_Lap_stiff_mat +self.elem_Adv_mat
         val = np.inner(elem_stiff_mat.dot(node_val_i), node_val_j)
         return val
 
@@ -782,6 +824,7 @@ class ProblemSetting(ST.Setting):
                                     if node_ind_j in ind_map_dic:
                                         fd_ind_j = ind_map_dic[node_ind_j]
                                         Op_mat[fd_ind_i, fd_ind_j] += loc_coeff * (self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j])
+                                        +self.elem_Adv_mat[loc_ind_i,loc_ind_j]
                                 if coarse_ngh_elem_ind == coarse_elem_ind:
                                     rhs_corr[fd_ind_i] += self.get_Diri_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
             logging.info("Construct the linear system [{0:d}]/[{1:d}], [{2:d}x{2:d}]".format(coarse_elem_ind, self.coarse_elem, fd_num))
@@ -870,7 +913,7 @@ class ProblemSetting(ST.Setting):
                                 #         J[marker] = fd_ind_j
                                 #         # temp = ST.get_loc_stiff(loc_coeff, loc_ind_i, loc_ind_j)
                                 #         # The frist term a(L_i, L_j)
-                                #         V[marker] = loc_coeff * (self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j])
+                                #         V[marker] = loc_coeff * (self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j])+self.elem_Adv_mat[loc_ind_i,loc_ind_j]
                                 #         marker += 1
                                 if coarse_ngh_elem_ind == coarse_elem_ind:
                                     # The Dirichlet corrector, can be constructed on fine elements

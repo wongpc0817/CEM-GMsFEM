@@ -21,6 +21,9 @@ class ProblemSetting(ST.Setting):
         self.coeff = coeff
         self.kappa = 24.0 * self.coarse_grid**2 * self.coeff
 
+    def set_beta(self,beta_func):
+        self.beta_func=beta_func
+
     def set_source_func(self, source_func):
         self.source_func = source_func
 
@@ -47,6 +50,7 @@ class ProblemSetting(ST.Setting):
         return coarse_ngh_elem_lf_lim, coarse_ngh_elem_rg_lim, coarse_ngh_elem_dw_lim, coarse_ngh_elem_up_lim
 
     def get_Robin_op_quad_Lag(self, fine_elem_ind_x, fine_elem_ind_y, loc_ind_i, loc_ind_j):
+        ## \int_{\partial\Omega\cap\partial K_h}\bbeta  q L_i d\sigma
         val = 0.0
         h = self.h
         if fine_elem_ind_x == 0 and loc_ind_i in [0, 2] and loc_ind_j in [0, 2]:
@@ -108,6 +112,7 @@ class ProblemSetting(ST.Setting):
         return val
 
     def get_Robin_rhs_quad_Lag(self, fine_elem_ind_x, fine_elem_ind_y, loc_ind):
+        ## \int_{\partial\Omega\cap\partial K_h} q L_i d\sigma
         val = 0.0
         h = self.h
         if fine_elem_ind_x == 0 and loc_ind in [0, 2]:
@@ -438,7 +443,7 @@ class ProblemSetting(ST.Setting):
         logging.info("Finish getting the global stiffness matrix and right-hand vector.")
         self.get_glb_basis_spmat()
         logging.info("Finish collecting all the bases in a sparse matrix formation.")
-        A_mat = self.glb_basis_spmat_T * self.glb_A_mat * self.glb_basis_spmat
+        A_mat = self.glb_basis_spmat_T * (self.glb_A_mat+self.elem_Adv_mat) * self.glb_basis_spmat
         rhs = self.glb_basis_spmat_T.dot(self.glb_F_vec - self.glb_A_mat.dot(self.glb_corr))
         logging.info("Finish constructing the final linear system.")
         ilu = spilu(A_mat)
@@ -486,6 +491,7 @@ class ProblemSetting(ST.Setting):
                             J[marker] = fd_ind_j
                             V[marker] = loc_coeff * self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j]
                             V[marker] += self.get_Robin_op_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i, loc_ind_j)
+                            V[marker] += self.elem_Adv_mat[loc_ind_i, loc_ind_j]
                             marker += 1
                     rhs[fd_ind_i] += self.get_source_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
                     rhs[fd_ind_i] += self.get_Robin_rhs_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)

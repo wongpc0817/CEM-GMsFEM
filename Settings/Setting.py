@@ -25,6 +25,9 @@ def get_locbase_val(loc_ind: int, x: float, y: float):
         raise ValueError("Invalid option")
     return val
 
+def get_velocity_val(x: float, y: float, beta_func):
+    val_x,val_y = beta_func(x,y)
+    return val_x, val_y
 
 def get_locbase_grad_val(loc_ind: int, x: float, y: float):
     grad_val_x, grad_val_y = -1.0, -1.0
@@ -57,7 +60,19 @@ def get_loc_stiff(loc_coeff: float, loc_ind_i: int, loc_ind_j: int):
     return val
 
 
-def get_loc_mass(h: float, loc_kappa: float, loc_ind_i: int, loc_ind_j: int):
+def get_loc_adv(loc_coeff: float, loc_ind_i: int, loc_ind_j: int, beta_func):
+    val = 0.0
+    for quad_ind_x in range(QUAD_ORDER):
+        for quad_ind_y in range(QUAD_ORDER):
+            quad_cord_x, quad_cord_y = QUAD_CORD[quad_ind_x], QUAD_CORD[quad_ind_y]
+            quad_wght_x, quad_wght_y = QUAD_WGHT[quad_ind_x], QUAD_WGHT[quad_ind_y]
+            grad_val_ix, grad_val_iy = get_locbase_grad_val(loc_ind_i, quad_cord_x, quad_cord_y)
+            val_j = get_locbase_val(loc_ind_j, quad_cord_x, quad_cord_y)
+            beta_x,beta_y = get_velocity_val(quad_cord_x, quad_cord_y, beta_func)
+            val += loc_coeff * (grad_val_ix * beta_x + grad_val_iy * beta_y)* val_j * quad_wght_x * quad_wght_y
+    return val
+
+def get_loc_mass(h: float, loc_kappa: float, loc_ind_i: int, loc_ind_j: int, beta_func):
     val = 0.0
     for quad_ind_x in range(QUAD_ORDER):
         for quad_ind_y in range(QUAD_ORDER):
@@ -65,7 +80,9 @@ def get_loc_mass(h: float, loc_kappa: float, loc_ind_i: int, loc_ind_j: int):
             quad_wght_x, quad_wght_y = QUAD_WGHT[quad_ind_x], QUAD_WGHT[quad_ind_y]
             val_i = get_locbase_val(loc_ind_i, quad_cord_x, quad_cord_y)
             val_j = get_locbase_val(loc_ind_j, quad_cord_x, quad_cord_y)
-            val += 0.25 * h**2 * loc_kappa * val_i * val_j * quad_wght_x * quad_wght_y
+            beta_ix,beta_iy = get_velocity_val(quad_cord_x, quad_cord_y, beta_func)
+            beta_jx,beta_jy = get_velocity_val(quad_cord_x, quad_cord_y, beta_func)
+            val += 0.25 * h**2 * loc_kappa * val_i * val_j * quad_wght_x * quad_wght_y *np.sqrt(beta_ix**2+beta_iy**2)*np.sqrt(beta_jx**2+beta_jy**2)
     return val
 
 
@@ -115,11 +132,22 @@ class Setting:
         # Save the local Laplace stiffness matrix i.e., \int_{K_h} \nabla L_i \cdot \nabla L_j dx
         # Save the local mass matrix i.e., \int_{K_h} L_i L_j dx
         self.elem_Lap_stiff_mat = np.zeros((N_V, N_V))
-        self.elem_Bi_mass_mat = np.zeros((N_V, N_V))
         for loc_ind_i in range(N_V):
             for loc_ind_j in range(N_V):
                 self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j] = get_loc_stiff(1.0, loc_ind_i, loc_ind_j)
-                self.elem_Bi_mass_mat[loc_ind_i, loc_ind_j] = get_loc_mass(self.h, 1.0, loc_ind_i, loc_ind_j)
+
+    def set_elem_Adv_mat(self, beta_func):
+        self.elem_Adv_mat = np.zeros((self.N_V, self.N_V))
+        for loc_ind_i in range(self.N_V):
+            for loc_ind_j in range(self.N_V):
+                self.elem_Adv_mat[loc_ind_i, loc_ind_j] = get_loc_adv(1.0, loc_ind_i, loc_ind_j, beta_func)
+    
+    def set_elem_Bi_mass_mat(self, beta_func):
+            self.elem_Bi_mass_mat = np.zeros((self.N_V, self.N_V))
+            for loc_ind_i in range(self.N_V):
+                for loc_ind_j in range(self.N_V):
+                    self.elem_Bi_mass_mat[loc_ind_i, loc_ind_j] = get_loc_mass(self.h, 1.0, loc_ind_i, loc_ind_j, beta_func)
 
     def __init__(self, option: int = 1):
         self.upd(option)
+        self.N_V=N_V
