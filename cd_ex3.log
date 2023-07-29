@@ -35,3 +35,22 @@
 30-07-2023 12:31:04 : ......41.00%
 30-07-2023 12:40:20 : ......51.00%
 30-07-2023 12:50:25 : ......61.00%
+30-07-2023 01:04:57 : ......71.00%
+30-07-2023 01:11:07 : ......81.00%
+30-07-2023 01:16:15 : ......91.00%
+30-07-2023 01:20:09 : Finish getting the Dirichlet corrector and multiscale bases.
+30-07-2023 01:23:52 : Finish getting the global stiffness matrix and right-hand vector.
+30-07-2023 01:23:56 : Finish collecting all the bases in a sparse matrix formation.
+30-07-2023 01:23:59 : Finish constructing the final linear system.
+30-07-2023 01:23:59 : Finish solving the final linear system.
+30-07-2023 01:27:44 : Finish constructing the final linear system of the reference problem.
+30-07-2023 01:27:46 : Finish solving the final linear system of the reference problem.
+30-07-2023 01:27:46 : Absolute errors: L2-norm:0.002583, energy norm:0.677738
+30-07-2023 01:27:46 : Reference u_0 L2 norm:0.174884, eg norm:83.500880
+30-07-2023 01:27:46 : Reference u L2 norm:1.862778, eg norm:2.843903
+30-07-2023 01:27:46 : Get coefficients from the image, set contrast ratio=1.0000e+04
+30-07-2023 01:27:46 : Coarse grid:10x10, fine grid:400x400.
+30-07-2023 01:27:46 : Coarse grid: [10x10]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [4].
+30-07-2023 01:27:50 : Finish getting all eigenvalue-vector pairs.
+30-07-2023 01:27:51 : Finish getting maps of [global node index] to [local freedom index].
+30-07-2023 01:35:41 : ......11.00%
