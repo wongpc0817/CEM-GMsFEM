@@ -1,0 +1,10 @@
+30-07-2023 05:12:57 : ================================================================================
+30-07-2023 05:12:57 : Start
+30-07-2023 05:12:57 : Get coefficients from the image, set contrast ratio=1.0000e+04
+30-07-2023 05:12:57 : Coarse grid:10x10, fine grid:400x400.
+30-07-2023 05:12:57 : Coarse grid: [10x10]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [2].
+30-07-2023 05:13:00 : Finish getting all eigenvalue-vector pairs.
+30-07-2023 05:13:01 : Finish getting maps of [global node index] to [local freedom index].
+30-07-2023 05:16:36 : ......11.00%
+30-07-2023 05:21:34 : ......21.00%
+30-07-2023 05:26:21 : ......31.00%

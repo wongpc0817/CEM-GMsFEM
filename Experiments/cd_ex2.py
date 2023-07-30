@@ -24,10 +24,12 @@ def f_func(x: float, y: float):
     else:
         return 0.0
 
-def beta_func(x:float, y: float):
-    b_x= -80*PI*COS(80*PI*x)*COS(40*PI*y)-250
-    b_y= 40*PI*SIN(80*PI*x)*SIN(40*PI*y)+150
-    return b_x-b_y
+# def beta_func(x:float, y: float):
+#     b_x= -80*PI*COS(80*PI*x)*COS(40*PI*y)-250
+#     b_y= 40*PI*SIN(80*PI*x)*SIN(40*PI*y)+150
+#     return b_x-b_y
+def beta_func(x:float,y:float):
+    return COS(18*PI*y)*SIN(18*PI*x), -COS(18*PI*x)*SIN(18*PI*y)
 
 def q_lf_func(y: float):
     return -1.
@@ -142,6 +144,10 @@ if op == 0 or op == 2:
     # coeff = np.ones((nbvp.fine_grid, nbvp.fine_grid))
     nbvp.set_coeff(coeff)
     # nbvp.set_coeff(coeff)
+    nbvp.set_beta_func(beta_func)
+    nbvp.set_elem_Adv_mat(beta_func)
+    nbvp.set_elem_Bi_mass_mat(beta_func)
+
     nbvp.set_source_func(f_func)
     nbvp.set_Neum_func(q_lf_func, q_rg_func, q_dw_func)
     nbvp.get_glb_A_F()
@@ -176,6 +182,9 @@ if op == 0 or op == 3:
     logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(nbvp.coarse_grid, nbvp.fine_grid))
     # coeff = np.ones((nbvp.fine_grid, nbvp.fine_grid))
     nbvp.set_coeff(coeff)
+    nbvp.set_beta_func(beta_func)
+    nbvp.set_elem_Adv_mat(beta_func)
+    nbvp.set_elem_Bi_mass_mat(beta_func)
     # nbvp.set_coeff(coeff)
     nbvp.set_source_func(f_func)
     nbvp.set_Neum_func(q_lf_func, q_rg_func, q_dw_func)

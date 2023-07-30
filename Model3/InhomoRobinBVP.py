@@ -21,7 +21,7 @@ class ProblemSetting(ST.Setting):
         self.coeff = coeff
         self.kappa = 24.0 * self.coarse_grid**2 * self.coeff
 
-    def set_beta(self,beta_func):
+    def set_beta_func(self,beta_func):
         self.beta_func=beta_func
 
     def set_source_func(self, source_func):
@@ -387,6 +387,7 @@ class ProblemSetting(ST.Setting):
         I = -np.ones((max_data_len, ), dtype=np.int32)
         J = -np.ones((max_data_len, ), dtype=np.int32)
         V = np.zeros((max_data_len, ))
+        V1 = np.zeros((max_data_len, ))
         marker = 0
         tot_node = self.tot_node
         glb_F_vec = np.zeros((tot_node, ))
@@ -404,12 +405,16 @@ class ProblemSetting(ST.Setting):
                     J[marker] = node_ind_j
                     V[marker] = elem_stiff_mat[loc_ind_i, loc_ind_j]
                     V[marker] += self.get_Robin_op_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i, loc_ind_j)
+                    V1[marker] = coeff*self.elem_Adv_mat[loc_ind_i, loc_ind_j]
                     marker += 1
                 glb_F_vec[node_ind_i] += self.get_source_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
                 glb_F_vec[node_ind_i] += self.get_Robin_rhs_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
         glb_A_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(tot_node, tot_node))
         glb_A_mat = glb_A_mat_coo.tocsr()
         self.glb_A_mat = glb_A_mat
+        glb_A_mat_coo1 = coo_matrix((V1[:marker], (I[:marker], J[:marker])), shape=(tot_node, tot_node))
+        glb_A_mat1 = glb_A_mat_coo1.tocsr()
+        self.glb_Adv_mat = glb_A_mat1
         self.glb_F_vec = glb_F_vec
 
     def get_glb_basis_spmat(self):
@@ -443,7 +448,7 @@ class ProblemSetting(ST.Setting):
         logging.info("Finish getting the global stiffness matrix and right-hand vector.")
         self.get_glb_basis_spmat()
         logging.info("Finish collecting all the bases in a sparse matrix formation.")
-        A_mat = self.glb_basis_spmat_T * (self.glb_A_mat+self.elem_Adv_mat) * self.glb_basis_spmat
+        A_mat = self.glb_basis_spmat_T * (self.glb_A_mat+self.glb_Adv_mat) * self.glb_basis_spmat
         rhs = self.glb_basis_spmat_T.dot(self.glb_F_vec - self.glb_A_mat.dot(self.glb_corr))
         logging.info("Finish constructing the final linear system.")
         ilu = spilu(A_mat)
@@ -491,7 +496,7 @@ class ProblemSetting(ST.Setting):
                             J[marker] = fd_ind_j
                             V[marker] = loc_coeff * self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j]
                             V[marker] += self.get_Robin_op_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i, loc_ind_j)
-                            V[marker] += self.elem_Adv_mat[loc_ind_i, loc_ind_j]
+                            V[marker] += loc_coeff * self.elem_Adv_mat[loc_ind_i, loc_ind_j]
                             marker += 1
                     rhs[fd_ind_i] += self.get_source_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
                     rhs[fd_ind_i] += self.get_Robin_rhs_quad_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
