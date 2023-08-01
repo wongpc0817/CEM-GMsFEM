@@ -1,0 +1,65 @@
+31-07-2023 11:07:54 : ================================================================================
+31-07-2023 11:07:54 : Start
+31-07-2023 11:08:15 : ================================================================================
+31-07-2023 11:08:15 : Start
+31-07-2023 11:08:48 : ================================================================================
+31-07-2023 11:08:48 : Start
+31-07-2023 11:08:48 : Get coefficients from the image, set contrast ratio=1.0000e+04
+31-07-2023 11:08:48 : Coarse grid:10x10, fine grid:400x400.
+31-07-2023 11:08:48 : Coarse grid: [10x10]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [2].
+31-07-2023 11:08:51 : Finish getting all eigenvalue-vector pairs.
+31-07-2023 11:08:52 : Finish getting maps of [global node index] to [local freedom index].
+31-07-2023 11:14:35 : ......11.00%
+31-07-2023 11:17:56 : ......21.00%
+31-07-2023 11:21:56 : ......31.00%
+31-07-2023 11:25:59 : ......41.00%
+31-07-2023 11:30:08 : ......51.00%
+31-07-2023 11:34:13 : ......61.00%
+31-07-2023 11:38:14 : ......71.00%
+31-07-2023 11:42:11 : ......81.00%
+31-07-2023 11:45:23 : ......91.00%
+31-07-2023 11:47:28 : Finish getting the Dirichlet corrector and multiscale bases.
+31-07-2023 11:51:02 : Finish getting the global stiffness matrix and right-hand vector.
+31-07-2023 11:51:05 : Finish collecting all the bases in a sparse matrix formation.
+31-07-2023 11:51:06 : Finish constructing the final linear system.
+31-07-2023 11:51:06 : Finish solving the final linear system.
+31-07-2023 11:54:38 : Finish constructing the final linear system of the reference problem.
+31-07-2023 11:54:40 : Finish solving the final linear system of the reference problem.
+01-08-2023 01:01:04 : ================================================================================
+01-08-2023 01:01:04 : Start
+01-08-2023 01:01:04 : Get coefficients from the image, set contrast ratio=1.0000e+04
+01-08-2023 01:01:04 : Coarse grid:10x10, fine grid:400x400.
+01-08-2023 01:01:04 : Coarse grid: [10x10]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [2].
+01-08-2023 01:01:08 : Finish getting all eigenvalue-vector pairs.
+01-08-2023 01:01:08 : Finish getting maps of [global node index] to [local freedom index].
+01-08-2023 01:05:14 : ......11.00%
+01-08-2023 01:12:11 : ......21.00%
+01-08-2023 01:20:54 : ......31.00%
+01-08-2023 01:29:29 : ......41.00%
+01-08-2023 01:38:10 : ......51.00%
+01-08-2023 01:46:52 : ......61.00%
+01-08-2023 01:55:21 : ......71.00%
+01-08-2023 02:02:36 : ......81.00%
+01-08-2023 02:08:29 : ......91.00%
+01-08-2023 02:12:26 : Finish getting the Dirichlet corrector and multiscale bases.
+01-08-2023 02:23:05 : Finish getting the global stiffness matrix and right-hand vector.
+01-08-2023 02:23:10 : Finish collecting all the bases in a sparse matrix formation.
+01-08-2023 02:23:11 : Finish constructing the final linear system.
+01-08-2023 02:23:11 : Finish solving the final linear system.
+01-08-2023 02:33:17 : Finish constructing the final linear system of the reference problem.
+01-08-2023 02:33:20 : Finish solving the final linear system of the reference problem.
+01-08-2023 02:33:21 : Absolute errors: L2-norm:0.002602, energy norm:0.679553
+01-08-2023 02:33:21 : Reference u_0 L2 norm:0.174887, eg norm:83.500881
+01-08-2023 02:33:21 : Reference u L2 norm:1.862782, eg norm:2.843904
+01-08-2023 02:33:21 : Get coefficients from the image, set contrast ratio=1.0000e+04
+01-08-2023 02:33:21 : Coarse grid:10x10, fine grid:400x400.
+01-08-2023 02:33:21 : Coarse grid: [10x10]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [3].
+01-08-2023 02:33:27 : Finish getting all eigenvalue-vector pairs.
+01-08-2023 02:33:29 : Finish getting maps of [global node index] to [local freedom index].
+01-08-2023 02:42:58 : ......11.00%
+01-08-2023 02:52:48 : ......21.00%
+01-08-2023 03:04:30 : ......31.00%
+01-08-2023 03:17:55 : ......41.00%
+01-08-2023 03:31:10 : ......51.00%
+01-08-2023 03:44:17 : ......61.00%
+01-08-2023 03:57:10 : ......71.00%
