@@ -41,13 +41,13 @@ def beta_func(x:float,y:float):
 root_path = os.path.join(sys.path[0], '..')
 sys.path.append(root_path)
 
-import Model1.InhomoDiriBVP as DBVP
+import Model1.old_inhomoDiriBVP as DBVP
 
 import logging
 from logging import config
 
 
-config.fileConfig(os.path.join(root_path, 'Settings', 'log.conf'), defaults={'logfilename': 'plot_ex1.log'})
+config.fileConfig(os.path.join(root_path, 'Settings', 'log.conf'), defaults={'logfilename': 'old_plot_ex1.log'})
 
 
 def get_coeff_from_tmp(coeff_tmp, ctr: float):
@@ -70,7 +70,7 @@ SUB_SEC_NUM = 3
 EIGEN_NUM = 3
 for sec_ind in range(SEC_NUM):
     for sub_sec_ind in range(SUB_SEC_NUM):
-        if os.path.exists(f'Plots/model1_sol_{sec_ind}_{2 + sub_sec_ind}.npy') and os.path.exists(f'Plots/model1_ref_{sec_ind}_{2 + sub_sec_ind}.npy'):
+        if os.path.exists(f'Plots/old_model1_sol_{sec_ind}_{2 + sub_sec_ind}.npy') and os.path.exists(f'old_Plots/model1_ref_{sec_ind}_{2 + sub_sec_ind}.npy'):
             continue
         ctr = 10.0**4
         coeff = get_coeff_from_tmp(coeff_tmp, ctr)
@@ -79,11 +79,6 @@ for sec_ind in range(SEC_NUM):
         dbvp = DBVP.ProblemSetting(option=sec_ind + 1)
         logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(dbvp.coarse_grid, dbvp.fine_grid))
         dbvp.set_coeff(coeff)
-
-        dbvp.set_beta_func(beta_func)
-        dbvp.set_elem_Adv_mat(beta_func)
-        dbvp.set_elem_Bi_mass_mat(beta_func)
-
         dbvp.set_source_func(f_func)
         dbvp.set_Diri_func(g_func, g_dx_func, g_dy_func)
         # ol_ly = max(CEIL(4 * LOG(1 / dbvp.coarse_grid) / LOG(1 / 10)), 1)
@@ -93,8 +88,8 @@ for sec_ind in range(SEC_NUM):
         u0_ms, guess = dbvp.solve()
         u0_ref = dbvp.solve_ref(guess=u0_ms)
         u_ref = dbvp.get_inhomo_ref(u0_ref)
-        np.save(f'Plots/model1_sol_{sec_ind}_{os_ly}.npy',u0_ms)
-        np.save(f'Plots/model1_ref_{sec_ind}_{os_ly}.npy',u_ref)
+        np.save(f'Plots/old_model1_sol_{sec_ind}_{os_ly}.npy',u0_ms)
+        np.save(f'Plots/old_model1_ref_{sec_ind}_{os_ly}.npy',u_ref)
         err_l2_abs, err_eg_abs = dbvp.get_L2_energy_norm(u0_ms - u0_ref)
         u0_ref_l2, u0_ref_eg = dbvp.get_L2_energy_norm(u0_ref)
         u_ref_l2, u_ref_eg = dbvp.get_L2_energy_norm(u_ref)
@@ -110,8 +105,8 @@ from mpl_toolkits.mplot3d import Axes3D
 for sec_ind in range(SEC_NUM):
     for sub_sec_ind in range(SUB_SEC_NUM):
         os_ly = 2 + sub_sec_ind
-        u0_ms=np.load(f'Plots/model1_sol_{sec_ind}_{os_ly}.npy').reshape([FINE_GRID+1,FINE_GRID+1])
-        u0_ref=np.load(f'Plots/model1_ref_{sec_ind}_{os_ly}.npy').reshape([FINE_GRID+1,FINE_GRID+1])
+        u0_ms=np.load(f'Plots/old_model1_sol_{sec_ind}_{os_ly}.npy').reshape([FINE_GRID+1,FINE_GRID+1])
+        u0_ref=np.load(f'Plots/old_model1_ref_{sec_ind}_{os_ly}.npy').reshape([FINE_GRID+1,FINE_GRID+1])
         # Create data
         x = np.linspace(0, 1, FINE_GRID+1)
         y = np.linspace(0, 1, FINE_GRID+1)
@@ -119,10 +114,10 @@ for sec_ind in range(SEC_NUM):
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
         ax.plot_surface(x, y, u0_ms)
-        plt.savefig(f'Plots/model1_sol_{sec_ind}_{os_ly}.png')
+        plt.savefig(f'Plots/old_model1_sol_{sec_ind}_{os_ly}.png')
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
         ax.plot_surface(x, y, u0_ref)
-        plt.savefig(f'Plots/model1_ref_{sec_ind}_{os_ly}.png')
+        plt.savefig(f'Plots/old_model1_ref_{sec_ind}_{os_ly}.png')
 
 logging.info("~END~")
