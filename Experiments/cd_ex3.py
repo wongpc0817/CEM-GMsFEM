@@ -111,6 +111,8 @@ if op == 0 or op == 1:
             err_l2_abs, err_eg_abs = dbvp.get_L2_energy_norm(u0_ms - u0_ref)
             u0_ref_l2, u0_ref_eg = dbvp.get_L2_energy_norm(u0_ref)
             u_ref_l2, u_ref_eg = dbvp.get_L2_energy_norm(u_ref)
+            np.savez(f"Experiments/Results/cd_ex3/op_1_{sec_ind}_{sub_sec_ind}.npz",u0_ms, u0_ref)
+
             logging.info("Absolute errors: L2-norm:{0:.6f}, energy norm:{1:.6f}".format(err_l2_abs, err_eg_abs))
             logging.info("Reference u_0 L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))
             logging.info("Reference u L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u_ref_l2, u_ref_eg))
@@ -149,6 +151,8 @@ if op == 0 or op == 2:
             err_l2_abs, err_eg_abs = dbvp.get_L2_energy_norm(u0_ms - u0_ref)
             u0_ref_l2, u0_ref_eg = dbvp.get_L2_energy_norm(u0_ref)
             u_ref_l2, u_ref_eg = dbvp.get_L2_energy_norm(u_ref)
+            np.savez(f"Experiments/Results/cd_ex3/op_2_{sec_ind}_{sub_sec_ind}.npz",u0_ms, u0_ref)
+
             logging.info("Absolute errors: L2-norm:{0:.6f}, energy norm:{1:.6f}".format(err_l2_abs, err_eg_abs))
             logging.info("Reference u_0 L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))
             logging.info("Reference u L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u_ref_l2, u_ref_eg))
@@ -182,6 +186,8 @@ if op == 0 or op == 3:
         err_l2_abs, err_eg_abs = dbvp.get_L2_energy_norm(u0_ms - u0_ref)
         u0_ref_l2, u0_ref_eg = dbvp.get_L2_energy_norm(u0_ref)
         u_ref_l2, u_ref_eg = dbvp.get_L2_energy_norm(u_ref)
+        np.savez(f"Experiments/Results/cd_ex3/op_3_{sec_ind}_{sub_sec_ind}.npz",u0_ms, u0_ref)
+
         logging.info("Absolute errors: L2-norm:{0:.6f}, energy norm:{1:.6f}".format(err_l2_abs, err_eg_abs))
         logging.info("Reference u_0 L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))
         logging.info("Reference u L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u_ref_l2, u_ref_eg))
