@@ -474,3 +474,479 @@
 30-07-2023 08:04:53 : ~~End of section 3~~
 
 30-07-2023 08:04:53 : ~END~
+18-08-2023 01:44:38 : ================================================================================
+18-08-2023 01:44:38 : Start
+18-08-2023 01:44:38 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 01:44:38 : Coarse grid:20x20, fine grid:400x400.
+18-08-2023 01:44:38 : Coarse grid: [20x20]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [1].
+18-08-2023 01:44:41 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 01:44:41 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 01:45:02 : ......10.25%
+18-08-2023 01:45:28 : ......20.25%
+18-08-2023 01:45:58 : ......30.25%
+18-08-2023 01:46:46 : ......40.25%
+18-08-2023 01:47:29 : ......50.25%
+18-08-2023 01:48:13 : ......60.25%
+18-08-2023 01:48:59 : ......70.25%
+18-08-2023 01:49:38 : ......80.25%
+18-08-2023 01:50:09 : ......90.25%
+18-08-2023 01:50:32 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 01:51:03 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 01:51:04 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 01:51:04 : Finish constructing the final linear system.
+18-08-2023 01:51:04 : Finish solving the final linear system.
+18-08-2023 01:51:36 : Finish constructing the final linear system of the reference problem.
+18-08-2023 01:51:37 : Finish solving the final linear system of the reference problem.
+18-08-2023 01:51:37 : Absolute errors: L2-norm:0.014793, energy norm:0.086782
+18-08-2023 01:51:37 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 01:51:37 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 01:51:37 : Coarse grid:20x20, fine grid:400x400.
+18-08-2023 01:51:37 : Coarse grid: [20x20]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [2].
+18-08-2023 01:51:41 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 01:51:42 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 01:52:48 : ......10.25%
+18-08-2023 01:54:17 : ......20.25%
+18-08-2023 01:55:46 : ......30.25%
+18-08-2023 01:57:15 : ......40.25%
+18-08-2023 01:58:48 : ......50.25%
+18-08-2023 02:00:23 : ......60.25%
+18-08-2023 02:01:59 : ......70.25%
+18-08-2023 02:03:34 : ......80.25%
+18-08-2023 02:05:25 : ......90.25%
+18-08-2023 02:06:48 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 02:07:39 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 02:07:44 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 02:07:45 : Finish constructing the final linear system.
+18-08-2023 02:07:46 : Finish solving the final linear system.
+18-08-2023 02:08:38 : Finish constructing the final linear system of the reference problem.
+18-08-2023 02:08:40 : Finish solving the final linear system of the reference problem.
+18-08-2023 02:08:40 : Absolute errors: L2-norm:0.001683, energy norm:0.028302
+18-08-2023 02:08:40 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 02:08:40 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 02:08:40 : Coarse grid:20x20, fine grid:400x400.
+18-08-2023 02:08:40 : Coarse grid: [20x20]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [3].
+18-08-2023 02:08:46 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 02:08:48 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 02:11:36 : ......10.25%
+18-08-2023 02:15:31 : ......20.25%
+18-08-2023 02:19:41 : ......30.25%
+18-08-2023 02:23:50 : ......40.25%
+18-08-2023 02:28:00 : ......50.25%
+18-08-2023 02:32:10 : ......60.25%
+18-08-2023 02:36:21 : ......70.25%
+18-08-2023 02:40:32 : ......80.25%
+18-08-2023 02:44:17 : ......90.25%
+18-08-2023 03:13:34 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 03:14:29 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 03:14:39 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 03:14:44 : Finish constructing the final linear system.
+18-08-2023 03:14:44 : Finish solving the final linear system.
+18-08-2023 03:15:39 : Finish constructing the final linear system of the reference problem.
+18-08-2023 03:15:41 : Finish solving the final linear system of the reference problem.
+18-08-2023 03:15:41 : Absolute errors: L2-norm:0.000017, energy norm:0.001756
+18-08-2023 03:15:41 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 03:15:41 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 03:15:41 : Coarse grid:20x20, fine grid:400x400.
+18-08-2023 03:15:41 : Coarse grid: [20x20]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [4].
+18-08-2023 03:15:47 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 03:15:50 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 03:20:22 : ......10.25%
+18-08-2023 03:26:18 : ......20.25%
+18-08-2023 03:33:22 : ......30.25%
+18-08-2023 03:40:15 : ......40.25%
+18-08-2023 03:47:09 : ......50.25%
+18-08-2023 03:54:02 : ......60.25%
+18-08-2023 04:00:52 : ......70.25%
+18-08-2023 04:07:35 : ......80.25%
+18-08-2023 04:13:05 : ......90.25%
+18-08-2023 04:17:05 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 04:18:02 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 04:18:16 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 04:18:29 : Finish constructing the final linear system.
+18-08-2023 04:18:29 : Finish solving the final linear system.
+18-08-2023 04:19:26 : Finish constructing the final linear system of the reference problem.
+18-08-2023 04:19:28 : Finish solving the final linear system of the reference problem.
+18-08-2023 04:19:28 : Absolute errors: L2-norm:0.000016, energy norm:0.001509
+18-08-2023 04:19:28 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 04:19:28 : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+18-08-2023 04:19:28 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 04:19:29 : Coarse grid:40x40, fine grid:400x400.
+18-08-2023 04:19:29 : Coarse grid: [40x40]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [1].
+18-08-2023 04:19:39 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 04:19:40 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 04:19:53 : ......10.06%
+18-08-2023 04:20:07 : ......20.06%
+18-08-2023 04:20:21 : ......30.06%
+18-08-2023 04:20:35 : ......40.06%
+18-08-2023 04:20:49 : ......50.06%
+18-08-2023 04:21:03 : ......60.06%
+18-08-2023 04:21:16 : ......70.06%
+18-08-2023 04:21:31 : ......80.06%
+18-08-2023 04:21:45 : ......90.06%
+18-08-2023 04:21:57 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 04:22:52 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 04:22:53 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 04:22:54 : Finish constructing the final linear system.
+18-08-2023 04:22:54 : Finish solving the final linear system.
+18-08-2023 04:23:49 : Finish constructing the final linear system of the reference problem.
+18-08-2023 04:23:52 : Finish solving the final linear system of the reference problem.
+18-08-2023 04:23:52 : Absolute errors: L2-norm:0.014924, energy norm:0.089634
+18-08-2023 04:23:52 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 04:23:52 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 04:23:52 : Coarse grid:40x40, fine grid:400x400.
+18-08-2023 04:23:52 : Coarse grid: [40x40]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [2].
+18-08-2023 04:24:02 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 04:24:03 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 04:24:40 : ......10.06%
+18-08-2023 04:25:20 : ......20.06%
+18-08-2023 04:26:01 : ......30.06%
+18-08-2023 04:26:41 : ......40.06%
+18-08-2023 04:27:23 : ......50.06%
+18-08-2023 04:28:04 : ......60.06%
+18-08-2023 04:28:45 : ......70.06%
+18-08-2023 04:29:25 : ......80.06%
+18-08-2023 04:30:06 : ......90.06%
+18-08-2023 04:30:40 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 04:31:36 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 04:31:41 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 04:31:43 : Finish constructing the final linear system.
+18-08-2023 04:31:43 : Finish solving the final linear system.
+18-08-2023 04:32:39 : Finish constructing the final linear system of the reference problem.
+18-08-2023 04:32:42 : Finish solving the final linear system of the reference problem.
+18-08-2023 04:32:42 : Absolute errors: L2-norm:0.005584, energy norm:0.051678
+18-08-2023 04:32:42 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 04:32:42 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 04:32:42 : Coarse grid:40x40, fine grid:400x400.
+18-08-2023 04:32:42 : Coarse grid: [40x40]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [3].
+18-08-2023 04:32:52 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 04:32:54 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 04:34:00 : ......10.06%
+18-08-2023 04:35:22 : ......20.06%
+18-08-2023 04:36:44 : ......30.06%
+18-08-2023 04:38:09 : ......40.06%
+18-08-2023 04:39:34 : ......50.06%
+18-08-2023 04:41:02 : ......60.06%
+18-08-2023 04:42:25 : ......70.06%
+18-08-2023 04:43:50 : ......80.06%
+18-08-2023 04:45:14 : ......90.06%
+18-08-2023 04:46:17 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 04:47:12 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 04:47:22 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 04:47:27 : Finish constructing the final linear system.
+18-08-2023 04:47:28 : Finish solving the final linear system.
+18-08-2023 04:48:23 : Finish constructing the final linear system of the reference problem.
+18-08-2023 04:48:25 : Finish solving the final linear system of the reference problem.
+18-08-2023 04:48:25 : Absolute errors: L2-norm:0.000044, energy norm:0.003955
+18-08-2023 04:48:25 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 04:48:25 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 04:48:26 : Coarse grid:40x40, fine grid:400x400.
+18-08-2023 04:48:26 : Coarse grid: [40x40]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [4].
+18-08-2023 04:48:36 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 04:48:39 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 04:50:22 : ......10.06%
+18-08-2023 04:52:43 : ......20.06%
+18-08-2023 04:55:05 : ......30.06%
+18-08-2023 04:57:26 : ......40.06%
+18-08-2023 04:59:47 : ......50.06%
+18-08-2023 05:02:09 : ......60.06%
+18-08-2023 05:04:29 : ......70.06%
+18-08-2023 05:06:47 : ......80.06%
+18-08-2023 05:09:07 : ......90.06%
+18-08-2023 05:10:45 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 05:11:41 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 05:11:57 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 05:12:12 : Finish constructing the final linear system.
+18-08-2023 05:12:13 : Finish solving the final linear system.
+18-08-2023 05:13:09 : Finish constructing the final linear system of the reference problem.
+18-08-2023 05:13:11 : Finish solving the final linear system of the reference problem.
+18-08-2023 05:13:11 : Absolute errors: L2-norm:0.000040, energy norm:0.003156
+18-08-2023 05:13:11 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 05:13:11 : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+18-08-2023 05:13:12 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 05:13:12 : Coarse grid:80x80, fine grid:400x400.
+18-08-2023 05:13:12 : Coarse grid: [80x80]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [1].
+18-08-2023 05:13:38 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 05:13:38 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 05:13:46 : ......10.02%
+18-08-2023 05:13:53 : ......20.02%
+18-08-2023 05:14:00 : ......30.02%
+18-08-2023 05:14:07 : ......40.02%
+18-08-2023 05:14:14 : ......50.02%
+18-08-2023 05:14:21 : ......60.02%
+18-08-2023 05:14:29 : ......70.02%
+18-08-2023 05:14:36 : ......80.02%
+18-08-2023 05:14:43 : ......90.02%
+18-08-2023 05:14:50 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 05:15:46 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 05:15:48 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 05:15:48 : Finish constructing the final linear system.
+18-08-2023 05:15:49 : Finish solving the final linear system.
+18-08-2023 05:16:45 : Finish constructing the final linear system of the reference problem.
+18-08-2023 05:16:47 : Finish solving the final linear system of the reference problem.
+18-08-2023 05:16:47 : Absolute errors: L2-norm:0.015028, energy norm:0.092893
+18-08-2023 05:16:47 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 05:16:47 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 05:16:47 : Coarse grid:80x80, fine grid:400x400.
+18-08-2023 05:16:47 : Coarse grid: [80x80]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [2].
+18-08-2023 05:17:13 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 05:17:14 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 05:17:33 : ......10.02%
+18-08-2023 05:17:52 : ......20.02%
+18-08-2023 05:18:12 : ......30.02%
+18-08-2023 05:18:32 : ......40.02%
+18-08-2023 05:18:52 : ......50.02%
+18-08-2023 05:19:12 : ......60.02%
+18-08-2023 05:19:32 : ......70.02%
+18-08-2023 05:19:52 : ......80.02%
+18-08-2023 05:20:12 : ......90.02%
+18-08-2023 05:20:31 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 05:21:26 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 05:21:32 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 05:21:33 : Finish constructing the final linear system.
+18-08-2023 05:21:38 : Finish solving the final linear system.
+18-08-2023 05:22:34 : Finish constructing the final linear system of the reference problem.
+18-08-2023 05:22:36 : Finish solving the final linear system of the reference problem.
+18-08-2023 05:22:36 : Absolute errors: L2-norm:0.011337, energy norm:0.073729
+18-08-2023 05:22:36 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 05:22:36 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 05:22:37 : Coarse grid:80x80, fine grid:400x400.
+18-08-2023 05:22:37 : Coarse grid: [80x80]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [3].
+18-08-2023 05:23:03 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 05:23:05 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 05:23:41 : ......10.02%
+18-08-2023 05:24:21 : ......20.02%
+18-08-2023 05:25:00 : ......30.02%
+18-08-2023 05:25:39 : ......40.02%
+18-08-2023 05:26:18 : ......50.02%
+18-08-2023 05:26:58 : ......60.02%
+18-08-2023 05:27:38 : ......70.02%
+18-08-2023 05:28:19 : ......80.02%
+18-08-2023 05:28:59 : ......90.02%
+18-08-2023 05:29:35 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 05:30:30 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 05:30:40 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 05:30:46 : Finish constructing the final linear system.
+18-08-2023 05:30:54 : Finish solving the final linear system.
+18-08-2023 05:31:49 : Finish constructing the final linear system of the reference problem.
+18-08-2023 05:31:51 : Finish solving the final linear system of the reference problem.
+18-08-2023 05:31:51 : Absolute errors: L2-norm:0.000088, energy norm:0.006870
+18-08-2023 05:31:51 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 05:31:51 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 05:31:52 : Coarse grid:80x80, fine grid:400x400.
+18-08-2023 05:31:52 : Coarse grid: [80x80]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [4].
+18-08-2023 05:32:19 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 05:32:22 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 05:33:21 : ......10.02%
+18-08-2023 05:34:26 : ......20.02%
+18-08-2023 05:35:32 : ......30.02%
+18-08-2023 05:36:38 : ......40.02%
+18-08-2023 05:37:44 : ......50.02%
+18-08-2023 05:38:50 : ......60.02%
+18-08-2023 05:39:56 : ......70.02%
+18-08-2023 05:41:01 : ......80.02%
+18-08-2023 05:42:07 : ......90.02%
+18-08-2023 05:43:03 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 05:43:59 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 05:44:16 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 05:44:31 : Finish constructing the final linear system.
+18-08-2023 05:44:44 : Finish solving the final linear system.
+18-08-2023 05:45:40 : Finish constructing the final linear system of the reference problem.
+18-08-2023 05:45:42 : Finish solving the final linear system of the reference problem.
+18-08-2023 05:45:42 : Absolute errors: L2-norm:0.000050, energy norm:0.003957
+18-08-2023 05:45:42 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 05:45:42 : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+18-08-2023 05:45:42 : ~~End of section 1~~
+
+18-08-2023 05:45:42 : Get coefficients from the image, set contrast ratio=1.0000e+03
+18-08-2023 05:45:43 : Coarse grid:80x80, fine grid:400x400.
+18-08-2023 05:45:43 : Coarse grid: [80x80]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [1].
+18-08-2023 05:46:09 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 05:46:10 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 05:46:17 : ......10.02%
+18-08-2023 05:46:24 : ......20.02%
+18-08-2023 05:46:31 : ......30.02%
+18-08-2023 05:46:38 : ......40.02%
+18-08-2023 05:46:45 : ......50.02%
+18-08-2023 05:46:52 : ......60.02%
+18-08-2023 05:46:59 : ......70.02%
+18-08-2023 05:47:07 : ......80.02%
+18-08-2023 05:47:14 : ......90.02%
+18-08-2023 05:47:21 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 05:48:15 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 05:48:17 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 05:48:17 : Finish constructing the final linear system.
+18-08-2023 05:48:19 : Finish solving the final linear system.
+18-08-2023 05:49:14 : Finish constructing the final linear system of the reference problem.
+18-08-2023 05:49:22 : Finish solving the final linear system of the reference problem.
+18-08-2023 05:49:22 : Absolute errors: L2-norm:0.018517, energy norm:0.143817
+18-08-2023 05:49:22 : Reference L2 norm:0.019419, eg norm:0.250827
+18-08-2023 05:49:22 : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+18-08-2023 05:49:22 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 05:49:22 : Coarse grid:80x80, fine grid:400x400.
+18-08-2023 05:49:22 : Coarse grid: [80x80]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [1].
+18-08-2023 05:49:48 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 05:49:48 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 05:49:55 : ......10.02%
+18-08-2023 05:50:03 : ......20.02%
+18-08-2023 05:50:10 : ......30.02%
+18-08-2023 05:50:17 : ......40.02%
+18-08-2023 05:50:24 : ......50.02%
+18-08-2023 05:50:31 : ......60.02%
+18-08-2023 05:50:39 : ......70.02%
+18-08-2023 05:50:46 : ......80.02%
+18-08-2023 05:50:53 : ......90.02%
+18-08-2023 05:51:01 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 05:51:56 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 05:51:57 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 05:51:58 : Finish constructing the final linear system.
+18-08-2023 05:51:59 : Finish solving the final linear system.
+18-08-2023 05:52:55 : Finish constructing the final linear system of the reference problem.
+18-08-2023 05:52:57 : Finish solving the final linear system of the reference problem.
+18-08-2023 05:52:57 : Absolute errors: L2-norm:0.015028, energy norm:0.092893
+18-08-2023 05:52:57 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 05:52:57 : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+18-08-2023 05:52:57 : Get coefficients from the image, set contrast ratio=1.0000e+05
+18-08-2023 05:52:57 : Coarse grid:80x80, fine grid:400x400.
+18-08-2023 05:52:57 : Coarse grid: [80x80]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [1].
+18-08-2023 05:53:23 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 05:53:24 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 05:53:31 : ......10.02%
+18-08-2023 05:53:38 : ......20.02%
+18-08-2023 05:53:45 : ......30.02%
+18-08-2023 05:53:52 : ......40.02%
+18-08-2023 05:54:00 : ......50.02%
+18-08-2023 05:54:07 : ......60.02%
+18-08-2023 05:54:14 : ......70.02%
+18-08-2023 05:54:21 : ......80.02%
+18-08-2023 05:54:28 : ......90.02%
+18-08-2023 05:54:36 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 05:55:30 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 05:55:32 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 05:55:32 : Finish constructing the final linear system.
+18-08-2023 05:55:34 : Finish solving the final linear system.
+18-08-2023 05:56:29 : Finish constructing the final linear system of the reference problem.
+18-08-2023 05:56:31 : Finish solving the final linear system of the reference problem.
+18-08-2023 05:56:31 : Absolute errors: L2-norm:0.014711, energy norm:0.084932
+18-08-2023 05:56:31 : Reference L2 norm:0.015410, eg norm:0.216769
+18-08-2023 05:56:31 : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+18-08-2023 05:56:31 : Get coefficients from the image, set contrast ratio=1.0000e+06
+18-08-2023 05:56:32 : Coarse grid:80x80, fine grid:400x400.
+18-08-2023 05:56:32 : Coarse grid: [80x80]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [1].
+18-08-2023 05:56:58 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 05:56:58 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 05:57:05 : ......10.02%
+18-08-2023 05:57:13 : ......20.02%
+18-08-2023 05:57:20 : ......30.02%
+18-08-2023 05:57:27 : ......40.02%
+18-08-2023 05:57:35 : ......50.02%
+18-08-2023 05:57:42 : ......60.02%
+18-08-2023 05:57:50 : ......70.02%
+18-08-2023 05:57:57 : ......80.02%
+18-08-2023 05:58:04 : ......90.02%
+18-08-2023 05:58:11 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 05:59:07 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 05:59:09 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 05:59:09 : Finish constructing the final linear system.
+18-08-2023 05:59:10 : Finish solving the final linear system.
+18-08-2023 06:00:06 : Finish constructing the final linear system of the reference problem.
+18-08-2023 06:00:08 : Finish solving the final linear system of the reference problem.
+18-08-2023 06:00:08 : Absolute errors: L2-norm:0.014680, energy norm:0.084072
+18-08-2023 06:00:08 : Reference L2 norm:0.015377, eg norm:0.216378
+18-08-2023 06:00:08 : ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+18-08-2023 06:00:08 : ~~End of section 2~~
+
+18-08-2023 06:00:08 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 06:00:08 : Coarse grid:80x80, fine grid:400x400.
+18-08-2023 06:00:08 : Coarse grid: [80x80]; fine grid: [400x400]; eigenvalue number: [1]; oversampling layers: [3].
+18-08-2023 06:00:27 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 06:00:29 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 06:01:04 : ......10.02%
+18-08-2023 06:01:41 : ......20.02%
+18-08-2023 06:02:19 : ......30.02%
+18-08-2023 06:02:57 : ......40.02%
+18-08-2023 06:03:35 : ......50.02%
+18-08-2023 06:04:13 : ......60.02%
+18-08-2023 06:04:51 : ......70.02%
+18-08-2023 06:05:29 : ......80.02%
+18-08-2023 06:06:07 : ......90.02%
+18-08-2023 06:06:41 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 06:07:37 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 06:07:41 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 06:07:42 : Finish constructing the final linear system.
+18-08-2023 06:07:44 : Finish solving the final linear system.
+18-08-2023 06:08:42 : Finish constructing the final linear system of the reference problem.
+18-08-2023 06:08:45 : Finish solving the final linear system of the reference problem.
+18-08-2023 06:08:45 : Absolute errors: L2-norm:0.006061, energy norm:0.053911
+18-08-2023 06:08:45 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 06:08:45 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 06:08:46 : Coarse grid:80x80, fine grid:400x400.
+18-08-2023 06:08:46 : Coarse grid: [80x80]; fine grid: [400x400]; eigenvalue number: [2]; oversampling layers: [3].
+18-08-2023 06:09:10 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 06:09:12 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 06:09:47 : ......10.02%
+18-08-2023 06:10:25 : ......20.02%
+18-08-2023 06:11:03 : ......30.02%
+18-08-2023 06:11:42 : ......40.02%
+18-08-2023 06:12:20 : ......50.02%
+18-08-2023 06:12:59 : ......60.02%
+18-08-2023 06:13:39 : ......70.02%
+18-08-2023 06:14:17 : ......80.02%
+18-08-2023 06:14:55 : ......90.02%
+18-08-2023 06:15:29 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 06:16:23 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 06:16:30 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 06:16:33 : Finish constructing the final linear system.
+18-08-2023 06:16:38 : Finish solving the final linear system.
+18-08-2023 06:17:33 : Finish constructing the final linear system of the reference problem.
+18-08-2023 06:17:35 : Finish solving the final linear system of the reference problem.
+18-08-2023 06:17:35 : Absolute errors: L2-norm:0.000091, energy norm:0.006984
+18-08-2023 06:17:35 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 06:17:35 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 06:17:36 : Coarse grid:80x80, fine grid:400x400.
+18-08-2023 06:17:36 : Coarse grid: [80x80]; fine grid: [400x400]; eigenvalue number: [3]; oversampling layers: [3].
+18-08-2023 06:18:02 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 06:18:03 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 06:18:39 : ......10.02%
+18-08-2023 06:19:18 : ......20.02%
+18-08-2023 06:19:57 : ......30.02%
+18-08-2023 06:20:35 : ......40.02%
+18-08-2023 06:21:14 : ......50.02%
+18-08-2023 06:21:52 : ......60.02%
+18-08-2023 06:22:31 : ......70.02%
+18-08-2023 06:23:10 : ......80.02%
+18-08-2023 06:23:53 : ......90.02%
+18-08-2023 06:24:33 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 06:25:36 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 06:25:46 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 06:25:52 : Finish constructing the final linear system.
+18-08-2023 06:26:00 : Finish solving the final linear system.
+18-08-2023 06:26:54 : Finish constructing the final linear system of the reference problem.
+18-08-2023 06:26:56 : Finish solving the final linear system of the reference problem.
+18-08-2023 06:26:56 : Absolute errors: L2-norm:0.000088, energy norm:0.006870
+18-08-2023 06:26:56 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 06:26:57 : Get coefficients from the image, set contrast ratio=1.0000e+04
+18-08-2023 06:26:57 : Coarse grid:80x80, fine grid:400x400.
+18-08-2023 06:26:57 : Coarse grid: [80x80]; fine grid: [400x400]; eigenvalue number: [4]; oversampling layers: [3].
+18-08-2023 06:27:23 : Finish getting all eigenvalue-vector pairs.
+18-08-2023 06:27:25 : Finish getting maps of [global node index] to [local freedom index].
+18-08-2023 06:28:00 : ......10.02%
+18-08-2023 06:28:38 : ......20.02%
+18-08-2023 06:29:17 : ......30.02%
+18-08-2023 06:29:57 : ......40.02%
+18-08-2023 06:30:36 : ......50.02%
+18-08-2023 06:31:16 : ......60.02%
+18-08-2023 06:31:55 : ......70.02%
+18-08-2023 06:32:33 : ......80.02%
+18-08-2023 06:33:12 : ......90.02%
+18-08-2023 06:33:47 : Finish getting the Neumann corrector and multiscale bases.
+18-08-2023 06:34:40 : Finish getting the global stiffness matrix and right-hand vector.
+18-08-2023 06:34:52 : Finish collecting all the bases in a sparse matrix formation.
+18-08-2023 06:35:02 : Finish constructing the final linear system.
+18-08-2023 06:35:15 : Finish solving the final linear system.
+18-08-2023 06:36:09 : Finish constructing the final linear system of the reference problem.
+18-08-2023 06:36:12 : Finish solving the final linear system of the reference problem.
+18-08-2023 06:36:12 : Absolute errors: L2-norm:0.000084, energy norm:0.006675
+18-08-2023 06:36:12 : Reference L2 norm:0.015749, eg norm:0.220558
+18-08-2023 06:36:12 : ~~End of section 3~~
+
+18-08-2023 06:36:12 : ~END~

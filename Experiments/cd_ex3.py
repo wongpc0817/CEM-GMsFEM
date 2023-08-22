@@ -84,7 +84,7 @@ coeff_tmp = np.load(os.path.join(root_path, 'Resources', 'MediumA.npy'))
 if op == 0 or op == 1:
     SEC_NUM = 1
     SUB_SEC_NUM = 3
-    EIGEN_NUM = 3
+    EIGEN_NUM = 5
     for sec_ind in range(SEC_NUM):
         for sub_sec_ind in range(SUB_SEC_NUM):
             ctr = 10.0**4
@@ -111,7 +111,7 @@ if op == 0 or op == 1:
             err_l2_abs, err_eg_abs = dbvp.get_L2_energy_norm(u0_ms - u0_ref)
             u0_ref_l2, u0_ref_eg = dbvp.get_L2_energy_norm(u0_ref)
             u_ref_l2, u_ref_eg = dbvp.get_L2_energy_norm(u_ref)
-            np.savez(f"Experiments/Results/cd_ex3/op_1_{sec_ind}_{sub_sec_ind}.npz",u0_ms, u0_ref)
+            np.savez(f"Results/cd_ex3/op_1_{sec_ind}_{sub_sec_ind}.npz",u0_ms, u0_ref)
 
             logging.info("Absolute errors: L2-norm:{0:.6f}, energy norm:{1:.6f}".format(err_l2_abs, err_eg_abs))
             logging.info("Reference u_0 L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))
@@ -124,7 +124,7 @@ if op == 0 or op == 1:
 if op == 0 or op == 2:
     SEC_NUM = 1
     SUB_SEC_NUM = 4
-    EIGEN_NUM = 3
+    EIGEN_NUM = 5
     for sec_ind in range(SEC_NUM):
         ctr = 10.0**(sec_ind + 6)
         coeff = get_coeff_from_tmp(coeff_tmp, ctr)
@@ -151,7 +151,7 @@ if op == 0 or op == 2:
             err_l2_abs, err_eg_abs = dbvp.get_L2_energy_norm(u0_ms - u0_ref)
             u0_ref_l2, u0_ref_eg = dbvp.get_L2_energy_norm(u0_ref)
             u_ref_l2, u_ref_eg = dbvp.get_L2_energy_norm(u_ref)
-            np.savez(f"Experiments/Results/cd_ex3/op_2_{sec_ind}_{sub_sec_ind}.npz",u0_ms, u0_ref)
+            np.savez(f"Results/cd_ex3/op_2_{sec_ind}_{sub_sec_ind}.npz",u0_ms, u0_ref)
 
             logging.info("Absolute errors: L2-norm:{0:.6f}, energy norm:{1:.6f}".format(err_l2_abs, err_eg_abs))
             logging.info("Reference u_0 L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))
@@ -186,7 +186,7 @@ if op == 0 or op == 3:
         err_l2_abs, err_eg_abs = dbvp.get_L2_energy_norm(u0_ms - u0_ref)
         u0_ref_l2, u0_ref_eg = dbvp.get_L2_energy_norm(u0_ref)
         u_ref_l2, u_ref_eg = dbvp.get_L2_energy_norm(u_ref)
-        np.savez(f"Experiments/Results/cd_ex3/op_3_{sec_ind}_{sub_sec_ind}.npz",u0_ms, u0_ref)
+        np.savez(f"Results/cd_ex3/op_3_{sec_ind}_{sub_sec_ind}.npz",u0_ms, u0_ref)
 
         logging.info("Absolute errors: L2-norm:{0:.6f}, energy norm:{1:.6f}".format(err_l2_abs, err_eg_abs))
         logging.info("Reference u_0 L2 norm:{0:.6f}, eg norm:{1:.6f}".format(u0_ref_l2, u0_ref_eg))

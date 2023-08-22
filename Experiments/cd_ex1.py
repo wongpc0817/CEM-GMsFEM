@@ -74,7 +74,6 @@ def get_coeff_from_tmp(coeff_tmp, ctr: float):
                 coeff[ind_x, ind_y] = ctr
     return coeff
 
-
 logging.info('=' * 80)
 logging.info("Start")
 
@@ -82,7 +81,7 @@ coeff_tmp = np.load(os.path.join(root_path, 'Resources', 'MediumA.npy'))
 
 SEC_NUM = 3
 SUB_SEC_NUM = 4
-EIGEN_NUM = 3
+EIGEN_NUM = 5
  
 if op == 0 or op == 1:
     sec_ind = 1
@@ -120,7 +119,7 @@ if op == 0 or op == 1:
     logging.info("Reference L2 norm:{0:.6f}, eg norm:{1:.6f}".format(err_l2_ref, err_eg_ref))
     for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
         err_l2_list[sub_sec_ind - 1], err_eg_list[sub_sec_ind - 1] = dbvp.get_L2_energy_norm(corr_list[sub_sec_ind] - corr_list[0])
-    np.savez(f"Experiments/Results/cd_ex1/op_1.npz",corr_list)
+    np.savez(f"Results/cd_ex1/op_1.npz",corr_list)
     logging.info("L2-norm errors:" + "  ".join(["{:.6f}".format(err) for err in err_l2_list]))
     logging.info("H1-norm errors:" + "  ".join(["{:.6f}".format(err) for err in err_eg_list]))
 
@@ -160,7 +159,7 @@ if op == 0 or op == 2:
     logging.info("Reference L2 norm:{0:.6f}, eg norm:{1:.6f}".format(err_l2_ref, err_eg_ref))
     for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
         err_l2_list[sub_sec_ind - 1], err_eg_list[sub_sec_ind - 1] = dbvp.get_L2_energy_norm(corr_list[sub_sec_ind] - corr_list[0])
-    np.savez(f"Experiments/Results/cd_ex1/op_2.npz",corr_list)
+    np.savez(f"Results/cd_ex1/op_2.npz",corr_list)
 
     logging.info("L2-norm errors:" + "  ".join(["{:.6f}".format(err) for err in err_l2_list]))
     logging.info("H1-norm errors:" + "  ".join(["{:.6f}".format(err) for err in err_eg_list]))
@@ -201,7 +200,7 @@ if op == 0 or op == 3:
     logging.info("Reference L2 norm:{0:.6f}, eg norm:{1:.6f}".format(err_l2_ref, err_eg_ref))
     for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
         err_l2_list[sub_sec_ind - 1], err_eg_list[sub_sec_ind - 1] = dbvp.get_L2_energy_norm(corr_list[sub_sec_ind] - corr_list[0])
-    np.savez(f"Experiments/Results/cd_ex1/op_3.npz",corr_list)
+    np.savez(f"Results/cd_ex1/op_3.npz",corr_list)
 
     logging.info("L2-norm errors:" + "  ".join(["{:.6f}".format(err) for err in err_l2_list]))
     logging.info("H1-norm errors:" + "  ".join(["{:.6f}".format(err) for err in err_eg_list]))
