@@ -4,7 +4,7 @@ table = ''
 table += 'Model problem 2\n'
 table += '-' * 80 + '\n'
 
-#ratio = 10^4, H=1/20, l_m=3, N_ov=1->4
+#ratio = 10^4, H=1/10, l_m=3, N_ov=1->4
 err_l2=np.array([[0.002695,0.002616,0.002616,0.000016],
                 [0.014924,0.005584,0.000044,0.000040],
                 [0.015028,0.011337,0.000088,0.000050]]).T.tolist()
@@ -18,8 +18,8 @@ eg_norm=np.array([[2.843904,2.843902,2.843902,0.220558],
                 [0.220558,0.220558,0.220558,0.220558],
                 [0.220558,0.220558,0.220558,0.220558]]).T.tolist()
 
-Hlist = [1/i for i in [20,40,80]]
-table += '$H$&' +'&'.join(['\\num{{{:1f}}}'.format(v) for v  in Hlist])+line_end
+Hlist = [2,3,4]
+table += '$N_{ov}$&' +'&'.join(['\\num{{{:1f}}}'.format(v) for v  in Hlist])+line_end
 for i in range(4):
     table+=f'$E^{i}_a$&'+'&'.join(['\\num{{{:.3e}}}'.format(err_eg[i][j]/eg_norm[i][j]) for j in range(3)])+line_end
 for i in range(4):

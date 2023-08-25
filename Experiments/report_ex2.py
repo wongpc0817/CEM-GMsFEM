@@ -1,11 +1,11 @@
 import numpy as np
 line_end = ' \\\\ \n'
 table = ''
-table += 'Model problem 1\n'
+table += 'Model problem 2\n'
 lambdas = [3.319007,3.319007,3.319007]
 eg_norm = [66.667711,211.044773,670.470387]
 l2_norm = [0.007169,0.007174,0.007227]
-ratios=[10**i for i in [4,5,6]]
+ratios=[10**i for i in [2,3,4]]
 numEig = len(eg_norm)
 table += '-' * 80 + '\n'
 table += '$\kappa_1/\kappa_m$&'+'&'.join(['\\num{{{:.3e}}}'.format(v) for v in ratios])+line_end
