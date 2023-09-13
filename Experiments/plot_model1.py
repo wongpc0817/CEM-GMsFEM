@@ -66,6 +66,7 @@ if not os.path.isdir('Plots/cd_ex3'):
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
+## Solution Plots
 for op in [1,2,3]:
     for sec_ind in range(SEC_NUM):
             for sub_sec_ind in range(SUB_SEC_NUM):
