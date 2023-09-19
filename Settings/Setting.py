@@ -136,6 +136,9 @@ class Setting:
             for loc_ind_j in range(N_V):
                 self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j] = get_loc_stiff(1.0, loc_ind_i, loc_ind_j)
 
+    def set_coarse_grid(self, x):
+        self.coarse_grid=x
+
     def set_elem_Adv_mat(self, beta_func):
         self.elem_Adv_mat = np.zeros((self.N_V, self.N_V))
         for loc_ind_i in range(self.N_V):
