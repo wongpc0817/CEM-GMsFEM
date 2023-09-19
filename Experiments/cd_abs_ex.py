@@ -11,13 +11,13 @@ LOG = np.log
 CEIL = math.ceil
 ## Theoretical results
 def u(x,y):
-    return np.exp(x**2 + y**2) * np.sin(x) * np.cos(y)
+    return np.exp(x**2 + y**2) * np.sin(x) * np.cos(y) + x**2
 
-def kappa(x,y):
-    C = 1 # constant
-    return C*(1 + np.sin(18*np.pi*x)*np.cos(18*np.pi*y))
+def kappa(x,y,ctr):
+    ctr = 1
+    return ctr*(1 + np.sin(18*np.pi*x)*np.cos(18*np.pi*y))
 
-def dx(f):
+def dx(f): 
     return np.gradient(f, axis=0)
 
 def dy(f):
@@ -29,7 +29,7 @@ def div(X,Y):
 def f(x,y):
     u_x = dx(u(x,y))
     u_y = dy(u(x,y))
-    beta_x = np.cos(18*np.pi*y)*np.sin(18*np.pi*x)
+    beta_x = np.cos(18*np.pi*y)*np.sin(18*np.pi*x) 
     beta_y = -np.cos(18*np.pi*x)*np.sin(18*np.pi*y)
 
     k = kappa(x,y)
@@ -37,7 +37,6 @@ def f(x,y):
     beta_dot_grad_u = beta_x*u_x + beta_y*u_y
 
     return -div_k_grad_u + beta_dot_grad_u
-
 
 
 def abs_solution(x,y):
@@ -55,7 +54,7 @@ def kappa(x,y,ctr):
     return ctr + ctr*SIN(18*PI*x)*COS(18*PI*y)
 
 def f_func(x: float, y: float):
-    return  
+    return  f(x,y)
 
 
 def g_func(x: float, y: float):
@@ -104,8 +103,8 @@ def get_coeff_from_tmp(coeff_tmp, ctr: float):
     dim_x, dim_y = coeff_tmp.shape
     for ind_y in range(dim_y):
         for ind_x in range(dim_x):
-            if coeff_tmp[ind_x, ind_y] >= 2.0:
-                coeff[ind_x, ind_y] = ctr
+            # if coeff_tmp[ind_x, ind_y] >= 2.0:
+            coeff[ind_x, ind_y] = kappa(ind_x/dim_x,ind_y/dim_y,ctr)
     return coeff
 
 

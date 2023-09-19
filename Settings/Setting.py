@@ -138,6 +138,8 @@ class Setting:
 
     def set_coarse_grid(self, x):
         self.coarse_grid=x
+    def set_fine_grid(self, x):
+        self.fine_grid=x
 
     def set_elem_Adv_mat(self, beta_func):
         self.elem_Adv_mat = np.zeros((self.N_V, self.N_V))
