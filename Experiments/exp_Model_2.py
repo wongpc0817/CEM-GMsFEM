@@ -28,16 +28,20 @@ def f_func(x: float, y: float):
     else:
         return 0.0
 
-def g_func(x: float, y: float):
-    return x**2 + EXP(x * y)
+def q_lf_func(y: float):
+    return -1.0
 
 
-def g_dx_func(x: float, y: float):
-    return 2.0 * x + y * EXP(x * y)
+def q_rg_func(y: float):
+    return 1.0
 
 
-def g_dy_func(x: float, y: float):
-    return x * EXP(x * y)
+def q_dw_func(x: float):
+    if x < 0.5:
+        return 1.0
+    else:
+        return 0.0
+
 
 def beta_func(x:float,y:float):
     return COS(18*PI*y)*SIN(18*PI*x), -COS(18*PI*x)*SIN(18*PI*y)
@@ -45,22 +49,22 @@ def beta_func(x:float,y:float):
 root_path = os.path.join(sys.path[0], '..')
 sys.path.append(root_path)
 
-import Model1.InhomoDiriBVP as DBVP
+import Model2.InhomoNeumBVP as NBVP
 
 import logging
 from logging import config
 
-result_foldername='exp_Model_1'
+result_foldername='exp_Model_2'
 if not os.path.exists(result_foldername):
     os.makedirs(result_foldername)
 
-log_filename=result_foldername+'/exp_Model_1.log'
+log_filename=result_foldername+'/exp_Model_2.log'
 csv_filename=result_foldername+'/results.csv'
 
 if not os.path.exists(csv_filename):
     import pandas as pd
-    csv_column_names=['contrast','lambda','coarse_grid','eigen_num','over_sampling','Dg_norm_a',\
-                        'Dg_norm_l2', 'Dg_ref_norm_a', 'Dg_ref_norm_l2','Dg_error_a','Dg_error_l2',\
+    csv_column_names=['contrast','lambda','coarse_grid','eigen_num','over_sampling','Nq_norm_a',\
+                        'Nq_norm_l2', 'Nq_ref_norm_a', 'Nq_ref_norm_l2','Nq_error_a','Nq_error_l2',\
                         'u_norm_a','u_norm_l2', 'u_ref_norm_a','u_ref_norm_l2', 'u_error_a','u_error_l2']
                     
     data = {}
@@ -83,13 +87,13 @@ def get_coeff_from_tmp(coeff_tmp, ctr: float):
 logging.info('=' * 80)
 logging.info("Start")
 
-coeff_tmp = np.load(os.path.join(root_path, 'Resources', 'MediumA.npy'))
+coeff_tmp = np.load(os.path.join(root_path, 'Resources', 'MediumC.npy'))
 
 SEC_NUM = 3
 SUB_SEC_NUM = 4
 EIGEN_NUM = 5
 FINE_GRID = 400
-logging.info("Start experimenting with Model 1")
+logging.info("Start experimenting with Model 2")
 
 for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
     for eigen_num in range(1,EIGEN_NUM):
@@ -104,7 +108,7 @@ for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
                 logging.info("Now setting up the initial parameters...")
                 ctr = 10.0**ctr_exp
                 coeff = get_coeff_from_tmp(coeff_tmp, ctr)
-                dbvp = DBVP.ProblemSetting()
+                dbvp = NBVP.ProblemSetting()
                 dbvp.set_coarse_grid(coarse_grid)
                 dbvp.set_fine_grid(FINE_GRID)
                 dbvp.set_coeff(coeff)
@@ -114,8 +118,8 @@ for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
                 dbvp.set_elem_Bi_mass_mat(beta_func)
 
                 dbvp.set_source_func(f_func)
-                dbvp.set_Diri_func(g_func, g_dx_func, g_dy_func)
-
+                dbvp.set_Neum_func(q_lf_func, q_rg_func, q_dw_func)
+    
                 logging.info("Getting the glb_A_F...")
                 dbvp.get_glb_A_F()
                 dbvp.eigen_num = eigen_num
@@ -132,9 +136,9 @@ for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
                 logging.info("Getting the true corrector")
                 true_corrector = dbvp.get_true_corr(guess=[corrector])
 
-                Dg_ref_l2, Dg_ref_eg = dbvp.get_L2_energy_norm(corrector)
-                Dg_l2, Dg_eg = dbvp.get_L2_energy_norm(true_corrector)
-                Dg_error_l2, Dg_error_eg = dbvp.get_L2_energy_norm(corrector-true_corrector)
+                Nq_ref_l2, Nq_ref_eg = dbvp.get_L2_energy_norm(corrector)
+                Nq_l2, Nq_eg = dbvp.get_L2_energy_norm(true_corrector)
+                Nq_error_l2, Nq_error_eg = dbvp.get_L2_energy_norm(corrector-true_corrector)
 
                 logging.info("Getting the solution")
                 u0_ms, guess = dbvp.solve()
@@ -147,11 +151,11 @@ for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
                 u_ref_l2, u_ref_eg = dbvp.get_L2_energy_norm(u_ref)
 
                 csv_column_names=['contrast','lambda','coarse_grid','eigen_num','over_sampling','Dg_norm_a',\
-                                    'Dg_norm_l2', 'Dg_ref_norm_a', 'Dg_ref_norm_l2','Dg_error_a','Dg_error_l2',\
+                                    'Nq_norm_l2', 'Nq_ref_norm_a', 'Nq_ref_norm_l2','Nq_error_a','Nq_error_l2',\
                                     'u_norm_a','u_norm_l2', 'u_ref_norm_a','u_ref_norm_l2', 'u_error_a','u_error_l2']
                 
-                data = [ctr, Lambda, coarse_grid, eigen_num, sub_sec_ind, Dg_eg, Dg_l2, Dg_ref_eg, Dg_ref_l2,\
-                        Dg_error_eg, Dg_error_l2, u_ms_eg, u_ms_l2, u_ref_eg, u_ref_l2, u_error_eg, u_error_l2]
+                data = [ctr, Lambda, coarse_grid, eigen_num, sub_sec_ind, Nq_eg, Nq_l2, Nq_ref_eg, Nq_ref_l2,\
+                        Nq_error_eg, Nq_error_l2, u_ms_eg, u_ms_l2, u_ref_eg, u_ref_l2, u_error_eg, u_error_l2]
                 
                 new_row = dict(zip(csv_column_names,data))
                 

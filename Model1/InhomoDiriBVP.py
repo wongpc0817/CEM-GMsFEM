@@ -387,75 +387,7 @@ class ProblemSetting(ST.Setting):
         u -= self.glb_corr
         logging.info("Finish solving the final linear system.")
         return u, omega
-        # assert self.oversamp_layer > 0 and self.eigen_num > 0
-        # self.get_eigen_pair()
-        # assert len(self.eigen_val) > 0
-        # logging.info("Finish getting all eigenvalue-vector pairs.")
-        # self.get_ind_map()
-        # assert len(self.ind_map_list) > 0
-        # logging.info("Finish getting maps of [global node index] to [local freedom index].")
-        # self.get_corr_basis()
-        # assert len(self.basis_list) > 0
-        # logging.info("Finish getting the Dirichlet corrector and multiscale bases.")
-        # self.get_glb_A_F()
-        # assert len(self.glb_F_vec) > 0
-        # logging.info("Finish getting the global stiffness matrix and right-hand vector.")
-        # self.get_glb_basis_spmat()
-        # assert self.glb_basis_spmat != None and self.glb_basis_spmat_T != None
-        # logging.info("Finish collecting all the bases in a sparse matrix formation.")
-        # os_ly = self.oversamp_layer
-        # max_data_len = self.coarse_elem * self.eigen_num**2 * (4*os_ly+1)**2
-        # # max_data_len = self.coarse_elem**2 * self.eigen_num**2
-        # I, J = -np.ones((max_data_len, ), dtype=np.int32), -np.ones((max_data_len, ), dtype=np.int32)
-        # V = np.zeros((max_data_len))
-        # marker = 0
-        # rhs = np.zeros((self.tot_fd_num, ))
-        # for coarse_elem_ind_i in range(self.coarse_elem):
-        #     coarse_elem_ind_iy, coarse_elem_ind_ix = divmod(coarse_elem_ind_i, self.coarse_grid)
-        #     for eigen_ind_i in range(self.eigen_num):
-        #         fd_ind_i = coarse_elem_ind_i*self.eigen_num + eigen_ind_i
-        #         loc_basis_i = self.basis_list[coarse_elem_ind_i][:, eigen_ind_i]
-        #         glb_basis_i = self.get_glb_vec(coarse_elem_ind_i, loc_basis_i)
-        #         lf_lim = max(0, coarse_elem_ind_ix-2*os_ly)
-        #         rg_lim = min(self.coarse_grid, coarse_elem_ind_ix+2*os_ly+1)
-        #         dw_lim = max(0, coarse_elem_ind_iy-2*os_ly)
-        #         up_lim = min(self.coarse_grid, coarse_elem_ind_iy+2*os_ly+1)
-        #         # lf_lim = 0
-        #         # rg_lim = self.coarse_grid
-        #         # dw_lim = 0
-        #         # up_lim = self.coarse_grid
-        #         for coarse_elem_ind_jx in range(lf_lim, rg_lim):
-        #             for coarse_elem_ind_jy in range(dw_lim, up_lim):
-        #                 coarse_elem_ind_j = coarse_elem_ind_jy*self.coarse_grid + coarse_elem_ind_jx
-        #                 for eigen_ind_j in range(self.eigen_num):
-        #                     fd_ind_j = coarse_elem_ind_j*self.eigen_num + eigen_ind_j
-        #                     loc_basis_j = self.basis_list[coarse_elem_ind_j][:, eigen_ind_j]
-        #                     glb_basis_j = self.get_glb_vec(coarse_elem_ind_j, loc_basis_j)
-        #                     I[marker] = fd_ind_i
-        #                     J[marker] = fd_ind_j
-        #                     V[marker] = np.inner(self.glb_A_mat.dot(glb_basis_i), glb_basis_j)
-        #                     # print("coarse_elem_ind_i:{0:d}, eigen_ind_i:{1:d}, coarse_elem_ind_j:{2:d}, eigen_ind_j:{3:d}, value:{4:.5f}".format(coarse_elem_ind_i, eigen_ind_i, coarse_elem_ind_j, eigen_ind_j, V[marker]))
-        #                     marker += 1
-        #         rhs[fd_ind_i] = np.inner(self.glb_F_vec, glb_basis_i) + np.inner(self.glb_A_mat.dot(glb_basis_i), self.glb_corr)
-        # A_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(self.tot_fd_num, self.tot_fd_num))
-        # A_mat = A_mat_coo.tocsr()
-        # A_mat = self.glb_basis_spmat_T * self.glb_A_mat * self.glb_basis_spmat
-        # rhs = self.glb_basis_spmat_T.dot(self.glb_F_vec + self.glb_A_mat.dot(self.glb_corr))
-        # logging.info("Finish constructing the final linear system.")
-        # ilu = spilu(A_mat)
-        # Mx = lambda x: ilu.solve(x)
-        # pre_M = LinearOperator((self.tot_fd_num, self.tot_fd_num), Mx)
-        # omega, info = lgmres(A_mat, rhs, tol=self.TOL, M=pre_M)
-        # assert info == 0
-        # u0 = self.glb_basis_spmat.dot(omega)
-        # for coarse_elem_ind in range(self.coarse_elem):
-        #     for eigen_ind in range(self.eigen_num):
-        #         fd_ind = coarse_elem_ind*self.eigen_num + eigen_ind
-        #         loc_basis = self.basis_list[coarse_elem_ind][:, eigen_ind]
-        #         u0 += omega[fd_ind] * self.get_glb_vec(coarse_elem_ind, loc_basis)
-        u0 -= self.glb_corr
-        # logging.info("Finish solving the final linear system.")
-        # return u0
+
 
     def solve_ref(self, guess=[]):
         def get_fd_ind(fine_elem_ind_x, fine_elem_ind_y, loc_ind):
