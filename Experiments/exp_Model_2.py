@@ -131,18 +131,18 @@ for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
                 dbvp.init_args(eigen_num, os_ly)
                 dbvp.get_ind_map()
 
-                logging.info("Getting the corrector")
+                logging.info("Getting the corrector...")
                 corrector = dbvp.get_corr()
-                logging.info("Getting the true corrector")
+                logging.info("Getting the true corrector...")
                 true_corrector = dbvp.get_true_corr(guess=[corrector])
 
                 Nq_ref_l2, Nq_ref_eg = dbvp.get_L2_energy_norm(corrector)
                 Nq_l2, Nq_eg = dbvp.get_L2_energy_norm(true_corrector)
                 Nq_error_l2, Nq_error_eg = dbvp.get_L2_energy_norm(corrector-true_corrector)
 
-                logging.info("Getting the solution")
+                logging.info("Getting the solution...")
                 u0_ms, guess = dbvp.solve()
-                logging.info("Getting the reference solution")
+                logging.info("Getting the reference solution...")
                 u0_ref = dbvp.solve_ref(guess=u0_ms)
                 u_ref = dbvp.get_inhomo_ref(u0_ref)
                 u_ms = dbvp.get_inhomo_ref(u0_ms)
