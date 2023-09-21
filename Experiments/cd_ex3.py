@@ -99,7 +99,9 @@ if op == 0 or op == 1:
                 logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
                 # dbvp = DBVP.ProblemSetting(option=-3)
                 dbvp = DBVP.ProblemSetting(option=sec_ind + 1)
+                
                 dbvp.set_coarse_grid(coarse_grid)
+                
                 logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(dbvp.coarse_grid, dbvp.fine_grid))
                 dbvp.set_coeff(coeff)
 
