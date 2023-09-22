@@ -171,7 +171,7 @@ for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
                          u_ms=u_ms,
                          )
                 with open(csv_filename,'a', newline='') as f:
-                    writer = csv.DictWrtier(f, fieldnames=new_row.keys())
+                    writer = csv.DictWriter(f, fieldnames=new_row.keys())
                     writer.writerow(new_row)
 
 logging.info("End\n")
