@@ -283,18 +283,18 @@ class ProblemSetting(ST.Setting):
             Op_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
             Op_mat = Op_mat_coo.tocsc()
             # logging.info("Construct the linear system [{0:d}]/[{1:d}], [{2:d}x{2:d}]".format(coarse_elem_ind, self.coarse_elem, fd_num))
-            # ilu = spilu(Op_mat, fill_factor=5.0)
-            # Mx = lambda x: ilu.solve(x)
-            # pre_M = LinearOperator((fd_num, fd_num), Mx)
-            # corr, info = lgmres(Op_mat, rhs_corr, tol=self.TOL, M=pre_M)
-            # assert info == 0
-            corr = spsolve(Op_mat, rhs_corr)
+            ilu = spilu(Op_mat, fill_factor=5.0)
+            Mx = lambda x: ilu.solve(x)
+            pre_M = LinearOperator((fd_num, fd_num), Mx)
+            corr, info = lgmres(Op_mat, rhs_corr, tol=self.TOL, M=pre_M)
+            assert info == 0
+            # corr = spsolve(Op_mat, rhs_corr)
             glb_corr += self.get_glb_vec(coarse_elem_ind, corr)
             basis_wrt_coarse_elem = np.zeros(rhs_basis.shape)
             for eigen_ind in range(self.eigen_num):
-                # basis, info = lgmres(Op_mat, rhs_basis[:, eigen_ind], x0=guess[:, eigen_ind], tol=self.TOL, M=pre_M)
-                # assert info == 0
-                basis = spsolve(Op_mat, rhs_basis[:, eigen_ind])
+                basis, info = lgmres(Op_mat, rhs_basis[:, eigen_ind], x0=guess[:, eigen_ind], tol=self.TOL, M=pre_M)
+                assert info == 0
+                # basis = spsolve(Op_mat, rhs_basis[:, eigen_ind])
                 basis_wrt_coarse_elem[:, eigen_ind] = basis
             basis_list[coarse_elem_ind] = basis_wrt_coarse_elem
             # logging.info("Finish [{0:d}]/[{1:d}]".format(coarse_elem_ind, self.coarse_elem))
@@ -380,8 +380,8 @@ class ProblemSetting(ST.Setting):
             x0 = guess
         else:
             x0 = np.zeros((self.tot_fd_num, ))
-        # omega, info = lgmres(A_mat, rhs, tol=self.TOL, M=pre_M, x0=x0, maxiter=10000)
-        omega = spsolve(A_mat, rhs)
+        omega, info = lgmres(A_mat, rhs, tol=self.TOL, M=pre_M, x0=x0, maxiter=10000)
+        # omega = spsolve(A_mat, rhs)
         # if info != 0:
         #     logging.critical("Fail to solve the final linear system, info={0:d}".format(info))
         #     raise AssertionError
@@ -440,12 +440,12 @@ class ProblemSetting(ST.Setting):
         A_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
         A_mat = A_mat_coo.tocsc()
         logging.info("Finish constructing the final linear system of the reference problem.")
-        # ilu = spilu(A_mat)
-        # Mx = lambda x: ilu.solve(x)
-        # pre_M = LinearOperator((fd_num, fd_num), Mx)
-        # u0_ref_inner, info = lgmres(A_mat, rhs, tol=self.TOL, x0=x0, M=pre_M)
-        # assert info == 0
-        u0_ref_inner = spsolve(A_mat, rhs)
+        ilu = spilu(A_mat)
+        Mx = lambda x: ilu.solve(x)
+        pre_M = LinearOperator((fd_num, fd_num), Mx)
+        u0_ref_inner, info = lgmres(A_mat, rhs, tol=self.TOL, x0=x0, M=pre_M)
+        assert info == 0
+        # u0_ref_inner = spsolve(A_mat, rhs)
         u0_ref = np.zeros((self.tot_node, ))
         for node_ind in range(self.tot_node):
             node_ind_y, node_ind_x = divmod(node_ind, self.fine_grid + 1)
@@ -535,12 +535,12 @@ class ProblemSetting(ST.Setting):
             Op_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
             Op_mat = Op_mat_coo.tocsc()
             # logging.info("Construct the linear system [{0:d}]/[{1:d}], [{2:d}x{2:d}]".format(coarse_elem_ind, self.coarse_elem, fd_num))
-            # ilu = spilu(Op_mat, fill_factor=5.0)
-            # Mx = lambda x: ilu.solve(x)
-            # pre_M = LinearOperator((fd_num, fd_num), Mx)
-            # corr, info = lgmres(Op_mat, rhs_corr, tol=self.TOL, M=pre_M)
-            # assert info == 0
-            corr = spsolve(Op_mat, rhs_corr)
+            ilu = spilu(Op_mat, fill_factor=5.0)
+            Mx = lambda x: ilu.solve(x)
+            pre_M = LinearOperator((fd_num, fd_num), Mx)
+            corr, info = lgmres(Op_mat, rhs_corr, tol=self.TOL, M=pre_M)
+            assert info == 0
+            # corr = spsolve(Op_mat, rhs_corr)
             glb_corr += self.get_glb_vec(coarse_elem_ind, corr)
             if coarse_elem_ind > prc_flag / 10 * self.coarse_elem:
                 logging.info("......{0:.2f}%".format(coarse_elem_ind / self.coarse_elem * 100.))
@@ -630,12 +630,12 @@ class ProblemSetting(ST.Setting):
                         +self.get_Diri_Adv_Lag(fine_elem_ind_x, fine_elem_ind_y, loc_ind_i)
         Op_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
         Op_mat = Op_mat_coo.tocsc()
-        corr = spsolve(Op_mat, rhs_corr)
-        # ilu = spilu(Op_mat, fill_factor=5.0)
-        # Mx = lambda x: ilu.solve(x)
-        # pre_M = LinearOperator((fd_num, fd_num), Mx)
-        # corr, info = lgmres(Op_mat, rhs_corr, tol=self.TOL, M=pre_M, x0=x0)
-        # assert info == 0
+        # corr = spsolve(Op_mat, rhs_corr)
+        ilu = spilu(Op_mat, fill_factor=5.0)
+        Mx = lambda x: ilu.solve(x)
+        pre_M = LinearOperator((fd_num, fd_num), Mx)
+        corr, info = lgmres(Op_mat, rhs_corr, tol=self.TOL, M=pre_M, x0=x0)
+        assert info == 0
         glb_corr = np.zeros((self.tot_node, ))
         for node_ind in range(self.tot_node):
             node_ind_y, node_ind_x = divmod(node_ind, self.fine_grid + 1)
@@ -877,15 +877,15 @@ class ProblemSetting(ST.Setting):
                                 # Use the definition of P_mat
             Op_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(fd_num, fd_num))
             Op_mat = Op_mat_coo.tocsc()
-            corr = spsolve(Op_mat, rhs_corr)
-            # corr, info = lgmres(Op_mat, rhs_corr, tol=self.TOL)
-            # assert info == 0
+            # corr = spsolve(Op_mat, rhs_corr)
+            corr, info = lgmres(Op_mat, rhs_corr, tol=self.TOL)
+            assert info == 0
             corr_list[coarse_elem_ind] = corr
             basis_wrt_coarse_elem = np.zeros(rhs_basis.shape)
             for eigen_ind in range(self.eigen_num):
-                # basis, info = lgmres(Op_mat, rhs_basis[:, eigen_ind], tol=self.TOL)
-                # assert info == 0
-                basis = spsolve(Op_mat, rhs_basis[:, eigen_ind])
+                basis, info = lgmres(Op_mat, rhs_basis[:, eigen_ind], tol=self.TOL)
+                assert info == 0
+                # basis = spsolve(Op_mat, rhs_basis[:, eigen_ind])
                 basis_wrt_coarse_elem[:, eigen_ind] = basis
                 fd_ind = coarse_elem_ind * self.eigen_num + eigen_ind
                 glb_basis_list[fd_ind] = self.get_glb_node_val(coarse_elem_ind, basis)
@@ -991,9 +991,9 @@ class ProblemSetting(ST.Setting):
         A_mat_coo = coo_matrix((V[:marker], (I[:marker], J[:marker])), shape=(self.tot_fd_num, self.tot_fd_num))
         A_mat = A_mat_coo.tocsc()
         logging.info("Finish constructing the final linear system.")
-        # omega, info = lgmres(A_mat, rhs, tol=self.TOL)
-        # assert info == 0
-        omega = spsolve(A_mat, rhs)
+        omega, info = lgmres(A_mat, rhs, tol=self.TOL)
+        assert info == 0
+        # omega = spsolve(A_mat, rhs)
         # u_0 = \sum x_i^s \Phi_i^s - D^m g
         # u_0 = omega - [global Dirichlet corrector]
         u0 = np.zeros((self.fine_grid + 1, self.fine_grid + 1))

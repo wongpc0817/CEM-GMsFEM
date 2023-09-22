@@ -134,7 +134,7 @@ for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
                 logging.info("Getting the corrector...")
                 corrector = dbvp.get_corr()
                 logging.info("Getting the true corrector...")
-                true_corrector = dbvp.get_true_corr(guess=[corrector])
+                true_corrector = dbvp.get_true_corr(guess=corrector)
 
                 Nq_ref_l2, Nq_ref_eg = dbvp.get_L2_energy_norm(corrector)
                 Nq_l2, Nq_eg = dbvp.get_L2_energy_norm(true_corrector)
@@ -160,9 +160,9 @@ for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
                 new_row = dict(zip(csv_column_names,data))
                 
                 
-                now=datetime.now()
-                timestamp = now.strftime("%Y%m%d_%H%M%S")
-                np.savez_compressed(f"{result_foldername}/{'_'.join(f'{k}{v}' for k,v in parameters.items())}_{timestamp}.npz",
+                # now=datetime.now()
+                # timestamp = now.strftime("%Y%m%d_%H%M%S")
+                np.savez_compressed(f"{result_foldername}/{'_'.join(f'{k}{v}' for k,v in parameters.items())}.npz",
                          corrector=corrector,
                          true_corrector=true_corrector,
                          u0_ms=u0_ms,
