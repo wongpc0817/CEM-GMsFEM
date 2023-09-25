@@ -1,0 +1,38 @@
+22-09-2023 10:56:33 : ================================================================================
+22-09-2023 10:56:33 : Start
+22-09-2023 10:56:33 : Start experimenting with Model 2
+22-09-2023 10:56:33 : Working on os1_eig1_ctr3_H10...
+22-09-2023 10:56:33 : Now setting up the initial parameters...
+22-09-2023 10:56:33 : Getting the glb_A_F...
+22-09-2023 10:56:57 : Getting eigen pairs...
+22-09-2023 10:57:01 : Getting the corrector...
+22-09-2023 10:58:24 : ......11.00%
+22-09-2023 11:00:11 : ......21.00%
+22-09-2023 11:01:55 : ......31.00%
+22-09-2023 11:03:34 : ......41.00%
+22-09-2023 11:04:56 : ......51.00%
+22-09-2023 11:06:01 : ......61.00%
+22-09-2023 11:07:07 : ......71.00%
+22-09-2023 11:08:14 : ......81.00%
+22-09-2023 11:09:17 : ......91.00%
+22-09-2023 11:09:53 : Getting the true corrector...
+22-09-2023 11:11:28 : Getting the solution...
+22-09-2023 11:11:31 : Finish getting all eigenvalue-vector pairs.
+22-09-2023 11:11:31 : Finish getting maps of [global node index] to [local freedom index].
+22-09-2023 11:12:43 : ......11.00%
+22-09-2023 11:14:10 : ......21.00%
+22-09-2023 11:15:34 : ......31.00%
+22-09-2023 11:16:59 : ......41.00%
+22-09-2023 11:18:23 : ......51.00%
+22-09-2023 11:19:48 : ......61.00%
+22-09-2023 11:21:12 : ......71.00%
+22-09-2023 11:22:36 : ......81.00%
+22-09-2023 11:23:56 : ......91.00%
+22-09-2023 11:24:40 : Finish getting the Neumann corrector and multiscale bases.
+22-09-2023 11:25:07 : Finish getting the global stiffness matrix and right-hand vector.
+22-09-2023 11:25:08 : Finish collecting all the bases in a sparse matrix formation.
+22-09-2023 11:25:08 : Finish constructing the final linear system.
+22-09-2023 11:25:08 : Finish solving the final linear system.
+22-09-2023 11:25:08 : Getting the reference solution...
+22-09-2023 11:25:35 : Finish constructing the final linear system of the reference problem.
+22-09-2023 11:25:40 : Finish solving the final linear system of the reference problem.

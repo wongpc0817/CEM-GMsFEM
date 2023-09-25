@@ -28,6 +28,10 @@ def f_func(x: float, y: float):
     else:
         return 0.0
 
+def beta_func(x:float,y:float):
+    return COS(18*PI*y)*SIN(18*PI*x), -COS(18*PI*x)*SIN(18*PI*y)
+    
+
 def q_lf_func(y: float):
     return -1.0
 
@@ -48,11 +52,6 @@ def q_up_func(x: float):
         return -1.0
     else:
         return 0.0
-
-
-
-def beta_func(x:float,y:float):
-    return COS(18*PI*y)*SIN(18*PI*x), -COS(18*PI*x)*SIN(18*PI*y)
 
 root_path = os.path.join(sys.path[0], '..')
 sys.path.append(root_path)
@@ -118,16 +117,15 @@ for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
                 coeff = get_coeff_from_tmp(coeff_tmp, ctr)
                 dbvp = RBVP.ProblemSetting()
                 dbvp.set_coarse_grid(coarse_grid)
-                dbvp.set_fine_grid(FINE_GRID)
+                # dbvp.set_fine_grid(FINE_GRID)
                 dbvp.set_coeff(coeff)
-
                 dbvp.set_beta_func(beta_func)
                 dbvp.set_elem_Adv_mat(beta_func)
                 dbvp.set_elem_Bi_mass_mat(beta_func)
 
+                dbvp.set_Robin_coeff(coeff)
                 dbvp.set_source_func(f_func)
-                dbvp.set_Neum_func(q_lf_func, q_rg_func, q_dw_func)
-    
+                dbvp.set_Robin_func(q_lf_func, q_rg_func, q_dw_func, q_up_func)
                 logging.info("Getting the glb_A_F...")
                 dbvp.get_glb_A_F()
                 dbvp.eigen_num = eigen_num

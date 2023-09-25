@@ -240,6 +240,14 @@ class ProblemSetting(ST.Setting):
         self.eigen_vec = eigen_vec
         self.S_mat_list = S_mat_list
         self.A_mat_list = A_mat_list
+    def get_inhomo_ref(self, u0_ref):
+        u = np.zeros((self.tot_node, ))
+        h = self.h
+        for node_ind in range(self.tot_node):
+            node_ind_y, node_ind_x = divmod(node_ind, self.fine_grid + 1)
+            y, x = node_ind_y * h, node_ind_x * h
+            u[node_ind] = u0_ref[node_ind] + self.Diri_func_g(x, y)
+        return u
 
     def get_ind_map(self):
         assert self.oversamp_layer > 0

@@ -94,7 +94,8 @@ logging.info("Start experimenting with Model 1")
 for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
     for eigen_num in range(1,EIGEN_NUM):
         for ctr_exp in [3,4,5,6]:
-            for coarse_grid in [10,20,40,80]:
+            # for coarse_grid in [10,20,40,80]:
+            for coarse_grid in [20]:
                 parameters= {"os":sub_sec_ind,
                             "eig": eigen_num,
                             "ctr":ctr_exp,

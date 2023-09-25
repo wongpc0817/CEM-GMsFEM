@@ -1,0 +1,55 @@
+22-09-2023 10:56:57 : ================================================================================
+22-09-2023 10:56:57 : Start
+22-09-2023 10:56:57 : Start experimenting with Model 3
+22-09-2023 10:56:57 : Working on os1_eig1_ctr3_H10...
+22-09-2023 10:56:57 : Now setting up the initial parameters...
+22-09-2023 10:58:32 : ================================================================================
+22-09-2023 10:58:32 : Start
+22-09-2023 10:58:32 : Start experimenting with Model 3
+22-09-2023 10:58:32 : Working on os1_eig1_ctr3_H10...
+22-09-2023 10:58:32 : Now setting up the initial parameters...
+22-09-2023 10:58:32 : Getting the glb_A_F...
+22-09-2023 11:00:24 : ================================================================================
+22-09-2023 11:00:24 : Start
+22-09-2023 11:00:24 : Start experimenting with Model 3
+22-09-2023 11:00:24 : Working on os1_eig1_ctr3_H10...
+22-09-2023 11:00:24 : Now setting up the initial parameters...
+22-09-2023 11:00:24 : Getting the glb_A_F...
+22-09-2023 11:02:25 : ================================================================================
+22-09-2023 11:02:25 : Start
+22-09-2023 11:02:25 : Start experimenting with Model 3
+22-09-2023 11:02:25 : Working on os1_eig1_ctr3_H10...
+22-09-2023 11:02:25 : Now setting up the initial parameters...
+22-09-2023 11:02:25 : Getting the glb_A_F...
+22-09-2023 11:03:02 : Getting eigen pairs...
+22-09-2023 11:03:07 : Getting the corrector...
+22-09-2023 11:04:29 : ......11.00%
+22-09-2023 11:05:37 : ......21.00%
+22-09-2023 11:06:45 : ......31.00%
+22-09-2023 11:07:52 : ......41.00%
+22-09-2023 11:09:00 : ......51.00%
+22-09-2023 11:10:09 : ......61.00%
+22-09-2023 11:11:17 : ......71.00%
+22-09-2023 11:12:26 : ......81.00%
+22-09-2023 11:13:31 : ......91.00%
+22-09-2023 11:14:09 : Getting the true corrector...
+22-09-2023 11:15:46 : Getting the solution...
+22-09-2023 11:15:50 : Finish getting all eigenvalue-vector pairs.
+22-09-2023 11:15:50 : Finish getting maps of [global node index] to [local freedom index].
+22-09-2023 11:17:03 : ......11.00%
+22-09-2023 11:18:31 : ......21.00%
+22-09-2023 11:19:56 : ......31.00%
+22-09-2023 11:21:22 : ......41.00%
+22-09-2023 11:22:47 : ......51.00%
+22-09-2023 11:24:13 : ......61.00%
+22-09-2023 11:25:38 : ......71.00%
+22-09-2023 11:26:59 : ......81.00%
+22-09-2023 11:28:16 : ......91.00%
+22-09-2023 11:29:00 : Finish getting the Neumann corrector and multiscale bases.
+22-09-2023 11:29:25 : Finish getting the global stiffness matrix and right-hand vector.
+22-09-2023 11:29:25 : Finish collecting all the bases in a sparse matrix formation.
+22-09-2023 11:29:26 : Finish constructing the final linear system.
+22-09-2023 11:29:26 : Finish solving the final linear system.
+22-09-2023 11:29:26 : Getting the reference solution...
+22-09-2023 11:29:52 : Finish constructing the final linear system of the reference problem.
+22-09-2023 11:29:59 : Finish solving the final linear system of the reference problem.
