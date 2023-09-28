@@ -108,7 +108,7 @@ if op == 0 or op == 1:
     # coeff = np.ones((rbvp.fine_grid, rbvp.fine_grid))
     rbvp.set_coeff(coeff)
 
-        
+    rbvp.set_coarse_grid(20)
     rbvp.set_beta_func(beta_func)
     rbvp.set_elem_Adv_mat(beta_func)
     rbvp.set_elem_Bi_mass_mat(beta_func)

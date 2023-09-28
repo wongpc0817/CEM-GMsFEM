@@ -87,40 +87,44 @@ def get_loc_mass(h: float, loc_kappa: float, loc_ind_i: int, loc_ind_j: int, bet
 
 
 class Setting:
-    def upd(self, option: int = 1):
-        self.coarse_grid = 0
-        if option == 1:
-            self.fine_grid = FINE_GRID
-            self.coarse_grid = COARSE1
-        elif option == 2:
-            self.fine_grid = FINE_GRID
-            self.coarse_grid = COARSE2
-        elif option == 3:
-            self.fine_grid = FINE_GRID
-            self.coarse_grid = COARSE3
-        elif option == 4:
-            self.fine_grid = FINE_GRID
-            self.coarse_grid = COARSE4
-        elif option == -1:
-            self.fine_grid = 8
-            self.coarse_grid = 2
-        elif option == -2:
-            self.fine_grid = 16
-            self.coarse_grid = 4
-        elif option == -3:
-            self.fine_grid = 32
-            self.coarse_grid = 8
-        elif option == -4:
-            self.fine_grid = 64
-            self.coarse_grid = 16
-        elif option == -5:
-            self.fine_grid = 128
-            self.coarse_grid = 32
-        elif option == -6:
-            self.fine_grid = 256
-            self.coarse_grid = 64
+    def upd(self, option: int = 1, coarse_grid:int=0, fine_grid:int=0):
+        if coarse_grid==0 & fine_grid==0:
+            self.coarse_grid = 0
+            if option == 1:
+                self.fine_grid = FINE_GRID
+                self.coarse_grid = COARSE1
+            elif option == 2:
+                self.fine_grid = FINE_GRID
+                self.coarse_grid = COARSE2
+            elif option == 3:
+                self.fine_grid = FINE_GRID
+                self.coarse_grid = COARSE3
+            elif option == 4:
+                self.fine_grid = FINE_GRID
+                self.coarse_grid = COARSE4
+            elif option == -1:
+                self.fine_grid = 8
+                self.coarse_grid = 2
+            elif option == -2:
+                self.fine_grid = 16
+                self.coarse_grid = 4
+            elif option == -3:
+                self.fine_grid = 32
+                self.coarse_grid = 8
+            elif option == -4:
+                self.fine_grid = 64
+                self.coarse_grid = 16
+            elif option == -5:
+                self.fine_grid = 128
+                self.coarse_grid = 32
+            elif option == -6:
+                self.fine_grid = 256
+                self.coarse_grid = 64
+            else:
+                raise ValueError("Invalid option")
         else:
-            raise ValueError("Invalid option")
+            self.coarse_grid=coarse_grid
+            self.fine_grid=fine_grid
         self.fine_elem = self.fine_grid**2
         self.coarse_elem = self.coarse_grid**2
         self.sub_grid = self.fine_grid // self.coarse_grid
@@ -136,10 +140,12 @@ class Setting:
             for loc_ind_j in range(N_V):
                 self.elem_Lap_stiff_mat[loc_ind_i, loc_ind_j] = get_loc_stiff(1.0, loc_ind_i, loc_ind_j)
 
-    def set_coarse_grid(self, x):
-        self.coarse_grid=x
-    def set_fine_grid(self, x):
-        self.fine_grid=x
+    def set_coarse_grid(self, x: int=0):
+        if x!=0:
+            self.coarse_grid=x
+    def set_fine_grid(self, x: int=0):
+        if x!=0:
+            self.fine_grid=x
 
     def set_elem_Adv_mat(self, beta_func):
         self.elem_Adv_mat = np.zeros((self.N_V, self.N_V))
@@ -153,6 +159,9 @@ class Setting:
                 for loc_ind_j in range(self.N_V):
                     self.elem_Bi_mass_mat[loc_ind_i, loc_ind_j] = get_loc_mass(self.h, 1.0, loc_ind_i, loc_ind_j, beta_func)
 
-    def __init__(self, option: int = 1):
-        self.upd(option)
+    def __init__(self, option: int = 1,coarse_grid: int = 0, fine_grid: int=0):
+        if coarse_grid==0 & fine_grid==0:
+            self.upd(option)
+        else:
+            self.upd(option)
         self.N_V=N_V

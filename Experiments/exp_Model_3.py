@@ -115,9 +115,7 @@ for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
                 logging.info("Now setting up the initial parameters...")
                 ctr = 10.0**ctr_exp
                 coeff = get_coeff_from_tmp(coeff_tmp, ctr)
-                dbvp = RBVP.ProblemSetting()
-                dbvp.set_coarse_grid(coarse_grid)
-                # dbvp.set_fine_grid(FINE_GRID)
+                dbvp = RBVP.ProblemSetting(coarse_grid=coarse_grid,fine_grid=FINE_GRID)
                 dbvp.set_coeff(coeff)
                 dbvp.set_beta_func(beta_func)
                 dbvp.set_elem_Adv_mat(beta_func)

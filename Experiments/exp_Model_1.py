@@ -94,8 +94,7 @@ logging.info("Start experimenting with Model 1")
 for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
     for eigen_num in range(1,EIGEN_NUM):
         for ctr_exp in [3,4,5,6]:
-            # for coarse_grid in [10,20,40,80]:
-            for coarse_grid in [20]:
+            for coarse_grid in [10,20,40,80]:
                 parameters= {"os":sub_sec_ind,
                             "eig": eigen_num,
                             "ctr":ctr_exp,
@@ -104,10 +103,10 @@ for sub_sec_ind in range(1, SUB_SEC_NUM + 1):
                 logging.info(f"Working on {'_'.join(f'{k}{v}' for k,v in parameters.items())}...")
                 logging.info("Now setting up the initial parameters...")
                 ctr = 10.0**ctr_exp
+                dbvp = DBVP.ProblemSetting(coarse_grid=coarse_grid,fine_grid=FINE_GRID)
+                # dbvp.set_coarse_grid(coarse_grid)
+                # dbvp.set_fine_grid(FINE_GRID)
                 coeff = get_coeff_from_tmp(coeff_tmp, ctr)
-                dbvp = DBVP.ProblemSetting()
-                dbvp.set_coarse_grid(coarse_grid)
-                dbvp.set_fine_grid(FINE_GRID)
                 dbvp.set_coeff(coeff)
 
                 dbvp.set_beta_func(beta_func)

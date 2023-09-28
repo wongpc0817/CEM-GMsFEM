@@ -105,8 +105,10 @@ if op == 0 or op == 1:
             coeff = get_coeff_from_tmp(coeff_tmp, ctr)
             logging.info("Get coefficients from the image, set contrast ratio={:.4e}".format(ctr))
             rbvp = RBVP.ProblemSetting(option=sec_ind + 2)
+            rbvp.set_coarse_grid(20)
             logging.info("Coarse grid:{0:d}x{0:d}, fine grid:{1:d}x{1:d}.".format(rbvp.coarse_grid, rbvp.fine_grid))
             rbvp.set_coeff(coeff)
+            
             rbvp.set_beta_func(beta_func)
             rbvp.set_elem_Adv_mat(beta_func)
             rbvp.set_elem_Bi_mass_mat(beta_func)
